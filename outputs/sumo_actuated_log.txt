@@ -1,0 +1,14 @@
+Loading net-file from 'configs\../data/corridor_actuated.net.xml' ... done (5ms).
+Loading route-files incrementally from 'configs\../data/corridor.rou.xml'
+Loading done.
+Simulation version 1.27.1 started with time: 0.00.
+Simulation ended at time: 10.00.
+Reason: The final simulation step has been reached.
+Performance:
+ Duration: 0.01s
+ Real time factor: 1250
+ UPS: 6875.000000
+Vehicles:
+ Inserted: 10 (Loaded: 203)
+ Running: 10
+ Waiting: 0

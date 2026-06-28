@@ -1,0 +1,7 @@
+﻿controller,seed,avg_wait_time_s,max_queue_len,throughput_veh,total_co2_kg
+fixed,0,84.32,195,1520,657.1225
+fixed,1,85.94,394,1275,724.9425
+fixed,2,88.52,573,1087,811.3292
+actuated,0,43.3,74,1648,516.8873
+actuated,1,42.54,78,1650,515.4579
+actuated,2,36.84,77,1642,492.4259
