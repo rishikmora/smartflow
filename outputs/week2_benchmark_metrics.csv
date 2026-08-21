@@ -1,0 +1,4 @@
+controller,seed,avg_wait_time_s,max_queue_len,throughput_veh
+fixed,0,16.46,64,2087
+fixed,1,16.35,65,2093
+fixed,2,16.37,68,2087

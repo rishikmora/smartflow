@@ -14,3 +14,10 @@ trips.trips.xml
 
 # IDE / Claude Code
 .claude/
+
+# Training logs (large, regenerable)
+outputs/tensorboard/
+outputs/monitor/
+
+# Trained models (committed by explicit choice only)
+# models/      # uncomment to exclude model zips from git

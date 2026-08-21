@@ -20,7 +20,12 @@ MAX_GREEN    = 50     # maximum green time per phase
 
 # ── training settings ─────────────────────────────────────────────────────────
 PPO_TIMESTEPS_SHORT = 30_000    # Day 2 pipeline-validation run
-PPO_TIMESTEPS_FULL  = 200_000   # Day 4 real training run per seed
+PPO_TIMESTEPS_FULL  = 100_000   # Day 4 real training run per seed
+                                 # (60 steps/s → ~28 min/seed; literature shows
+                                 # convergence at 80-120k for this benchmark)
+PPO_CHUNK_SIZE      = 20_000    # SUMO crashes on Windows after ~65 episodes in
+                                 # one continuous run; restarting the process every
+                                 # 20k steps (~27 episodes) avoids the socket reset
 TRAIN_SEEDS = [0, 1, 2]
 
 # ── output paths ─────────────────────────────────────────────────────────────
