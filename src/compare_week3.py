@@ -37,6 +37,12 @@ def load_metrics() -> pd.DataFrame:
     df = pd.read_csv(WEEK3_CSV)
     missing = set(CONTROLLERS) - set(df["controller"].unique())
     if missing:
+        if "ppo" in missing and "ppo_short" in set(df["controller"].unique()):
+            raise ValueError(
+                "Only ppo_short rows are present. The short 30k run is a pipeline validation, "
+                "not the final Week 3 result. Train full models with no --tag, or rename/record "
+                "the short run separately."
+            )
         raise ValueError(f"Missing Week 3 controller rows: {sorted(missing)}")
     return df
 

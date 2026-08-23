@@ -12,7 +12,7 @@ from typing import Any
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from week3_config import CORRIDOR_ACTUATED_CONFIG, CORRIDOR_FIXED_CONFIG, CSV_HEADER
-from week3_config import TRAIN_SEEDS, WEEK3_CSV, CORRIDOR_TLS_ID, model_path
+from week3_config import MODELS_DIR, TRAIN_SEEDS, WEEK3_CSV, CORRIDOR_TLS_ID, model_path
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)-7s %(message)s")
 log = logging.getLogger(__name__)
@@ -76,7 +76,14 @@ def _collect_traci_metrics(controller: str, seed: int, config_path: str) -> dict
     }
 
 
-def _collect_ppo_metrics(seed: int) -> dict[str, Any]:
+def _ppo_model_path(seed: int, tag: str = "") -> str:
+    """Return the PPO model path for a seed and optional training tag."""
+    if not tag:
+        return model_path(seed)
+    return os.path.join(MODELS_DIR, f"ppo_corridor_seed{seed}_{tag}.zip")
+
+
+def _collect_ppo_metrics(seed: int, tag: str = "") -> dict[str, Any]:
     """Evaluate a trained PPO model deterministically through sumo-rl."""
     if not os.environ.get("SUMO_HOME"):
         raise EnvironmentError("SUMO_HOME is not set.")
@@ -85,9 +92,10 @@ def _collect_ppo_metrics(seed: int) -> dict[str, Any]:
     from sumo_rl import SumoEnvironment
     from week3_config import CORRIDOR_NET, CORRIDOR_ROUTE, DELTA_TIME, MAX_GREEN, MIN_GREEN, SIM_SECONDS, YELLOW_TIME
 
-    path = model_path(seed)
+    path = _ppo_model_path(seed, tag)
     if not os.path.isfile(path):
-        raise FileNotFoundError(f"Missing PPO model for seed {seed}: {path}")
+        tag_hint = f" with tag '{tag}'" if tag else ""
+        raise FileNotFoundError(f"Missing PPO model for seed {seed}{tag_hint}: {path}")
     env = SumoEnvironment(
         net_file=CORRIDOR_NET,
         route_file=CORRIDOR_ROUTE,
@@ -142,7 +150,7 @@ def _collect_ppo_metrics(seed: int) -> dict[str, Any]:
     }
 
 
-def run(controller: str, seeds: list[int]) -> None:
+def run(controller: str, seeds: list[int], tag: str = "") -> None:
     """Run the requested controller for each seed."""
     for seed in seeds:
         if controller == "fixed":
@@ -150,7 +158,9 @@ def run(controller: str, seeds: list[int]) -> None:
         elif controller == "actuated":
             row = _collect_traci_metrics("actuated", seed, CORRIDOR_ACTUATED_CONFIG)
         else:
-            row = _collect_ppo_metrics(seed)
+            row = _collect_ppo_metrics(seed, tag)
+            if tag:
+                row["controller"] = f"ppo_{tag}"
         _save_row(row)
         log.info("Logged %s seed=%d wait=%.2f queue=%s throughput=%s", controller, seed, row["avg_wait_time_s"], row["max_queue_len"], row["throughput_veh"])
 
@@ -160,8 +170,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Evaluate Week 3 corridor controllers.")
     parser.add_argument("--controller", choices=["fixed", "actuated", "ppo"], required=True)
     parser.add_argument("--seeds", nargs="+", type=int, default=TRAIN_SEEDS)
+    parser.add_argument(
+        "--tag",
+        type=str,
+        default="",
+        help="Optional PPO model tag, e.g. 'short' for ppo_corridor_seed0_short.zip.",
+    )
     args = parser.parse_args()
-    run(args.controller, args.seeds)
+    run(args.controller, args.seeds, args.tag)
 
 
 if __name__ == "__main__":
