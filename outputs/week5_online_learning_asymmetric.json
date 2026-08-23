@@ -1,0 +1,108 @@
+{
+  "seed": 0,
+  "source_checkpoint": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\models\\marl_shared_seed0_w5",
+  "adapted_checkpoint": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\models\\marl_shared_seed0_online",
+  "scenario": "asymmetric",
+  "reward_fn": "shaped",
+  "rounds": 8,
+  "num_env_runners": 5,
+  "sim_seconds": 1800,
+  "frozen_avg_wait_s": 10.32,
+  "final_avg_wait_s": 10.32,
+  "best_avg_wait_s": 10.32,
+  "improvement_pct_final": 0.0,
+  "improvement_pct_best": 0.0,
+  "duration_s": 1296.4,
+  "history": [
+    {
+      "round": 0,
+      "updated": false,
+      "avg_wait_time_s": 10.32,
+      "throughput_veh": 1320,
+      "max_queue_len": 24,
+      "wait_p95_s": 28.0,
+      "max_lane_wait_s": 26.5,
+      "elapsed_s": 75.4
+    },
+    {
+      "round": 1,
+      "updated": true,
+      "avg_wait_time_s": 10.32,
+      "throughput_veh": 1320,
+      "max_queue_len": 24,
+      "wait_p95_s": 28.0,
+      "max_lane_wait_s": 26.5,
+      "elapsed_s": 161.9
+    },
+    {
+      "round": 2,
+      "updated": true,
+      "avg_wait_time_s": 10.32,
+      "throughput_veh": 1320,
+      "max_queue_len": 24,
+      "wait_p95_s": 28.0,
+      "max_lane_wait_s": 26.5,
+      "elapsed_s": 257.0
+    },
+    {
+      "round": 3,
+      "updated": true,
+      "avg_wait_time_s": 10.32,
+      "throughput_veh": 1320,
+      "max_queue_len": 24,
+      "wait_p95_s": 28.0,
+      "max_lane_wait_s": 26.5,
+      "elapsed_s": 384.2
+    },
+    {
+      "round": 4,
+      "updated": true,
+      "avg_wait_time_s": 10.32,
+      "throughput_veh": 1320,
+      "max_queue_len": 24,
+      "wait_p95_s": 28.0,
+      "max_lane_wait_s": 26.5,
+      "elapsed_s": 577.3
+    },
+    {
+      "round": 5,
+      "updated": true,
+      "avg_wait_time_s": 10.32,
+      "throughput_veh": 1320,
+      "max_queue_len": 24,
+      "wait_p95_s": 28.0,
+      "max_lane_wait_s": 26.5,
+      "elapsed_s": 740.9
+    },
+    {
+      "round": 6,
+      "updated": true,
+      "avg_wait_time_s": 10.32,
+      "throughput_veh": 1320,
+      "max_queue_len": 24,
+      "wait_p95_s": 28.0,
+      "max_lane_wait_s": 26.5,
+      "elapsed_s": 917.0
+    },
+    {
+      "round": 7,
+      "updated": true,
+      "avg_wait_time_s": 10.32,
+      "throughput_veh": 1320,
+      "max_queue_len": 24,
+      "wait_p95_s": 28.0,
+      "max_lane_wait_s": 26.5,
+      "elapsed_s": 1121.7
+    },
+    {
+      "round": 8,
+      "updated": true,
+      "avg_wait_time_s": 10.32,
+      "throughput_veh": 1320,
+      "max_queue_len": 24,
+      "wait_p95_s": 28.0,
+      "max_lane_wait_s": 26.5,
+      "elapsed_s": 1296.4
+    }
+  ]
+}

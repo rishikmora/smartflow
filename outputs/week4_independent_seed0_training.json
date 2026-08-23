@@ -1,0 +1,394 @@
+{
+  "mode": "independent",
+  "seed": 0,
+  "tag": null,
+  "reward_fn": "diff-waiting-time",
+  "fairness_dual_ascent": false,
+  "fairness_cap_s": 120.0,
+  "fairness_lambda_final": 0.5,
+  "dual_step_size": null,
+  "timesteps_requested": 72000,
+  "timesteps_actual": 72000,
+  "agent_steps_actual": 864000,
+  "num_env_runners": 5,
+  "sim_seconds": 1800,
+  "net_file": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\data\\corridor.net.xml",
+  "route_file": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\data\\corridor.rou.xml",
+  "include_agent_id": false,
+  "use_gnn": false,
+  "ppo_config": {
+    "lr": 0.0003,
+    "gamma": 0.99,
+    "lambda_": 0.95,
+    "clip_param": 0.2,
+    "entropy_coeff": 0.001,
+    "num_epochs": 10,
+    "minibatch_size": 512,
+    "vf_clip_param": 10.0
+  },
+  "duration_s": 6843.3,
+  "env_steps_per_s": 10.5,
+  "checkpoint": "TrainingResult(checkpoint=Checkpoint(filesystem=local, path=C:\\Users\\sirin\\Desktop\\projects\\smartflow\\models\\marl_independent_seed0), metrics={'timers': {'training_iteration': 118.22596492856144, 'restore_env_runners': 2.3688431390828083e-05, 'training_step': 118.22561132607193, 'env_runner_sampling_timer': 109.79697763982249, 'learner_update_timer': 8.411776751233113, 'synch_weights': 0.014909093785603303, 'synch_env_connectors': 0.008820557465932057}, 'env_runners': {'module_episode_returns_mean': {'D2': np.float64(-0.034000000000000016), 'C1': np.float64(-0.29600000000000004), 'C0': np.float64(-0.21400000000000002), 'D1': np.float64(-0.21000000000000002), 'A1': np.float64(-0.015999999999999993), 'C3': np.float64(-0.6059999999999999), 'B0': np.float64(-0.04799999999999997), 'B1': np.float64(-0.4160000000000001), 'B2': np.float64(-0.28799999999999987), 'B3': np.float64(-0.07799999999999999), 'A2': np.float64(-0.09199999999999994), 'C2': np.float64(-0.55)}, 'num_module_steps_sampled': {'C3': np.int64(1800), 'B3': np.int64(1800), 'A2': np.int64(1800), 'C2': np.int64(1800), 'D2': np.int64(1800), 'B1': np.int64(1800), 'C1': np.int64(1800), 'C0': np.int64(1800), 'D1': np.int64(1800), 'A1': np.int64(1800), 'B0': np.int64(1800), 'B2': np.int64(1800)}, 'max_lane_wait_s': np.float64(0.0), 'agent_episode_returns_mean': {'B2': np.float64(-0.28799999999999987), 'B3': np.float64(-0.07799999999999999), 'A2': np.float64(-0.09199999999999994), 'C2': np.float64(-0.55), 'D2': np.float64(-0.034000000000000016), 'B1': np.float64(-0.4160000000000001), 'C1': np.float64(-0.29600000000000004), 'C0': np.float64(-0.21400000000000002), 'D1': np.float64(-0.21000000000000002), 'A1': np.float64(-0.015999999999999993), 'C3': np.float64(-0.6059999999999999), 'B0': np.float64(-0.04799999999999997)}, 'env_step_timer': np.float64(0.09620522652704647), 'num_agent_steps_sampled_lifetime': {'B3': 72000.0, 'B1': 72000.0, 'A2': 72000.0, 'C1': 72000.0, 'C2': 72000.0, 'D2': 72000.0, 'C0': 72000.0, 'D1': 72000.0, 'B0': 72000.0, 'B2': 72000.0, 'A1': 72000.0, 'C3': 72000.0}, 'num_agent_steps_sampled': {'B3': np.int64(1800), 'B0': np.int64(1800), 'B1': np.int64(1800), 'A2': np.int64(1800), 'C1': np.int64(1800), 'C2': np.int64(1800), 'D2': np.int64(1800), 'C0': np.int64(1800), 'D1': np.int64(1800), 'B2': np.int64(1800), 'A1': np.int64(1800), 'C3': np.int64(1800)}, 'env_to_module_sum_episodes_length_out': np.float64(267.15332544558544), 'env_reset_timer': np.float64(0.6430649399990216), 'agent_steps': {'D1': np.float64(360.0), 'B2': np.float64(360.0), 'A1': np.float64(360.0), 'C3': np.float64(360.0), 'B3': np.float64(360.0), 'B0': np.float64(360.0), 'B1': np.float64(360.0), 'A2': np.float64(360.0), 'C1': np.float64(360.0), 'C2': np.float64(360.0), 'D2': np.float64(360.0), 'C0': np.float64(360.0)}, 'env_to_module_sum_episodes_length_in': np.float64(267.15332544558544), 'env_to_module_connector': {'timers': {'connectors': {'add_states_from_episodes_to_batch': np.float64(3.579296959575628e-05), 'add_observations_from_episodes_to_batch': np.float64(0.00011262165653281172), 'add_time_dim_to_batch_and_zero_pad': np.float64(5.8240361164522014e-05), 'numpy_to_tensor': np.float64(0.0003336173273342228), 'batch_individual_items': np.float64(5.253286424166325e-05), 'agent_to_module_mapping': np.float64(9.087082586295054e-05)}}, 'connector_pipeline_timer': np.float64(0.0008252659850700592)}, 'module_to_env_connector': {'timers': {'connectors': {'tensor_to_numpy': np.float64(0.0004647603874891274), 'module_to_agent_unmapping': np.float64(1.9001560837618432e-05), 'un_batch_to_individual_items': np.float64(0.0002716152072312135), 'normalize_and_clip_actions': np.float64(0.0001956354593532727), 'listify_data_for_vector_env': np.float64(6.322043509682242e-05), 'remove_single_ts_time_rank_from_batch': np.float64(3.682282706463957e-06), 'get_actions': np.float64(0.0027233846705000003)}}, 'connector_pipeline_timer': np.float64(0.003947170066303409)}, 'num_module_steps_sampled_lifetime': {'B1': 72000.0, 'A2': 72000.0, 'C1': 72000.0, 'C0': 72000.0, 'C2': 72000.0, 'D2': 72000.0, 'D1': 72000.0, 'B0': 72000.0, 'B2': 72000.0, 'A1': 72000.0, 'C3': 72000.0, 'B3': 72000.0}, 'timers': {'connectors': {'add_time_dim_to_batch_and_zero_pad': np.float64(7.726000621914864e-05), 'add_observations_from_episodes_to_batch': np.float64(0.00018832003697752953), 'batch_individual_items': np.float64(0.00010531998705118895), 'numpy_to_tensor': np.float64(0.0004997800104320049), 'agent_to_module_mapping': np.float64(0.00011567999608814716), 'add_states_from_episodes_to_batch': np.float64(4.107998684048653e-05)}}, 'connector_pipeline_timer': np.float64(0.001568539976142347), 'num_env_steps_sampled_lifetime': 72000.0, 'episode_len_min': np.int64(360), 'violation_rate': np.float64(0.0), 'episode_duration_sec_mean': np.float64(37.02102644001134), 'num_env_steps_sampled': np.int64(1800), 'episode_return_max': np.float64(-2.0800000000000005), 'episode_len_max': np.int64(360), 'num_episodes_lifetime': 200.0, 'episode_len_mean': np.float64(360.0), 'num_episodes': np.int64(5), 'episode_return_mean': np.float64(-2.848), 'weights_seq_no': np.float64(39.0), 'episode_return_min': np.float64(-3.88), 'sample': np.float64(94.08866964080437), 'rlmodule_inference_timer': np.float64(0.0028060207981116135), 'mean_violation_s': np.float64(0.0), 'time_between_sampling': np.float64(24.34364184965459), 'num_env_steps_sampled_lifetime_throughput': {'throughput_since_last_reduce': 41.496130346366385, 'throughput_since_last_restore': 10.495262088392012}}, 'learners': {'A2': {'policy_loss': np.float64(0.042651720345020294), 'vf_loss': np.float64(0.018955564126372337), 'entropy': np.float64(0.338936448097229), 'num_trainable_parameters': nan, 'weights_seq_no': np.float64(40.0), 'vf_explained_var': np.float64(0.5631816387176514), 'module_train_batch_size_mean': np.float64(512.0), 'num_module_steps_trained_lifetime': 737280.0, 'mean_kl_loss': np.float64(0.0008447424625046551), 'curr_kl_coeff': np.float64(3.814697322468419e-07), 'curr_entropy_coeff': np.float64(0.001), 'num_module_steps_trained': np.int64(18432), 'total_loss': np.float64(0.06126834824681282), 'diff_num_grad_updates_vs_sampler_policy': np.float64(1.0), 'default_optimizer_learning_rate': np.float64(0.0003), 'vf_loss_unclipped': np.float64(0.018955564126372337), 'num_module_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 424.92389442966527, 'throughput_since_last_restore': 107.47148028225034}}, 'C3': {'vf_explained_var': np.float64(0.33612072467803955), 'module_train_batch_size_mean': np.float64(512.0), 'num_module_steps_trained_lifetime': 737280.0, 'mean_kl_loss': np.float64(0.0021651415154337883), 'curr_kl_coeff': np.float64(2.9802322831784522e-09), 'curr_entropy_coeff': np.float64(0.001), 'num_module_steps_trained': np.int64(18432), 'total_loss': np.float64(0.12211448699235916), 'diff_num_grad_updates_vs_sampler_policy': np.float64(1.0), 'policy_loss': np.float64(0.07531064748764038), 'default_optimizer_learning_rate': np.float64(0.0003), 'vf_loss': np.float64(0.047006186097860336), 'entropy': np.float64(0.20234040915966034), 'vf_loss_unclipped': np.float64(0.047006186097860336), 'num_trainable_parameters': nan, 'weights_seq_no': np.float64(40.0), 'num_module_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 424.9414976340343, 'throughput_since_last_restore': 107.47147351930221}}, '__all_modules__': {'num_module_steps_trained': np.int64(221184), 'learner_connector': {'connector_pipeline_timer': np.float64(0.17681873180995944), 'timers': {'connectors': {'add_time_dim_to_batch_and_zero_pad': np.float64(7.495020963783074e-05), 'add_observations_from_episodes_to_batch': np.float64(0.00029065792993247834), 'batch_individual_items': np.float64(0.007349433265379631), 'numpy_to_tensor': np.float64(0.0020832499431318726), 'add_columns_from_episodes_to_train_batch': np.float64(0.0016428501157791588), 'agent_to_module_mapping': np.float64(0.008819601398827589), 'add_states_from_episodes_to_batch': np.float64(3.710568422729069e-05), 'general_advantage_estimation': np.float64(0.12405107982841819), 'add_one_ts_to_episodes_and_truncate': np.float64(0.03180941948876209)}}}, 'num_env_steps_trained': np.int64(64800), 'num_env_steps_trained_lifetime': 2592000.0, 'learner_connector_sum_episodes_length_in': np.float64(1800.0), 'learner_connector_sum_episodes_length_out': np.float64(1800.0), 'num_trainable_parameters': nan, 'num_module_steps_trained_lifetime': 8847360.0, 'num_non_trainable_parameters': nan, 'num_env_steps_trained_throughput': np.float64(1493.9537306330765), 'num_env_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 1493.9532071017122, 'throughput_since_last_restore': 377.8293889078823}, 'num_module_steps_trained_throughput': np.float64(5099.360033352349), 'num_module_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 5099.359480806903, 'throughput_since_last_restore': 1289.6576452915572}}, 'B3': {'module_train_batch_size_mean': np.float64(512.0), 'mean_kl_loss': np.float64(0.0012476679403334856), 'curr_kl_coeff': np.float64(1.1920929132713809e-08), 'curr_entropy_coeff': np.float64(0.001), 'num_module_steps_trained': np.int64(18432), 'total_loss': np.float64(0.008955893106758595), 'diff_num_grad_updates_vs_sampler_policy': np.float64(1.0), 'policy_loss': np.float64(-0.004344429355114698), 'default_optimizer_learning_rate': np.float64(0.0003), 'vf_loss': np.float64(0.0135880121961236), 'entropy': np.float64(0.2876916825771332), 'vf_loss_unclipped': np.float64(0.0135880121961236), 'num_trainable_parameters': nan, 'weights_seq_no': np.float64(40.0), 'num_module_steps_trained_lifetime': 737280.0, 'vf_explained_var': np.float64(0.40514904260635376), 'num_module_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 424.9357783192346, 'throughput_since_last_restore': 107.47147699868847}}, 'C1': {'vf_explained_var': np.float64(0.5230802297592163), 'curr_entropy_coeff': np.float64(0.001), 'num_module_steps_trained': np.int64(18432), 'module_train_batch_size_mean': np.float64(512.0), 'mean_kl_loss': np.float64(0.0011900144163519144), 'curr_kl_coeff': np.float64(1.8626451769865326e-10), 'total_loss': np.float64(0.0703078880906105), 'diff_num_grad_updates_vs_sampler_policy': np.float64(1.0), 'policy_loss': np.float64(0.00729173980653286), 'default_optimizer_learning_rate': np.float64(0.0003), 'vf_loss': np.float64(0.06322269886732101), 'entropy': np.float64(0.20655252039432526), 'vf_loss_unclipped': np.float64(0.06322269886732101), 'num_trainable_parameters': nan, 'weights_seq_no': np.float64(40.0), 'num_module_steps_trained_lifetime': 737280.0, 'num_module_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 424.9390063137292, 'throughput_since_last_restore': 107.47147529111055}}, 'D2': {'num_module_steps_trained_lifetime': 737280.0, 'mean_kl_loss': np.float64(0.001743035507388413), 'curr_kl_coeff': np.float64(3.7252903539730653e-10), 'curr_entropy_coeff': np.float64(0.001), 'num_module_steps_trained': np.int64(18432), 'module_train_batch_size_mean': np.float64(512.0), 'total_loss': np.float64(0.0731591060757637), 'diff_num_grad_updates_vs_sampler_policy': np.float64(1.0), 'vf_loss_unclipped': np.float64(0.004270502366125584), 'policy_loss': np.float64(0.06920743733644485), 'default_optimizer_learning_rate': np.float64(0.0003), 'vf_loss': np.float64(0.004270502366125584), 'entropy': np.float64(0.31883230805397034), 'num_trainable_parameters': nan, 'weights_seq_no': np.float64(40.0), 'vf_explained_var': np.float64(0.43613553047180176), 'num_module_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 424.943846927874, 'throughput_since_last_restore': 107.47147201851334}}, 'C0': {'policy_loss': np.float64(-0.032236743718385696), 'default_optimizer_learning_rate': np.float64(0.0003), 'vf_loss': np.float64(0.031210750341415405), 'entropy': np.float64(0.2468469887971878), 'num_trainable_parameters': nan, 'weights_seq_no': np.float64(40.0), 'vf_explained_var': np.float64(0.4259185791015625), 'num_module_steps_trained_lifetime': 737280.0, 'mean_kl_loss': np.float64(0.004233740735799074), 'curr_kl_coeff': np.float64(1.8626451769865326e-10), 'curr_entropy_coeff': np.float64(0.001), 'num_module_steps_trained': np.int64(18432), 'module_train_batch_size_mean': np.float64(512.0), 'total_loss': np.float64(-0.0012728439178317785), 'diff_num_grad_updates_vs_sampler_policy': np.float64(1.0), 'vf_loss_unclipped': np.float64(0.031210750341415405), 'num_module_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 424.93763477705494, 'throughput_since_last_restore': 107.47147617153074}}, 'D1': {'module_train_batch_size_mean': np.float64(512.0), 'total_loss': np.float64(-0.0225390437990427), 'diff_num_grad_updates_vs_sampler_policy': np.float64(1.0), 'vf_loss_unclipped': np.float64(0.05288618803024292), 'policy_loss': np.float64(-0.07512600719928741), 'default_optimizer_learning_rate': np.float64(0.0003), 'vf_loss': np.float64(0.05288618803024292), 'entropy': np.float64(0.2992289364337921), 'num_trainable_parameters': nan, 'weights_seq_no': np.float64(40.0), 'vf_explained_var': np.float64(0.4656336307525635), 'num_module_steps_trained_lifetime': 737280.0, 'mean_kl_loss': np.float64(0.001957594184204936), 'curr_kl_coeff': np.float64(5.9604645663569045e-09), 'curr_entropy_coeff': np.float64(0.001), 'num_module_steps_trained': np.int64(18432), 'num_module_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 424.9426938310301, 'throughput_since_last_restore': 107.47147276890776}}, 'B2': {'curr_entropy_coeff': np.float64(0.001), 'num_module_steps_trained': np.int64(18432), 'module_train_batch_size_mean': np.float64(512.0), 'total_loss': np.float64(0.03912801295518875), 'diff_num_grad_updates_vs_sampler_policy': np.float64(1.0), 'vf_loss_unclipped': np.float64(0.04518616572022438), 'policy_loss': np.float64(-0.005932128056883812), 'default_optimizer_learning_rate': np.float64(0.0003), 'vf_loss': np.float64(0.04518616572022438), 'entropy': np.float64(0.12602463364601135), 'num_trainable_parameters': nan, 'weights_seq_no': np.float64(40.0), 'vf_explained_var': np.float64(0.5071591138839722), 'num_module_steps_trained_lifetime': 737280.0, 'mean_kl_loss': np.float64(0.0009155558655038476), 'curr_kl_coeff': np.float64(3.7252903539730653e-10), 'num_module_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 424.9337504378862, 'throughput_since_last_restore': 107.47147783524399}}, 'C2': {'total_loss': np.float64(0.012667813338339329), 'diff_num_grad_updates_vs_sampler_policy': np.float64(1.0), 'policy_loss': np.float64(-0.01225400622934103), 'default_optimizer_learning_rate': np.float64(0.0003), 'vf_loss': np.float64(0.025150630623102188), 'entropy': np.float64(0.22881779074668884), 'vf_loss_unclipped': np.float64(0.025150630623102188), 'num_trainable_parameters': nan, 'weights_seq_no': np.float64(40.0), 'num_module_steps_trained_lifetime': 737280.0, 'vf_explained_var': np.float64(0.4888882040977478), 'curr_entropy_coeff': np.float64(0.001), 'num_module_steps_trained': np.int64(18432), 'module_train_batch_size_mean': np.float64(512.0), 'mean_kl_loss': np.float64(0.002959065604954958), 'curr_kl_coeff': np.float64(3.7252903539730653e-10), 'num_module_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 424.9403758987449, 'throughput_since_last_restore': 107.47147444202048}}, 'B0': {'module_train_batch_size_mean': np.float64(512.0), 'num_module_steps_trained_lifetime': 737280.0, 'mean_kl_loss': np.float64(0.007182746659964323), 'curr_kl_coeff': np.float64(6.10351571594947e-06), 'curr_entropy_coeff': np.float64(0.001), 'num_module_steps_trained': np.int64(18432), 'total_loss': np.float64(0.04871726408600807), 'diff_num_grad_updates_vs_sampler_policy': np.float64(1.0), 'policy_loss': np.float64(0.029386956244707108), 'default_optimizer_learning_rate': np.float64(0.0003), 'vf_loss': np.float64(0.019683169201016426), 'entropy': np.float64(0.35291096568107605), 'vf_loss_unclipped': np.float64(0.019683169201016426), 'num_trainable_parameters': nan, 'weights_seq_no': np.float64(40.0), 'vf_explained_var': np.float64(0.4234481453895569), 'num_module_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 424.9257292320459, 'throughput_since_last_restore': 107.4714794942575}}, 'B1': {'module_train_batch_size_mean': np.float64(512.0), 'num_module_steps_trained_lifetime': 737280.0, 'mean_kl_loss': np.float64(0.0006149197579361498), 'curr_kl_coeff': np.float64(9.313225884932663e-11), 'curr_entropy_coeff': np.float64(0.001), 'num_module_steps_trained': np.int64(18432), 'total_loss': np.float64(0.006027123425155878), 'diff_num_grad_updates_vs_sampler_policy': np.float64(1.0), 'default_optimizer_learning_rate': np.float64(0.0003), 'vf_loss_unclipped': np.float64(0.03248779848217964), 'policy_loss': np.float64(-0.026301266625523567), 'vf_loss': np.float64(0.03248779848217964), 'entropy': np.float64(0.1594139188528061), 'num_trainable_parameters': nan, 'weights_seq_no': np.float64(40.0), 'vf_explained_var': np.float64(0.5019384622573853), 'num_module_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 424.9284653031263, 'throughput_since_last_restore': 107.47147863733619}}, 'A1': {'weights_seq_no': np.float64(40.0), 'vf_explained_var': np.float64(0.44264256954193115), 'module_train_batch_size_mean': np.float64(512.0), 'num_module_steps_trained_lifetime': 737280.0, 'mean_kl_loss': np.float64(0.0016209585592150688), 'curr_kl_coeff': np.float64(1.8626451769865326e-10), 'curr_entropy_coeff': np.float64(0.001), 'num_module_steps_trained': np.int64(18432), 'total_loss': np.float64(0.01406178530305624), 'diff_num_grad_updates_vs_sampler_policy': np.float64(1.0), 'policy_loss': np.float64(0.010190834291279316), 'default_optimizer_learning_rate': np.float64(0.0003), 'vf_loss': np.float64(0.004070867784321308), 'entropy': np.float64(0.19992724061012268), 'vf_loss_unclipped': np.float64(0.004070867784321308), 'num_trainable_parameters': nan, 'num_module_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 424.9223770296615, 'throughput_since_last_restore': 107.47148108590737}}}, 'num_training_step_calls_per_iteration': 1, 'num_env_steps_sampled_lifetime': 72000.0, 'fault_tolerance': {'num_healthy_workers': 5, 'num_remote_worker_restarts': 0, 'num_env_runners_dropped_lifetime': 0}, 'env_runner_group': {'actor_manager_num_outstanding_async_reqs': 5}, 'done': False, 'training_iteration': 40, 'trial_id': 'default', 'date': '2026-08-23_16-43-59', 'timestamp': 1787483639, 'time_this_iter_s': 43.38115119934082, 'time_total_s': 6843.172038555145, 'pid': 61524, 'hostname': 'Sirinimora', 'node_ip': '127.0.0.1', 'config': {'exploration_config': {}, 'extra_python_environs_for_driver': {}, 'extra_python_environs_for_worker': {}, 'placement_strategy': 'PACK', 'num_gpus': 0, '_fake_gpus': False, 'num_cpus_for_main_process': 1, 'custom_resources_for_main_process': {}, 'eager_tracing': True, 'eager_max_retraces': 20, 'tf_session_args': {'intra_op_parallelism_threads': 2, 'inter_op_parallelism_threads': 2, 'gpu_options': {'allow_growth': True}, 'log_device_placement': False, 'device_count': {'CPU': 1}, 'allow_soft_placement': True}, 'local_tf_session_args': {'intra_op_parallelism_threads': 8, 'inter_op_parallelism_threads': 8}, 'torch_compile_learner': False, 'torch_compile_learner_what_to_compile': <TorchCompileWhatToCompile.FORWARD_TRAIN: 'forward_train'>, 'torch_compile_learner_dynamo_backend': 'inductor', 'torch_compile_learner_dynamo_mode': None, 'torch_compile_worker': False, 'torch_compile_worker_dynamo_backend': 'onnxrt', 'torch_compile_worker_dynamo_mode': None, 'torch_ddp_kwargs': {}, 'torch_skip_nan_gradients': False, 'env': 'smartflow_corridor', 'env_config': {'net_file': 'C:\\\\Users\\\\sirin\\\\Desktop\\\\projects\\\\smartflow\\\\data\\\\corridor.net.xml', 'route_file': 'C:\\\\Users\\\\sirin\\\\Desktop\\\\projects\\\\smartflow\\\\data\\\\corridor.rou.xml', 'controlled_ts': ['A1', 'A2', 'B0', 'B1', 'B2', 'B3', 'C0', 'C1', 'C2', 'C3', 'D1', 'D2'], 'num_seconds': 1800, 'seed': 0, 'reward_fn': 'diff-waiting-time', 'include_agent_id': False, 'neighbor_context': False, 'max_neighbors': 4}, 'observation_space': None, 'action_space': None, 'clip_rewards': None, 'normalize_actions': True, 'clip_actions': False, '_is_atari': None, 'disable_env_checking': False, 'render_env': False, 'action_mask_key': 'action_mask', 'env_runner_cls': None, 'num_env_runners': 5, 'create_local_env_runner': True, 'num_envs_per_env_runner': 1, 'gym_env_vectorize_mode': 'sync', 'num_cpus_per_env_runner': 1, 'num_gpus_per_env_runner': 0, 'custom_resources_per_env_runner': {}, 'validate_env_runners_after_construction': True, 'episodes_to_numpy': True, 'max_requests_in_flight_per_env_runner': 1, 'sample_timeout_s': 1800.0, '_env_to_module_connector': None, 'add_default_connectors_to_env_to_module_pipeline': True, '_module_to_env_connector': None, 'add_default_connectors_to_module_to_env_pipeline': True, 'merge_env_runner_states': 'training_only', 'broadcast_env_runner_states': True, 'use_env_runner_state_server': False, 'env_runner_state_server_max_concurrency': 16, 'episode_lookback_horizon': 1, 'rollout_fragment_length': 360, 'batch_mode': 'truncate_episodes', 'compress_observations': False, 'remote_worker_envs': False, 'remote_env_batch_wait_ms': 0, 'enable_tf1_exec_eagerly': False, 'sample_collector': <class 'ray.rllib.evaluation.collectors.simple_list_collector.SimpleListCollector'>, 'preprocessor_pref': 'deepmind', 'observation_filter': 'NoFilter', 'update_worker_filter_stats': True, 'use_worker_filter_stats': True, 'sampler_perf_stats_ema_coef': None, '_is_online': True, 'num_learners': 0, 'num_gpus_per_learner': 0, 'num_cpus_per_learner': 'auto', 'custom_resources_per_learner': {}, 'num_aggregator_actors_per_learner': 0, 'max_requests_in_flight_per_aggregator_actor': 3, 'local_gpu_idx': 0, 'max_requests_in_flight_per_learner': 3, 'gamma': 0.99, 'lr': 0.0003, 'grad_clip': None, 'grad_clip_by': 'global_norm', '_train_batch_size_per_learner': None, 'train_batch_size': 1800, 'num_epochs': 10, 'minibatch_size': 512, 'shuffle_batch_per_epoch': True, 'model': {'fcnet_hiddens': [256, 256], 'fcnet_activation': 'tanh', 'fcnet_weights_initializer': None, 'fcnet_weights_initializer_config': None, 'fcnet_bias_initializer': None, 'fcnet_bias_initializer_config': None, 'conv_filters': None, 'conv_activation': 'relu', 'conv_kernel_initializer': None, 'conv_kernel_initializer_config': None, 'conv_bias_initializer': None, 'conv_bias_initializer_config': None, 'conv_transpose_kernel_initializer': None, 'conv_transpose_kernel_initializer_config': None, 'conv_transpose_bias_initializer': None, 'conv_transpose_bias_initializer_config': None, 'post_fcnet_hiddens': [], 'post_fcnet_activation': 'relu', 'post_fcnet_weights_initializer': None, 'post_fcnet_weights_initializer_config': None, 'post_fcnet_bias_initializer': None, 'post_fcnet_bias_initializer_config': None, 'free_log_std': False, 'log_std_clip_param': 20.0, 'no_final_linear': False, 'vf_share_layers': False, 'use_lstm': False, 'max_seq_len': 20, 'lstm_cell_size': 256, 'lstm_use_prev_action': False, 'lstm_use_prev_reward': False, 'lstm_weights_initializer': None, 'lstm_weights_initializer_config': None, 'lstm_bias_initializer': None, 'lstm_bias_initializer_config': None, '_time_major': False, 'use_attention': False, 'attention_num_transformer_units': 1, 'attention_dim': 64, 'attention_num_heads': 1, 'attention_head_dim': 32, 'attention_memory_inference': 50, 'attention_memory_training': 50, 'attention_position_wise_mlp_dim': 32, 'attention_init_gru_gate_bias': 2.0, 'attention_use_n_prev_actions': 0, 'attention_use_n_prev_rewards': 0, 'framestack': True, 'dim': 84, 'grayscale': False, 'zero_mean': True, 'custom_model': None, 'custom_model_config': {}, 'custom_action_dist': None, 'custom_preprocessor': None, 'encoder_latent_dim': None, 'always_check_shapes': False, 'lstm_use_prev_action_reward': -1, '_use_default_native_models': -1, '_disable_preprocessor_api': False, '_disable_action_flattening': False}, '_learner_connector': None, 'add_default_connectors_to_learner_pipeline': True, 'learner_config_dict': {}, 'optimizer': {}, '_learner_class': None, 'callbacks_on_algorithm_init': None, 'callbacks_on_env_runners_recreated': None, 'callbacks_on_offline_eval_runners_recreated': None, 'callbacks_on_checkpoint_loaded': None, 'callbacks_on_environment_created': None, 'callbacks_on_episode_created': None, 'callbacks_on_episode_start': None, 'callbacks_on_episode_step': None, 'callbacks_on_episode_end': None, 'callbacks_on_evaluate_start': None, 'callbacks_on_evaluate_end': None, 'callbacks_on_evaluate_offline_start': None, 'callbacks_on_evaluate_offline_end': None, 'callbacks_on_sample_end': None, 'callbacks_on_train_result': None, 'explore': True, 'enable_rl_module_and_learner': True, 'enable_env_runner_and_connector_v2': True, '_prior_exploration_config': {'type': 'StochasticSampling'}, 'count_steps_by': 'env_steps', 'policy_map_capacity': 100, 'policy_mapping_fn': <function build_algorithm.<locals>.policy_mapping_fn at 0x0000018B746B8FE0>, 'policies_to_train': None, 'policy_states_are_swappable': False, 'observation_fn': None, 'offline_data_class': None, 'input_read_method': 'read_parquet', 'input_read_method_kwargs': {}, 'input_read_schema': {}, 'input_read_episodes': False, 'input_read_sample_batches': False, 'input_read_batch_size': None, 'input_filesystem': None, 'input_filesystem_kwargs': {}, 'input_compress_columns': ['obs', 'new_obs'], 'input_spaces_jsonable': True, 'materialize_data': False, 'materialize_mapped_data': True, 'map_batches_kwargs': {}, 'iter_batches_kwargs': {}, 'ignore_final_observation': False, 'prelearner_class': None, 'prelearner_buffer_class': None, 'prelearner_buffer_kwargs': {}, 'prelearner_module_synch_period': 10, 'prelearner_use_recorded_module_states': False, 'dataset_num_iters_per_learner': None, 'input_config': {}, 'actions_in_input_normalized': False, 'postprocess_inputs': False, 'shuffle_buffer_size': 0, 'output': None, 'output_config': {}, 'output_compress_columns': ['obs', 'new_obs'], 'output_max_file_size': 67108864, 'output_max_rows_per_file': None, 'output_write_remaining_data': False, 'output_write_method': 'write_parquet', 'output_write_method_kwargs': {}, 'output_filesystem': None, 'output_filesystem_kwargs': {}, 'output_write_episodes': True, 'offline_sampling': False, 'evaluation_interval': None, 'evaluation_duration': 10, 'evaluation_duration_unit': 'episodes', 'evaluation_sample_timeout_s': 120.0, 'evaluation_auto_duration_min_env_steps_per_sample': 100, 'evaluation_auto_duration_max_env_steps_per_sample': 2000, 'evaluation_parallel_to_training': False, 'evaluation_unhealthy_workers_timeout_s': 0.0, 'evaluation_error_after_n_consecutive_skips': None, 'evaluation_force_reset_envs_before_iteration': True, 'evaluation_config': None, 'off_policy_estimation_methods': {}, 'ope_split_batch_by_episode': True, 'evaluation_num_env_runners': 0, 'in_evaluation': False, 'sync_filters_on_rollout_workers_timeout_s': 10.0, 'offline_evaluation_interval': None, 'num_offline_eval_runners': 0, 'offline_evaluation_type': 'eval_loss', 'offline_eval_runner_class': None, 'offline_loss_for_module_fn': None, 'offline_evaluation_duration': 1, 'offline_evaluation_parallel_to_training': False, 'offline_evaluation_timeout_s': 120.0, 'num_cpus_per_offline_eval_runner': 1, 'num_gpus_per_offline_eval_runner': 0, 'custom_resources_per_offline_eval_runner': {}, 'restart_failed_offline_eval_runners': True, 'ignore_offline_eval_runner_failures': False, 'max_num_offline_eval_runner_restarts': 1000, 'offline_eval_runner_restore_timeout_s': 1800.0, 'max_requests_in_flight_per_offline_eval_runner': 1, 'validate_offline_eval_runners_after_construction': True, 'offline_eval_runner_health_probe_timeout_s': 30.0, 'offline_eval_rl_module_inference_only': False, 'broadcast_offline_eval_runner_states': False, 'offline_eval_batch_size_per_runner': 256, 'dataset_num_iters_per_eval_runner': 1, 'keep_per_episode_custom_metrics': False, 'metrics_episode_collection_timeout_s': 60.0, 'metrics_num_episodes_for_smoothing': 100, 'min_time_s_per_iteration': None, 'min_train_timesteps_per_iteration': 0, 'min_sample_timesteps_per_iteration': 0, 'log_gradients': False, 'stats_cls_lookup': {'mean': <class 'ray.rllib.utils.metrics.stats.mean.MeanStats'>, 'ema': <class 'ray.rllib.utils.metrics.stats.ema.EmaStats'>, 'min': <class 'ray.rllib.utils.metrics.stats.min.MinStats'>, 'max': <class 'ray.rllib.utils.metrics.stats.max.MaxStats'>, 'sum': <class 'ray.rllib.utils.metrics.stats.sum.SumStats'>, 'lifetime_sum': <class 'ray.rllib.utils.metrics.stats.lifetime_sum.LifetimeSumStats'>, 'percentiles': <class 'ray.rllib.utils.metrics.stats.percentiles.PercentilesStats'>, 'item': <class 'ray.rllib.utils.metrics.stats.item.ItemStats'>, 'item_series': <class 'ray.rllib.utils.metrics.stats.item_series.ItemSeriesStats'>}, 'export_native_model_files': False, 'checkpoint_trainable_policies_only': False, 'log_level': 'ERROR', 'log_sys_usage': True, 'fake_sampler': False, 'seed': 0, 'restart_failed_env_runners': True, 'ignore_env_runner_failures': False, 'max_num_env_runner_restarts': 1000, 'delay_between_env_runner_restarts_s': 60.0, 'restart_failed_sub_environments': False, 'num_consecutive_env_runner_failures_tolerance': 100, 'env_runner_health_probe_timeout_s': 30.0, 'env_runner_restore_timeout_s': 1800.0, '_model_config': {}, '_rl_module_spec': None, 'algorithm_config_overrides_per_module': {}, '_per_module_overrides': {}, '_validate_config': True, '_use_msgpack_checkpoints': False, '_torch_grad_scaler_class': None, '_torch_lr_scheduler_classes': None, '_tf_policy_handles_more_than_one_loss': False, '_disable_preprocessor_api': False, '_disable_action_flattening': False, '_disable_initialize_loss_from_dummy_batch': False, '_dont_auto_sync_env_runner_states': False, 'env_task_fn': -1, 'enable_connectors': -1, 'simple_optimizer': True, 'policy_map_cache': -1, 'worker_cls': -1, 'synchronize_filters': -1, 'enable_async_evaluation': -1, 'custom_async_evaluation_function': -1, '_enable_rl_module_api': -1, 'auto_wrap_old_gym_envs': -1, 'always_attach_evaluation_results': -1, 'replay_sequence_length': None, '_disable_execution_plan_api': -1, 'use_critic': True, 'use_gae': True, 'use_kl_loss': True, 'kl_coeff': 0.2, 'kl_target': 0.01, 'vf_loss_coeff': 1.0, 'entropy_coeff': 0.001, 'clip_param': 0.2, 'vf_clip_param': 10.0, 'entropy_coeff_schedule': None, 'lr_schedule': None, 'sgd_minibatch_size': -1, 'vf_share_layers': -1, 'class': <class 'ray.rllib.algorithms.ppo.ppo.PPOConfig'>, 'lambda': 0.95, 'input': 'sampler', 'policies': {'B1': (None, None, None, None), 'B3': (None, None, None, None), 'D2': (None, None, None, None), 'A1': (None, None, None, None), 'C3': (None, None, None, None), 'C0': (None, None, None, None), 'D1': (None, None, None, None), 'B2': (None, None, None, None), 'C1': (None, None, None, None), 'C2': (None, None, None, None), 'B0': (None, None, None, None), 'A2': (None, None, None, None)}, 'callbacks': <class '__main__._make_callback_class.<locals>.FairnessCallback'>, 'create_env_on_driver': False, 'custom_eval_function': None, 'framework': 'torch'}, 'time_since_restore': 6843.172038555145, 'iterations_since_restore': 40, 'perf': {'cpu_util_percent': np.float64(24.191803278688525), 'ram_util_percent': np.float64(64.76721311475411)}})",
+  "iterations": [
+    {
+      "iteration": 1,
+      "env_steps": 1800,
+      "episode_return_mean": -648.234,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 87.9
+    },
+    {
+      "iteration": 2,
+      "env_steps": 3600,
+      "episode_return_mean": -1395.572,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 211.2
+    },
+    {
+      "iteration": 3,
+      "env_steps": 5400,
+      "episode_return_mean": -726.51,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 303.0
+    },
+    {
+      "iteration": 4,
+      "env_steps": 7200,
+      "episode_return_mean": -13.216,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 357.4
+    },
+    {
+      "iteration": 5,
+      "env_steps": 9000,
+      "episode_return_mean": -6.836,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 411.5
+    },
+    {
+      "iteration": 6,
+      "env_steps": 10800,
+      "episode_return_mean": -5.746,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 467.7
+    },
+    {
+      "iteration": 7,
+      "env_steps": 12600,
+      "episode_return_mean": -20.71,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 531.2
+    },
+    {
+      "iteration": 8,
+      "env_steps": 14400,
+      "episode_return_mean": -4.79,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 597.9
+    },
+    {
+      "iteration": 9,
+      "env_steps": 16200,
+      "episode_return_mean": -1225.734,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 715.0
+    },
+    {
+      "iteration": 10,
+      "env_steps": 18000,
+      "episode_return_mean": -4.868,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 797.9
+    },
+    {
+      "iteration": 11,
+      "env_steps": 19800,
+      "episode_return_mean": -4.354,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 862.1
+    },
+    {
+      "iteration": 12,
+      "env_steps": 21600,
+      "episode_return_mean": -1089.778,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 950.6
+    },
+    {
+      "iteration": 13,
+      "env_steps": 23400,
+      "episode_return_mean": -3.822,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 1000.2
+    },
+    {
+      "iteration": 14,
+      "env_steps": 25200,
+      "episode_return_mean": -3.726,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 1053.3
+    },
+    {
+      "iteration": 15,
+      "env_steps": 27000,
+      "episode_return_mean": -3.712,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 1097.1
+    },
+    {
+      "iteration": 16,
+      "env_steps": 28800,
+      "episode_return_mean": -3.344,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 1223.3
+    },
+    {
+      "iteration": 17,
+      "env_steps": 30600,
+      "episode_return_mean": -3.62,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 1378.0
+    },
+    {
+      "iteration": 18,
+      "env_steps": 32400,
+      "episode_return_mean": -203.466,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 2222.2
+    },
+    {
+      "iteration": 19,
+      "env_steps": 34200,
+      "episode_return_mean": -186.368,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 2358.4
+    },
+    {
+      "iteration": 20,
+      "env_steps": 36000,
+      "episode_return_mean": -3.186,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 2476.1
+    },
+    {
+      "iteration": 21,
+      "env_steps": 37800,
+      "episode_return_mean": -3.316,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 2589.2
+    },
+    {
+      "iteration": 22,
+      "env_steps": 39600,
+      "episode_return_mean": -3.316,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 2672.9
+    },
+    {
+      "iteration": 23,
+      "env_steps": 41400,
+      "episode_return_mean": -2.974,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 2768.9
+    },
+    {
+      "iteration": 24,
+      "env_steps": 43200,
+      "episode_return_mean": -3.29,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 2877.2
+    },
+    {
+      "iteration": 25,
+      "env_steps": 45000,
+      "episode_return_mean": -2.972,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 2972.4
+    },
+    {
+      "iteration": 26,
+      "env_steps": 46800,
+      "episode_return_mean": -3.558,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 3063.6
+    },
+    {
+      "iteration": 27,
+      "env_steps": 48600,
+      "episode_return_mean": -3.338,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 3174.0
+    },
+    {
+      "iteration": 28,
+      "env_steps": 50400,
+      "episode_return_mean": -1404.386,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 3470.2
+    },
+    {
+      "iteration": 29,
+      "env_steps": 52200,
+      "episode_return_mean": -3.15,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 3640.7
+    },
+    {
+      "iteration": 30,
+      "env_steps": 54000,
+      "episode_return_mean": -3.104,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 3724.1
+    },
+    {
+      "iteration": 31,
+      "env_steps": 55800,
+      "episode_return_mean": -3.008,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 3814.6
+    },
+    {
+      "iteration": 32,
+      "env_steps": 57600,
+      "episode_return_mean": -3.104,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 3916.3
+    },
+    {
+      "iteration": 33,
+      "env_steps": 59400,
+      "episode_return_mean": -1084.404,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 4158.6
+    },
+    {
+      "iteration": 34,
+      "env_steps": 61200,
+      "episode_return_mean": -3.408,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 4281.8
+    },
+    {
+      "iteration": 35,
+      "env_steps": 63000,
+      "episode_return_mean": -3.404,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 6402.6
+    },
+    {
+      "iteration": 36,
+      "env_steps": 64800,
+      "episode_return_mean": -649.264,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 6513.8
+    },
+    {
+      "iteration": 37,
+      "env_steps": 66600,
+      "episode_return_mean": -1392.22,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 6702.9
+    },
+    {
+      "iteration": 38,
+      "env_steps": 68400,
+      "episode_return_mean": -3.212,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 6756.7
+    },
+    {
+      "iteration": 39,
+      "env_steps": 70200,
+      "episode_return_mean": -2.894,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 6799.9
+    },
+    {
+      "iteration": 40,
+      "env_steps": 72000,
+      "episode_return_mean": -2.848,
+      "max_lane_wait_s": 0.0,
+      "mean_violation_s": 0.0,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 6843.2
+    }
+  ]
+}

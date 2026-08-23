@@ -1,0 +1,374 @@
+{
+  "mode": "shared",
+  "seed": 0,
+  "tag": "w5gnn",
+  "reward_fn": "shaped",
+  "fairness_dual_ascent": true,
+  "fairness_cap_s": 30.0,
+  "fairness_lambda_final": 2.0,
+  "dual_step_size": 0.05,
+  "timesteps_requested": 48000,
+  "timesteps_actual": 48960,
+  "agent_steps_actual": 587520,
+  "num_env_runners": 4,
+  "sim_seconds": 1800,
+  "net_file": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\data\\corridor.net.xml",
+  "route_file": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\data\\corridor.rou.xml",
+  "include_agent_id": false,
+  "use_gnn": true,
+  "ppo_config": {
+    "lr": 0.0003,
+    "gamma": 0.99,
+    "lambda_": 0.95,
+    "clip_param": 0.2,
+    "entropy_coeff": 0.001,
+    "num_epochs": 10,
+    "minibatch_size": 512,
+    "vf_clip_param": 10.0
+  },
+  "duration_s": 1855.5,
+  "env_steps_per_s": 26.4,
+  "checkpoint": "TrainingResult(checkpoint=Checkpoint(filesystem=local, path=C:\\Users\\sirin\\Desktop\\projects\\smartflow\\models\\marl_shared_seed0_w5gnn), metrics={'timers': {'training_iteration': 57.531208067554836, 'restore_env_runners': 1.482630653365987e-05, 'training_step': 57.53093814647155, 'env_runner_sampling_timer': 47.23400606860559, 'learner_update_timer': 10.290334992493497, 'synch_weights': 0.004711869756847359, 'synch_env_connectors': 0.004985634850562435}, 'env_runners': {'connector_pipeline_timer': np.float64(0.0006437250704038888), 'num_agent_steps_sampled': {'D1': np.int64(1440), 'C0': np.int64(1440), 'D2': np.int64(1440), 'B1': np.int64(1440), 'C3': np.int64(1440), 'B3': np.int64(1440), 'C2': np.int64(1440), 'B2': np.int64(1440), 'A1': np.int64(1440), 'A2': np.int64(1440), 'B0': np.int64(1440), 'C1': np.int64(1440)}, 'violation_rate': np.float64(0.0125), 'module_to_env_connector': {'connector_pipeline_timer': np.float64(0.0006981054692247739), 'timers': {'connectors': {'module_to_agent_unmapping': np.float64(5.25223992996303e-06), 'listify_data_for_vector_env': np.float64(3.8350995040859716e-05), 'get_actions': np.float64(0.0002453738408982941), 'normalize_and_clip_actions': np.float64(0.00011631292605409356), 'tensor_to_numpy': np.float64(7.564947664477585e-05), 'remove_single_ts_time_rank_from_batch': np.float64(2.4968322583318958e-06), 'un_batch_to_individual_items': np.float64(0.00010752719477856516)}}}, 'num_episodes_lifetime': 136.0, 'agent_episode_returns_mean': {'C3': np.float64(-4.181741120144041), 'B3': np.float64(-3.8220758368343515), 'C2': np.float64(-8.064716796874999), 'B2': np.float64(-7.5222211745689656), 'A1': np.float64(-3.809111315337189), 'A2': np.float64(-4.0880166161974385), 'B0': np.float64(-3.9019270208151493), 'B1': np.float64(-7.535217200969829), 'C1': np.float64(-6.728654054204297), 'D1': np.float64(-4.49301604027232), 'C0': np.float64(-3.804547413793103), 'D2': np.float64(-3.263297618398079)}, 'agent_steps': {'C3': np.float64(360.0), 'B3': np.float64(360.0), 'C2': np.float64(360.0), 'B2': np.float64(360.0), 'A1': np.float64(360.0), 'A2': np.float64(360.0), 'B0': np.float64(360.0), 'C1': np.float64(360.0), 'D1': np.float64(360.0), 'C0': np.float64(360.0), 'D2': np.float64(360.0), 'B1': np.float64(360.0)}, 'num_module_steps_sampled_lifetime': {'shared_policy': 587520.0}, 'weights_seq_no': np.float64(33.0), 'episode_return_max': np.float64(-59.453348570720564), 'max_lane_wait_s': np.float64(37.958333333333336), 'env_to_module_sum_episodes_length_out': np.float64(267.15332544558544), 'num_agent_steps_sampled_lifetime': {'C3': 48960.0, 'B3': 48960.0, 'C2': 48960.0, 'B2': 48960.0, 'A1': 48960.0, 'A2': 48960.0, 'B0': 48960.0, 'C1': 48960.0, 'D1': 48960.0, 'C0': 48960.0, 'D2': 48960.0, 'B1': 48960.0}, 'num_episodes': np.int64(4), 'timers': {'connectors': {'add_time_dim_to_batch_and_zero_pad': np.float64(1.5874975360929966e-05), 'numpy_to_tensor': np.float64(9.069996303878725e-05), 'add_states_from_episodes_to_batch': np.float64(4.775007255375385e-06), 'add_observations_from_episodes_to_batch': np.float64(0.0001238499826285988), 'batch_individual_items': np.float64(2.62749963440001e-05), 'agent_to_module_mapping': np.float64(6.817496614530683e-05)}}, 'episode_len_max': np.int64(360), 'env_to_module_connector': {'timers': {'connectors': {'add_time_dim_to_batch_and_zero_pad': np.float64(9.794705377569676e-06), 'numpy_to_tensor': np.float64(7.898552709058785e-05), 'add_states_from_episodes_to_batch': np.float64(3.7940223258238475e-06), 'add_observations_from_episodes_to_batch': np.float64(7.280383320658711e-05), 'batch_individual_items': np.float64(1.649549988358804e-05), 'agent_to_module_mapping': np.float64(5.279422115014351e-05)}}, 'connector_pipeline_timer': np.float64(0.00032333494567707787)}, 'sample': np.float64(43.74235740743232), 'mean_violation_s': np.float64(0.05368716931216931), 'episode_len_min': np.int64(360), 'module_episode_returns_mean': {'shared_policy': np.float64(-61.21454220840975)}, 'episode_return_min': np.float64(-62.90837391142573), 'env_reset_timer': np.float64(0.6554163249966223), 'episode_len_mean': np.float64(360.0), 'episode_return_mean': np.float64(-61.21454220840975), 'num_env_steps_sampled_lifetime': 48960.0, 'num_env_steps_sampled': np.int64(1440), 'rlmodule_inference_timer': np.float64(0.0016951360455641777), 'num_module_steps_sampled': {'shared_policy': np.int64(17280)}, 'episode_duration_sec_mean': np.float64(21.07605670002522), 'env_to_module_sum_episodes_length_in': np.float64(267.15332544558544), 'env_step_timer': np.float64(0.05873033416941908), 'time_between_sampling': np.float64(13.862296186199238), 'num_env_steps_sampled_lifetime_throughput': {'throughput_since_last_reduce': 48.15748267350947, 'throughput_since_last_restore': 26.049887304472534}}, 'learners': {'__all_modules__': {'learner_connector': {'timers': {'connectors': {'general_advantage_estimation': np.float64(0.47249920086282055), 'add_one_ts_to_episodes_and_truncate': np.float64(0.019424473771875977), 'add_observations_from_episodes_to_batch': np.float64(0.0002022512097285055), 'batch_individual_items': np.float64(0.0038842148181222635), 'agent_to_module_mapping': np.float64(0.004677459567816545), 'add_columns_from_episodes_to_train_batch': np.float64(0.0007175558400656143), 'numpy_to_tensor': np.float64(0.0015343625783244999), 'add_states_from_episodes_to_batch': np.float64(5.6114005676205975e-06), 'add_time_dim_to_batch_and_zero_pad': np.float64(1.540137023599997e-05)}}, 'connector_pipeline_timer': np.float64(0.5035168364446568)}, 'num_env_steps_trained': np.int64(488160), 'num_trainable_parameters': nan, 'num_env_steps_trained_lifetime': 16597440.0, 'num_module_steps_trained_lifetime': 5901312.0, 'learner_connector_sum_episodes_length_out': np.float64(1440.0), 'num_module_steps_trained': np.int64(173568), 'num_non_trainable_parameters': nan, 'learner_connector_sum_episodes_length_in': np.float64(1440.0), 'num_env_steps_trained_throughput': np.float64(16325.548506556654), 'num_env_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 16325.540862904747, 'throughput_since_last_restore': 8830.911313198605}, 'num_module_steps_trained_throughput': np.float64(5804.636479456012), 'num_module_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 5804.6357612125075, 'throughput_since_last_restore': 3139.879561320048}}, 'shared_policy': {'weights_seq_no': np.float64(34.0), 'vf_loss': np.float64(0.09341540932655334), 'num_module_steps_trained': np.int64(173568), 'curr_kl_coeff': np.float64(2.3841858265427618e-08), 'entropy': np.float64(0.1730479896068573), 'mean_kl_loss': np.float64(0.0008322701905854046), 'default_optimizer_learning_rate': np.float64(0.0003), 'policy_loss': np.float64(0.02398604527115822), 'total_loss': np.float64(0.1172284334897995), 'curr_entropy_coeff': np.float64(0.001), 'diff_num_grad_updates_vs_sampler_policy': np.float64(1.0), 'vf_loss_unclipped': np.float64(0.09341540932655334), 'vf_explained_var': np.float64(0.38052648305892944), 'num_trainable_parameters': nan, 'module_train_batch_size_mean': np.float64(512.0), 'num_module_steps_trained_lifetime': 5901312.0, 'num_module_steps_trained_lifetime_throughput': {'throughput_since_last_reduce': 5804.6511941535655, 'throughput_since_last_restore': 3139.8795120368036}}}, 'num_training_step_calls_per_iteration': 1, 'num_env_steps_sampled_lifetime': 48960.0, 'fault_tolerance': {'num_healthy_workers': 4, 'num_remote_worker_restarts': 0, 'num_env_runners_dropped_lifetime': 0}, 'env_runner_group': {'actor_manager_num_outstanding_async_reqs': 4}, 'done': False, 'training_iteration': 34, 'trial_id': 'default', 'date': '2026-08-23_21-35-50', 'timestamp': 1787501150, 'time_this_iter_s': 29.902159214019775, 'time_total_s': 1855.3971569538116, 'pid': 58432, 'hostname': 'Sirinimora', 'node_ip': '127.0.0.1', 'config': {'exploration_config': {}, 'extra_python_environs_for_driver': {}, 'extra_python_environs_for_worker': {}, 'placement_strategy': 'PACK', 'num_gpus': 0, '_fake_gpus': False, 'num_cpus_for_main_process': 1, 'custom_resources_for_main_process': {}, 'eager_tracing': True, 'eager_max_retraces': 20, 'tf_session_args': {'intra_op_parallelism_threads': 2, 'inter_op_parallelism_threads': 2, 'gpu_options': {'allow_growth': True}, 'log_device_placement': False, 'device_count': {'CPU': 1}, 'allow_soft_placement': True}, 'local_tf_session_args': {'intra_op_parallelism_threads': 8, 'inter_op_parallelism_threads': 8}, 'torch_compile_learner': False, 'torch_compile_learner_what_to_compile': <TorchCompileWhatToCompile.FORWARD_TRAIN: 'forward_train'>, 'torch_compile_learner_dynamo_backend': 'inductor', 'torch_compile_learner_dynamo_mode': None, 'torch_compile_worker': False, 'torch_compile_worker_dynamo_backend': 'onnxrt', 'torch_compile_worker_dynamo_mode': None, 'torch_ddp_kwargs': {}, 'torch_skip_nan_gradients': False, 'env': 'smartflow_corridor', 'env_config': {'net_file': 'C:\\\\Users\\\\sirin\\\\Desktop\\\\projects\\\\smartflow\\\\data\\\\corridor.net.xml', 'route_file': 'C:\\\\Users\\\\sirin\\\\Desktop\\\\projects\\\\smartflow\\\\data\\\\corridor.rou.xml', 'controlled_ts': ['A1', 'A2', 'B0', 'B1', 'B2', 'B3', 'C0', 'C1', 'C2', 'C3', 'D1', 'D2'], 'num_seconds': 1800, 'seed': 0, 'reward_fn': 'shaped', 'include_agent_id': False, 'neighbor_context': True, 'max_neighbors': 4}, 'observation_space': None, 'action_space': None, 'clip_rewards': None, 'normalize_actions': True, 'clip_actions': False, '_is_atari': None, 'disable_env_checking': False, 'render_env': False, 'action_mask_key': 'action_mask', 'env_runner_cls': None, 'num_env_runners': 4, 'create_local_env_runner': True, 'num_envs_per_env_runner': 1, 'gym_env_vectorize_mode': 'sync', 'num_cpus_per_env_runner': 1, 'num_gpus_per_env_runner': 0, 'custom_resources_per_env_runner': {}, 'validate_env_runners_after_construction': True, 'episodes_to_numpy': True, 'max_requests_in_flight_per_env_runner': 1, 'sample_timeout_s': 1800.0, '_env_to_module_connector': None, 'add_default_connectors_to_env_to_module_pipeline': True, '_module_to_env_connector': None, 'add_default_connectors_to_module_to_env_pipeline': True, 'merge_env_runner_states': 'training_only', 'broadcast_env_runner_states': True, 'use_env_runner_state_server': False, 'env_runner_state_server_max_concurrency': 16, 'episode_lookback_horizon': 1, 'rollout_fragment_length': 360, 'batch_mode': 'truncate_episodes', 'compress_observations': False, 'remote_worker_envs': False, 'remote_env_batch_wait_ms': 0, 'enable_tf1_exec_eagerly': False, 'sample_collector': <class 'ray.rllib.evaluation.collectors.simple_list_collector.SimpleListCollector'>, 'preprocessor_pref': 'deepmind', 'observation_filter': 'NoFilter', 'update_worker_filter_stats': True, 'use_worker_filter_stats': True, 'sampler_perf_stats_ema_coef': None, '_is_online': True, 'num_learners': 0, 'num_gpus_per_learner': 0, 'num_cpus_per_learner': 'auto', 'custom_resources_per_learner': {}, 'num_aggregator_actors_per_learner': 0, 'max_requests_in_flight_per_aggregator_actor': 3, 'local_gpu_idx': 0, 'max_requests_in_flight_per_learner': 3, 'gamma': 0.99, 'lr': 0.0003, 'grad_clip': None, 'grad_clip_by': 'global_norm', '_train_batch_size_per_learner': None, 'train_batch_size': 1440, 'num_epochs': 10, 'minibatch_size': 512, 'shuffle_batch_per_epoch': True, 'model': {'fcnet_hiddens': [256, 256], 'fcnet_activation': 'tanh', 'fcnet_weights_initializer': None, 'fcnet_weights_initializer_config': None, 'fcnet_bias_initializer': None, 'fcnet_bias_initializer_config': None, 'conv_filters': None, 'conv_activation': 'relu', 'conv_kernel_initializer': None, 'conv_kernel_initializer_config': None, 'conv_bias_initializer': None, 'conv_bias_initializer_config': None, 'conv_transpose_kernel_initializer': None, 'conv_transpose_kernel_initializer_config': None, 'conv_transpose_bias_initializer': None, 'conv_transpose_bias_initializer_config': None, 'post_fcnet_hiddens': [], 'post_fcnet_activation': 'relu', 'post_fcnet_weights_initializer': None, 'post_fcnet_weights_initializer_config': None, 'post_fcnet_bias_initializer': None, 'post_fcnet_bias_initializer_config': None, 'free_log_std': False, 'log_std_clip_param': 20.0, 'no_final_linear': False, 'vf_share_layers': False, 'use_lstm': False, 'max_seq_len': 20, 'lstm_cell_size': 256, 'lstm_use_prev_action': False, 'lstm_use_prev_reward': False, 'lstm_weights_initializer': None, 'lstm_weights_initializer_config': None, 'lstm_bias_initializer': None, 'lstm_bias_initializer_config': None, '_time_major': False, 'use_attention': False, 'attention_num_transformer_units': 1, 'attention_dim': 64, 'attention_num_heads': 1, 'attention_head_dim': 32, 'attention_memory_inference': 50, 'attention_memory_training': 50, 'attention_position_wise_mlp_dim': 32, 'attention_init_gru_gate_bias': 2.0, 'attention_use_n_prev_actions': 0, 'attention_use_n_prev_rewards': 0, 'framestack': True, 'dim': 84, 'grayscale': False, 'zero_mean': True, 'custom_model': None, 'custom_model_config': {}, 'custom_action_dist': None, 'custom_preprocessor': None, 'encoder_latent_dim': None, 'always_check_shapes': False, 'lstm_use_prev_action_reward': -1, '_use_default_native_models': -1, '_disable_preprocessor_api': False, '_disable_action_flattening': False}, '_learner_connector': None, 'add_default_connectors_to_learner_pipeline': True, 'learner_config_dict': {}, 'optimizer': {}, '_learner_class': None, 'callbacks_on_algorithm_init': None, 'callbacks_on_env_runners_recreated': None, 'callbacks_on_offline_eval_runners_recreated': None, 'callbacks_on_checkpoint_loaded': None, 'callbacks_on_environment_created': None, 'callbacks_on_episode_created': None, 'callbacks_on_episode_start': None, 'callbacks_on_episode_step': None, 'callbacks_on_episode_end': None, 'callbacks_on_evaluate_start': None, 'callbacks_on_evaluate_end': None, 'callbacks_on_evaluate_offline_start': None, 'callbacks_on_evaluate_offline_end': None, 'callbacks_on_sample_end': None, 'callbacks_on_train_result': None, 'explore': True, 'enable_rl_module_and_learner': True, 'enable_env_runner_and_connector_v2': True, '_prior_exploration_config': {'type': 'StochasticSampling'}, 'count_steps_by': 'env_steps', 'policy_map_capacity': 100, 'policy_mapping_fn': <function build_algorithm.<locals>.policy_mapping_fn at 0x000001F3AE2F8EA0>, 'policies_to_train': None, 'policy_states_are_swappable': False, 'observation_fn': None, 'offline_data_class': None, 'input_read_method': 'read_parquet', 'input_read_method_kwargs': {}, 'input_read_schema': {}, 'input_read_episodes': False, 'input_read_sample_batches': False, 'input_read_batch_size': None, 'input_filesystem': None, 'input_filesystem_kwargs': {}, 'input_compress_columns': ['obs', 'new_obs'], 'input_spaces_jsonable': True, 'materialize_data': False, 'materialize_mapped_data': True, 'map_batches_kwargs': {}, 'iter_batches_kwargs': {}, 'ignore_final_observation': False, 'prelearner_class': None, 'prelearner_buffer_class': None, 'prelearner_buffer_kwargs': {}, 'prelearner_module_synch_period': 10, 'prelearner_use_recorded_module_states': False, 'dataset_num_iters_per_learner': None, 'input_config': {}, 'actions_in_input_normalized': False, 'postprocess_inputs': False, 'shuffle_buffer_size': 0, 'output': None, 'output_config': {}, 'output_compress_columns': ['obs', 'new_obs'], 'output_max_file_size': 67108864, 'output_max_rows_per_file': None, 'output_write_remaining_data': False, 'output_write_method': 'write_parquet', 'output_write_method_kwargs': {}, 'output_filesystem': None, 'output_filesystem_kwargs': {}, 'output_write_episodes': True, 'offline_sampling': False, 'evaluation_interval': None, 'evaluation_duration': 10, 'evaluation_duration_unit': 'episodes', 'evaluation_sample_timeout_s': 120.0, 'evaluation_auto_duration_min_env_steps_per_sample': 100, 'evaluation_auto_duration_max_env_steps_per_sample': 2000, 'evaluation_parallel_to_training': False, 'evaluation_unhealthy_workers_timeout_s': 0.0, 'evaluation_error_after_n_consecutive_skips': None, 'evaluation_force_reset_envs_before_iteration': True, 'evaluation_config': None, 'off_policy_estimation_methods': {}, 'ope_split_batch_by_episode': True, 'evaluation_num_env_runners': 0, 'in_evaluation': False, 'sync_filters_on_rollout_workers_timeout_s': 10.0, 'offline_evaluation_interval': None, 'num_offline_eval_runners': 0, 'offline_evaluation_type': 'eval_loss', 'offline_eval_runner_class': None, 'offline_loss_for_module_fn': None, 'offline_evaluation_duration': 1, 'offline_evaluation_parallel_to_training': False, 'offline_evaluation_timeout_s': 120.0, 'num_cpus_per_offline_eval_runner': 1, 'num_gpus_per_offline_eval_runner': 0, 'custom_resources_per_offline_eval_runner': {}, 'restart_failed_offline_eval_runners': True, 'ignore_offline_eval_runner_failures': False, 'max_num_offline_eval_runner_restarts': 1000, 'offline_eval_runner_restore_timeout_s': 1800.0, 'max_requests_in_flight_per_offline_eval_runner': 1, 'validate_offline_eval_runners_after_construction': True, 'offline_eval_runner_health_probe_timeout_s': 30.0, 'offline_eval_rl_module_inference_only': False, 'broadcast_offline_eval_runner_states': False, 'offline_eval_batch_size_per_runner': 256, 'dataset_num_iters_per_eval_runner': 1, 'keep_per_episode_custom_metrics': False, 'metrics_episode_collection_timeout_s': 60.0, 'metrics_num_episodes_for_smoothing': 100, 'min_time_s_per_iteration': None, 'min_train_timesteps_per_iteration': 0, 'min_sample_timesteps_per_iteration': 0, 'log_gradients': False, 'stats_cls_lookup': {'mean': <class 'ray.rllib.utils.metrics.stats.mean.MeanStats'>, 'ema': <class 'ray.rllib.utils.metrics.stats.ema.EmaStats'>, 'min': <class 'ray.rllib.utils.metrics.stats.min.MinStats'>, 'max': <class 'ray.rllib.utils.metrics.stats.max.MaxStats'>, 'sum': <class 'ray.rllib.utils.metrics.stats.sum.SumStats'>, 'lifetime_sum': <class 'ray.rllib.utils.metrics.stats.lifetime_sum.LifetimeSumStats'>, 'percentiles': <class 'ray.rllib.utils.metrics.stats.percentiles.PercentilesStats'>, 'item': <class 'ray.rllib.utils.metrics.stats.item.ItemStats'>, 'item_series': <class 'ray.rllib.utils.metrics.stats.item_series.ItemSeriesStats'>}, 'export_native_model_files': False, 'checkpoint_trainable_policies_only': False, 'log_level': 'ERROR', 'log_sys_usage': True, 'fake_sampler': False, 'seed': 0, 'restart_failed_env_runners': True, 'ignore_env_runner_failures': False, 'max_num_env_runner_restarts': 1000, 'delay_between_env_runner_restarts_s': 60.0, 'restart_failed_sub_environments': False, 'num_consecutive_env_runner_failures_tolerance': 100, 'env_runner_health_probe_timeout_s': 30.0, 'env_runner_restore_timeout_s': 1800.0, '_model_config': {}, '_rl_module_spec': MultiRLModuleSpec(multi_rl_module_class=<class 'ray.rllib.core.rl_module.multi_rl_module.MultiRLModule'>, observation_space=None, action_space=None, inference_only=False, model_config=None, rl_module_specs={'shared_policy': RLModuleSpec(module_class=<class 'gnn_encoder.make_gat_module_class.<locals>.CorridorGATModule'>, observation_space=None, action_space=None, inference_only=False, learner_only=False, model_config={'node_dim': 11, 'max_neighbors': 4, 'hidden_dim': 64, 'embed_dim': 32, 'heads': 4}, catalog_class=None, load_state_path=None, model_config_dict=None)}, load_state_path=None, modules_to_load=None, module_specs={'shared_policy': RLModuleSpec(module_class=<class 'gnn_encoder.make_gat_module_class.<locals>.CorridorGATModule'>, observation_space=None, action_space=None, inference_only=False, learner_only=False, model_config={'node_dim': 11, 'max_neighbors': 4, 'hidden_dim': 64, 'embed_dim': 32, 'heads': 4}, catalog_class=None, load_state_path=None, model_config_dict=None)}), 'algorithm_config_overrides_per_module': {}, '_per_module_overrides': {}, '_validate_config': True, '_use_msgpack_checkpoints': False, '_torch_grad_scaler_class': None, '_torch_lr_scheduler_classes': None, '_tf_policy_handles_more_than_one_loss': False, '_disable_preprocessor_api': False, '_disable_action_flattening': False, '_disable_initialize_loss_from_dummy_batch': False, '_dont_auto_sync_env_runner_states': False, 'env_task_fn': -1, 'enable_connectors': -1, 'simple_optimizer': True, 'policy_map_cache': -1, 'worker_cls': -1, 'synchronize_filters': -1, 'enable_async_evaluation': -1, 'custom_async_evaluation_function': -1, '_enable_rl_module_api': -1, 'auto_wrap_old_gym_envs': -1, 'always_attach_evaluation_results': -1, 'replay_sequence_length': None, '_disable_execution_plan_api': -1, 'use_critic': True, 'use_gae': True, 'use_kl_loss': True, 'kl_coeff': 0.2, 'kl_target': 0.01, 'vf_loss_coeff': 1.0, 'entropy_coeff': 0.001, 'clip_param': 0.2, 'vf_clip_param': 10.0, 'entropy_coeff_schedule': None, 'lr_schedule': None, 'sgd_minibatch_size': -1, 'vf_share_layers': -1, 'class': <class 'ray.rllib.algorithms.ppo.ppo.PPOConfig'>, 'lambda': 0.95, 'input': 'sampler', 'policies': {'shared_policy': (None, None, None, None)}, 'callbacks': <class '__main__._make_callback_class.<locals>.FairnessCallback'>, 'create_env_on_driver': False, 'custom_eval_function': None, 'framework': 'torch'}, 'time_since_restore': 1855.3971569538116, 'iterations_since_restore': 34, 'perf': {'cpu_util_percent': np.float64(23.525581395348834), 'ram_util_percent': np.float64(63.281395348837215)}})",
+  "iterations": [
+    {
+      "iteration": 1,
+      "env_steps": 1440,
+      "episode_return_mean": -95.9617,
+      "max_lane_wait_s": 59.5634,
+      "mean_violation_s": 4.0801,
+      "fairness_lambda": 0.5,
+      "elapsed_s": 58.9,
+      "fairness_lambda_next": 0.5492722731702995
+    },
+    {
+      "iteration": 2,
+      "env_steps": 2880,
+      "episode_return_mean": -79.1498,
+      "max_lane_wait_s": 64.1495,
+      "mean_violation_s": 2.1205,
+      "fairness_lambda": 0.5492722731702995,
+      "elapsed_s": 114.8,
+      "fairness_lambda_next": 0.6061881582111845
+    },
+    {
+      "iteration": 3,
+      "env_steps": 4320,
+      "episode_return_mean": -81.2347,
+      "max_lane_wait_s": 52.4825,
+      "mean_violation_s": 2.2827,
+      "fairness_lambda": 0.6061881582111845,
+      "elapsed_s": 165.2,
+      "fairness_lambda_next": 0.6436590528190277
+    },
+    {
+      "iteration": 4,
+      "env_steps": 5760,
+      "episode_return_mean": -81.2344,
+      "max_lane_wait_s": 57.2818,
+      "mean_violation_s": 2.0543,
+      "fairness_lambda": 0.6436590528190277,
+      "elapsed_s": 213.2,
+      "fairness_lambda_next": 0.6891287312887062
+    },
+    {
+      "iteration": 5,
+      "env_steps": 7200,
+      "episode_return_mean": -79.9521,
+      "max_lane_wait_s": 51.6175,
+      "mean_violation_s": 2.405,
+      "fairness_lambda": 0.6891287312887062,
+      "elapsed_s": 268.0,
+      "fairness_lambda_next": 0.725157978083578
+    },
+    {
+      "iteration": 6,
+      "env_steps": 8640,
+      "episode_return_mean": -82.1068,
+      "max_lane_wait_s": 60.3482,
+      "mean_violation_s": 2.8502,
+      "fairness_lambda": 0.725157978083578,
+      "elapsed_s": 324.2,
+      "fairness_lambda_next": 0.7757383352264351
+    },
+    {
+      "iteration": 7,
+      "env_steps": 10080,
+      "episode_return_mean": -225.8654,
+      "max_lane_wait_s": 107.1356,
+      "mean_violation_s": 11.1858,
+      "fairness_lambda": 0.7757383352264351,
+      "elapsed_s": 384.2,
+      "fairness_lambda_next": 0.9042975944856944
+    },
+    {
+      "iteration": 8,
+      "env_steps": 11520,
+      "episode_return_mean": -76.9308,
+      "max_lane_wait_s": 50.099,
+      "mean_violation_s": 1.3429,
+      "fairness_lambda": 0.9042975944856944,
+      "elapsed_s": 435.1,
+      "fairness_lambda_next": 0.9377958583745832
+    },
+    {
+      "iteration": 9,
+      "env_steps": 12960,
+      "episode_return_mean": -102.7544,
+      "max_lane_wait_s": 88.3731,
+      "mean_violation_s": 4.7475,
+      "fairness_lambda": 0.9377958583745832,
+      "elapsed_s": 492.2,
+      "fairness_lambda_next": 1.035084440364252
+    },
+    {
+      "iteration": 10,
+      "env_steps": 14400,
+      "episode_return_mean": -77.3337,
+      "max_lane_wait_s": 49.8531,
+      "mean_violation_s": 1.5293,
+      "fairness_lambda": 1.035084440364252,
+      "elapsed_s": 547.1,
+      "fairness_lambda_next": 1.068172960944549
+    },
+    {
+      "iteration": 11,
+      "env_steps": 15840,
+      "episode_return_mean": -72.0524,
+      "max_lane_wait_s": 44.8167,
+      "mean_violation_s": 0.669,
+      "fairness_lambda": 1.068172960944549,
+      "elapsed_s": 601.8,
+      "fairness_lambda_next": 1.0928674053889933
+    },
+    {
+      "iteration": 12,
+      "env_steps": 17280,
+      "episode_return_mean": -75.1278,
+      "max_lane_wait_s": 55.0866,
+      "mean_violation_s": 1.4903,
+      "fairness_lambda": 1.0928674053889933,
+      "elapsed_s": 657.2,
+      "fairness_lambda_next": 1.1346784172937552
+    },
+    {
+      "iteration": 13,
+      "env_steps": 18720,
+      "episode_return_mean": -71.1237,
+      "max_lane_wait_s": 41.9333,
+      "mean_violation_s": 0.4502,
+      "fairness_lambda": 1.1346784172937552,
+      "elapsed_s": 711.5,
+      "fairness_lambda_next": 1.154567306182644
+    },
+    {
+      "iteration": 14,
+      "env_steps": 20160,
+      "episode_return_mean": -75.844,
+      "max_lane_wait_s": 46.4413,
+      "mean_violation_s": 0.7989,
+      "fairness_lambda": 1.154567306182644,
+      "elapsed_s": 764.7,
+      "fairness_lambda_next": 1.1819695497723877
+    },
+    {
+      "iteration": 15,
+      "env_steps": 21600,
+      "episode_return_mean": -2124.5506,
+      "max_lane_wait_s": 285.3333,
+      "mean_violation_s": 110.6293,
+      "fairness_lambda": 1.1819695497723877,
+      "elapsed_s": 866.8,
+      "fairness_lambda_next": 1.6075251053279431
+    },
+    {
+      "iteration": 16,
+      "env_steps": 23040,
+      "episode_return_mean": -72.4151,
+      "max_lane_wait_s": 46.7487,
+      "mean_violation_s": 0.5682,
+      "fairness_lambda": 1.6075251053279431,
+      "elapsed_s": 920.3,
+      "fairness_lambda_next": 1.6354396352424732
+    },
+    {
+      "iteration": 17,
+      "env_steps": 24480,
+      "episode_return_mean": -69.0167,
+      "max_lane_wait_s": 43.0625,
+      "mean_violation_s": 0.3363,
+      "fairness_lambda": 1.6354396352424732,
+      "elapsed_s": 971.6,
+      "fairness_lambda_next": 1.6572104685758065
+    },
+    {
+      "iteration": 18,
+      "env_steps": 25920,
+      "episode_return_mean": -69.2777,
+      "max_lane_wait_s": 50.7361,
+      "mean_violation_s": 0.6582,
+      "fairness_lambda": 1.6572104685758065,
+      "elapsed_s": 1019.9,
+      "fairness_lambda_next": 1.6917706537609916
+    },
+    {
+      "iteration": 19,
+      "env_steps": 27360,
+      "episode_return_mean": -67.1859,
+      "max_lane_wait_s": 42.2965,
+      "mean_violation_s": 0.4485,
+      "fairness_lambda": 1.6917706537609916,
+      "elapsed_s": 1072.1,
+      "fairness_lambda_next": 1.7122648817552195
+    },
+    {
+      "iteration": 20,
+      "env_steps": 28800,
+      "episode_return_mean": -67.8003,
+      "max_lane_wait_s": 44.7167,
+      "mean_violation_s": 0.207,
+      "fairness_lambda": 1.7122648817552195,
+      "elapsed_s": 1123.7,
+      "fairness_lambda_next": 1.7367926595329972
+    },
+    {
+      "iteration": 21,
+      "env_steps": 30240,
+      "episode_return_mean": -65.4818,
+      "max_lane_wait_s": 45.6623,
+      "mean_violation_s": 0.2062,
+      "fairness_lambda": 1.7367926595329972,
+      "elapsed_s": 1174.3,
+      "fairness_lambda_next": 1.7628965556368934
+    },
+    {
+      "iteration": 22,
+      "env_steps": 31680,
+      "episode_return_mean": -67.1004,
+      "max_lane_wait_s": 42.1944,
+      "mean_violation_s": 0.2167,
+      "fairness_lambda": 1.7628965556368934,
+      "elapsed_s": 1224.8,
+      "fairness_lambda_next": 1.7832206297109674
+    },
+    {
+      "iteration": 23,
+      "env_steps": 33120,
+      "episode_return_mean": -67.7716,
+      "max_lane_wait_s": 40.7218,
+      "mean_violation_s": 0.1011,
+      "fairness_lambda": 1.7832206297109674,
+      "elapsed_s": 1276.6,
+      "fairness_lambda_next": 1.801090319253451
+    },
+    {
+      "iteration": 24,
+      "env_steps": 34560,
+      "episode_return_mean": -942.5469,
+      "max_lane_wait_s": 237.0375,
+      "mean_violation_s": 44.3871,
+      "fairness_lambda": 1.801090319253451,
+      "elapsed_s": 1348.5,
+      "fairness_lambda_next": 2.0
+    },
+    {
+      "iteration": 25,
+      "env_steps": 36000,
+      "episode_return_mean": -64.2274,
+      "max_lane_wait_s": 37.6306,
+      "mean_violation_s": 0.1375,
+      "fairness_lambda": 2.0,
+      "elapsed_s": 1397.4,
+      "fairness_lambda_next": 2.0
+    },
+    {
+      "iteration": 26,
+      "env_steps": 37440,
+      "episode_return_mean": -2855.947,
+      "max_lane_wait_s": 277.4236,
+      "mean_violation_s": 130.0999,
+      "fairness_lambda": 2.0,
+      "elapsed_s": 1512.6,
+      "fairness_lambda_next": 2.0
+    },
+    {
+      "iteration": 27,
+      "env_steps": 38880,
+      "episode_return_mean": -2322.3867,
+      "max_lane_wait_s": 278.7292,
+      "mean_violation_s": 122.1015,
+      "fairness_lambda": 2.0,
+      "elapsed_s": 1600.9,
+      "fairness_lambda_next": 2.0
+    },
+    {
+      "iteration": 28,
+      "env_steps": 40320,
+      "episode_return_mean": -71.5515,
+      "max_lane_wait_s": 48.867,
+      "mean_violation_s": 1.0678,
+      "fairness_lambda": 2.0,
+      "elapsed_s": 1635.5,
+      "fairness_lambda_next": 2.0
+    },
+    {
+      "iteration": 29,
+      "env_steps": 41760,
+      "episode_return_mean": -64.0712,
+      "max_lane_wait_s": 37.5417,
+      "mean_violation_s": 0.0785,
+      "fairness_lambda": 2.0,
+      "elapsed_s": 1666.7,
+      "fairness_lambda_next": 2.0
+    },
+    {
+      "iteration": 30,
+      "env_steps": 43200,
+      "episode_return_mean": -67.5165,
+      "max_lane_wait_s": 41.4286,
+      "mean_violation_s": 0.228,
+      "fairness_lambda": 2.0,
+      "elapsed_s": 1697.8,
+      "fairness_lambda_next": 2.0
+    },
+    {
+      "iteration": 31,
+      "env_steps": 44640,
+      "episode_return_mean": -64.48,
+      "max_lane_wait_s": 46.3826,
+      "mean_violation_s": 0.2612,
+      "fairness_lambda": 2.0,
+      "elapsed_s": 1729.0,
+      "fairness_lambda_next": 2.0
+    },
+    {
+      "iteration": 32,
+      "env_steps": 46080,
+      "episode_return_mean": -2812.3676,
+      "max_lane_wait_s": 286.1146,
+      "mean_violation_s": 128.4057,
+      "fairness_lambda": 2.0,
+      "elapsed_s": 1795.4,
+      "fairness_lambda_next": 2.0
+    },
+    {
+      "iteration": 33,
+      "env_steps": 47520,
+      "episode_return_mean": -64.4709,
+      "max_lane_wait_s": 37.2857,
+      "mean_violation_s": 0.1325,
+      "fairness_lambda": 2.0,
+      "elapsed_s": 1825.6,
+      "fairness_lambda_next": 2.0
+    },
+    {
+      "iteration": 34,
+      "env_steps": 48960,
+      "episode_return_mean": -61.2145,
+      "max_lane_wait_s": 37.9583,
+      "mean_violation_s": 0.0537,
+      "fairness_lambda": 2.0,
+      "elapsed_s": 1855.5,
+      "fairness_lambda_next": 2.0
+    }
+  ]
+}

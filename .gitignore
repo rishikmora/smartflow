@@ -1,23 +1,49 @@
+# Precision, not blanket ignoring: generated noise is excluded, but result
+# artifacts and trained checkpoints stay in git because they are the portfolio
+# evidence for each week's Definition of Done.
+#
+# NOTE: git does not support trailing comments on a pattern line — "path/  # why"
+# is treated as part of the pattern and silently matches nothing. Comments go on
+# their own line.
+
+# ── environments ─────────────────────────────────────────────────────────────
 venv/
+.venv/
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 .Python
 *.egg-info/
+
+# ── secrets (habit set early; nothing sensitive exists yet) ──────────────────
 .env
 
-# SUMO temp files
+# ── SUMO scratch ─────────────────────────────────────────────────────────────
 *.xml.bak
 tripinfo*.xml
 trips.trips.xml
 
-# IDE / Claude Code
+# ── IDE / tooling ────────────────────────────────────────────────────────────
 .claude/
 
-# Training logs (large, regenerable)
+# ── regenerable training noise ───────────────────────────────────────────────
+# raw stdout from training runs (SUMO step spam, hundreds of MB)
+outputs/logs/
 outputs/tensorboard/
-outputs/monitor/
+# per-process eval shards; the merged CSVs next to them are the tracked result
+outputs/tmp_w3/
+outputs/tmp_marl/
+# mid-run SB3 checkpoints; the final models/*.zip are kept
+outputs/checkpoints/
+# throwaway checkpoints written by the online-learning loop
+models/_online_scratch_*/
+# RLlib optimiser state: ~13 MB per run and needed only to *resume* training. The
+# policy weights under learner_group/learner/rl_module/ are kept, and those are what
+# eval_marl_corridor.load_multi_rl_module() actually loads.
+models/marl_*/learner_group/learner/state.pkl
 
-# Trained models (committed by explicit choice only)
-# models/      # uncomment to exclude model zips from git
+# ── deliberately NOT ignored ─────────────────────────────────────────────────
+# outputs/*.csv, outputs/*.png, outputs/*.md   — benchmark evidence
+# outputs/monitor*/                            — per-episode returns behind the curves
+# models/*.zip, models/marl_*/                 — trained policies

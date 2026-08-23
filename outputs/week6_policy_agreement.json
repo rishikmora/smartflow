@@ -1,0 +1,80 @@
+{
+  "seed": 0,
+  "num_seconds": 1800,
+  "tags": [
+    "w5",
+    "w5nofair",
+    "w5nocoord",
+    "w5strong",
+    "w5gnn"
+  ],
+  "checkpoints": {
+    "w5": {
+      "module_class": "DefaultPPOTorchRLModule",
+      "num_parameters": 138501,
+      "weights_match_reference": true
+    },
+    "w5nofair": {
+      "module_class": "DefaultPPOTorchRLModule",
+      "num_parameters": 138501,
+      "weights_match_reference": false
+    },
+    "w5nocoord": {
+      "module_class": "DefaultPPOTorchRLModule",
+      "num_parameters": 138501,
+      "weights_match_reference": false
+    },
+    "w5strong": {
+      "module_class": "DefaultPPOTorchRLModule",
+      "num_parameters": 138501,
+      "weights_match_reference": false
+    },
+    "w5gnn": {
+      "module_class": "CorridorGATModule",
+      "num_parameters": 16291,
+      "weights_match_reference": false,
+      "note": "different architecture"
+    }
+  },
+  "behaviour": {
+    "reference": "w5",
+    "decisions_compared": 4320,
+    "actionable_decisions": 2148,
+    "mean_decision_margin": 0.8874,
+    "reference_action_counts": {
+      "1": 2172,
+      "0": 2148
+    },
+    "agreement": {
+      "w5nofair": {
+        "matches": 4320,
+        "rate": 1.0,
+        "actionable_matches": 2148,
+        "actionable_rate": 1.0,
+        "mean_max_prob_difference": 0.0246
+      },
+      "w5nocoord": {
+        "matches": 4320,
+        "rate": 1.0,
+        "actionable_matches": 2148,
+        "actionable_rate": 1.0,
+        "mean_max_prob_difference": 0.0206
+      },
+      "w5strong": {
+        "matches": 3396,
+        "rate": 0.786111,
+        "actionable_matches": 2148,
+        "actionable_rate": 1.0,
+        "mean_max_prob_difference": 0.1592
+      },
+      "w5gnn": {
+        "matches": 4320,
+        "rate": 1.0,
+        "actionable_matches": 2148,
+        "actionable_rate": 1.0,
+        "mean_max_prob_difference": 0.048
+      }
+    }
+  },
+  "interpretation": "Checkpoints that differ but agree on 100% of ACTIONABLE decisions are different functions whose differences never change the signal: either the probability gap is smaller than the decision margin, or the disagreement falls inside sumo-rl's min_green window where the requested action is discarded."
+}

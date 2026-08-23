@@ -1,0 +1,464 @@
+{
+  "protocol": "Each candidate checkpoint is scored on one deterministic episode using a validation SUMO seed (100 + training seed) that is disjoint from the reported evaluation seeds 0/1/2.",
+  "selections": [
+    {
+      "seed": 0,
+      "validation_seed": 100,
+      "metric": "avg_wait_time_s",
+      "selected": "final",
+      "selected_score": 7.24,
+      "candidates": [
+        {
+          "label": "25000_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed0\\ppo_corridor_seed0_25000_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 100,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 7.24,
+            "max_queue_len": 14,
+            "throughput_veh": 745
+          },
+          "corridor_avg_wait_time_s": 74.28,
+          "score": 7.24
+        },
+        {
+          "label": "50000_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed0\\ppo_corridor_seed0_50000_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 100,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 17.02,
+            "max_queue_len": 49,
+            "throughput_veh": 705
+          },
+          "corridor_avg_wait_time_s": 78.32,
+          "score": 17.02
+        },
+        {
+          "label": "76200_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed0\\ppo_corridor_seed0_76200_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 100,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 7.24,
+            "max_queue_len": 14,
+            "throughput_veh": 745
+          },
+          "corridor_avg_wait_time_s": 74.28,
+          "score": 7.24
+        },
+        {
+          "label": "101200_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed0\\ppo_corridor_seed0_101200_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 100,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 7.24,
+            "max_queue_len": 14,
+            "throughput_veh": 745
+          },
+          "corridor_avg_wait_time_s": 74.28,
+          "score": 7.24
+        },
+        {
+          "label": "127400_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed0\\ppo_corridor_seed0_127400_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 100,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 7.24,
+            "max_queue_len": 14,
+            "throughput_veh": 745
+          },
+          "corridor_avg_wait_time_s": 74.28,
+          "score": 7.24
+        },
+        {
+          "label": "152400_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed0\\ppo_corridor_seed0_152400_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 100,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 7.24,
+            "max_queue_len": 14,
+            "throughput_veh": 745
+          },
+          "corridor_avg_wait_time_s": 74.28,
+          "score": 7.24
+        },
+        {
+          "label": "178600_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed0\\ppo_corridor_seed0_178600_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 100,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 7.24,
+            "max_queue_len": 14,
+            "throughput_veh": 745
+          },
+          "corridor_avg_wait_time_s": 74.28,
+          "score": 7.24
+        },
+        {
+          "label": "203600_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed0\\ppo_corridor_seed0_203600_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 100,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 7.24,
+            "max_queue_len": 14,
+            "throughput_veh": 745
+          },
+          "corridor_avg_wait_time_s": 74.28,
+          "score": 7.24
+        },
+        {
+          "label": "final",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\models\\ppo_corridor_seed0.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 100,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 7.24,
+            "max_queue_len": 14,
+            "throughput_veh": 745
+          },
+          "corridor_avg_wait_time_s": 74.28,
+          "score": 7.24
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "validation_seed": 101,
+      "metric": "avg_wait_time_s",
+      "selected": "final",
+      "selected_score": 9.68,
+      "candidates": [
+        {
+          "label": "25000_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed1\\ppo_corridor_seed1_25000_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 101,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 9.68,
+            "max_queue_len": 22,
+            "throughput_veh": 733
+          },
+          "corridor_avg_wait_time_s": 77.31,
+          "score": 9.68
+        },
+        {
+          "label": "50000_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed1\\ppo_corridor_seed1_50000_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 101,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 9.68,
+            "max_queue_len": 22,
+            "throughput_veh": 733
+          },
+          "corridor_avg_wait_time_s": 77.31,
+          "score": 9.68
+        },
+        {
+          "label": "76200_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed1\\ppo_corridor_seed1_76200_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 101,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 9.68,
+            "max_queue_len": 22,
+            "throughput_veh": 733
+          },
+          "corridor_avg_wait_time_s": 77.31,
+          "score": 9.68
+        },
+        {
+          "label": "101200_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed1\\ppo_corridor_seed1_101200_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 101,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 9.68,
+            "max_queue_len": 22,
+            "throughput_veh": 733
+          },
+          "corridor_avg_wait_time_s": 77.31,
+          "score": 9.68
+        },
+        {
+          "label": "127400_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed1\\ppo_corridor_seed1_127400_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 101,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 9.68,
+            "max_queue_len": 22,
+            "throughput_veh": 733
+          },
+          "corridor_avg_wait_time_s": 77.31,
+          "score": 9.68
+        },
+        {
+          "label": "152400_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed1\\ppo_corridor_seed1_152400_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 101,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 9.68,
+            "max_queue_len": 22,
+            "throughput_veh": 733
+          },
+          "corridor_avg_wait_time_s": 77.31,
+          "score": 9.68
+        },
+        {
+          "label": "178600_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed1\\ppo_corridor_seed1_178600_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 101,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 9.68,
+            "max_queue_len": 22,
+            "throughput_veh": 733
+          },
+          "corridor_avg_wait_time_s": 77.31,
+          "score": 9.68
+        },
+        {
+          "label": "203600_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed1\\ppo_corridor_seed1_203600_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 101,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 9.68,
+            "max_queue_len": 22,
+            "throughput_veh": 733
+          },
+          "corridor_avg_wait_time_s": 77.31,
+          "score": 9.68
+        },
+        {
+          "label": "final",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\models\\ppo_corridor_seed1.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 101,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 9.68,
+            "max_queue_len": 22,
+            "throughput_veh": 733
+          },
+          "corridor_avg_wait_time_s": 77.31,
+          "score": 9.68
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "validation_seed": 102,
+      "metric": "avg_wait_time_s",
+      "selected": "127400_steps",
+      "selected_score": 14.76,
+      "candidates": [
+        {
+          "label": "25000_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed2\\ppo_corridor_seed2_25000_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 102,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 17.96,
+            "max_queue_len": 44,
+            "throughput_veh": 711
+          },
+          "corridor_avg_wait_time_s": 76.18,
+          "score": 17.96
+        },
+        {
+          "label": "50000_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed2\\ppo_corridor_seed2_50000_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 102,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 17.96,
+            "max_queue_len": 44,
+            "throughput_veh": 711
+          },
+          "corridor_avg_wait_time_s": 76.18,
+          "score": 17.96
+        },
+        {
+          "label": "76200_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed2\\ppo_corridor_seed2_76200_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 102,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 15.23,
+            "max_queue_len": 42,
+            "throughput_veh": 732
+          },
+          "corridor_avg_wait_time_s": 74.57,
+          "score": 15.23
+        },
+        {
+          "label": "101200_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed2\\ppo_corridor_seed2_101200_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 102,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 15.23,
+            "max_queue_len": 42,
+            "throughput_veh": 732
+          },
+          "corridor_avg_wait_time_s": 74.57,
+          "score": 15.23
+        },
+        {
+          "label": "127400_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed2\\ppo_corridor_seed2_127400_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 102,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 14.76,
+            "max_queue_len": 42,
+            "throughput_veh": 737
+          },
+          "corridor_avg_wait_time_s": 74.62,
+          "score": 14.76
+        },
+        {
+          "label": "152400_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed2\\ppo_corridor_seed2_152400_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 102,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 14.85,
+            "max_queue_len": 42,
+            "throughput_veh": 739
+          },
+          "corridor_avg_wait_time_s": 73.7,
+          "score": 14.85
+        },
+        {
+          "label": "178600_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed2\\ppo_corridor_seed2_178600_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 102,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 15.23,
+            "max_queue_len": 42,
+            "throughput_veh": 732
+          },
+          "corridor_avg_wait_time_s": 74.57,
+          "score": 15.23
+        },
+        {
+          "label": "203600_steps",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\outputs\\checkpoints\\ppo_corridor_seed2\\ppo_corridor_seed2_203600_steps.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 102,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 15.23,
+            "max_queue_len": 42,
+            "throughput_veh": 732
+          },
+          "corridor_avg_wait_time_s": 74.57,
+          "score": 15.23
+        },
+        {
+          "label": "final",
+          "path": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\models\\ppo_corridor_seed2.zip",
+          "junction": {
+            "controller": "ppo_validation",
+            "seed": 102,
+            "scope": "junction",
+            "tls_id": "B1",
+            "total_co2_kg": "",
+            "avg_wait_time_s": 15.23,
+            "max_queue_len": 42,
+            "throughput_veh": 732
+          },
+          "corridor_avg_wait_time_s": 74.57,
+          "score": 15.23
+        }
+      ]
+    }
+  ]
+}

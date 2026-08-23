@@ -1,4 +1,28 @@
-"""Evaluate fixed, actuated, or PPO controllers for Week 3 corridor metrics."""
+"""Week 3 evaluation harness: fixed / actuated / actuated_single / PPO on the corridor.
+
+Every controller is measured by the same :class:`metrics.MetricsCollector`, sampled
+once per *simulated second*, at two scopes:
+
+``junction``
+    The controlled junction's incoming lanes. This is Week 3's primary claim — it is
+    the only place a single RL agent can plausibly change anything.
+``corridor``
+    The whole 12-junction network, so the Week 1 numbers stay comparable.
+
+Baselines drive raw TraCI. The PPO controller runs inside sumo-rl, whose ``step()``
+advances several simulated seconds at once; the collector is therefore attached via
+``ControlledSumoEnvironment``'s per-second ``step_hook`` rather than being called once
+per agent decision. Sampling per decision would divide every waiting time by
+``delta_time`` and silently flatter the RL controller.
+
+Usage:
+    python src/eval_corridor.py --controller fixed --seeds 0 1 2
+    python src/eval_corridor.py --controller actuated --seeds 0 1 2
+    python src/eval_corridor.py --controller actuated_single --seeds 0 1 2
+    python src/eval_corridor.py --controller ppo --seeds 0 1 2
+
+Appends rows to ``outputs/week3_corridor_metrics.csv``.
+"""
 
 from __future__ import annotations
 
@@ -11,173 +35,217 @@ from typing import Any
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from week3_config import CORRIDOR_ACTUATED_CONFIG, CORRIDOR_FIXED_CONFIG, CSV_HEADER
-from week3_config import MODELS_DIR, TRAIN_SEEDS, WEEK3_CSV, CORRIDOR_TLS_ID, model_path
+from metrics import MetricsCollector
+from smartflow_env import baseline_sumo_cmd, make_single_agent_env, require_sumo_home
+from week3_config import (
+    BASELINE_NETS,
+    CORRIDOR_ACTUATED_CONFIG,
+    CORRIDOR_FIXED_CONFIG,
+    CORRIDOR_NET,
+    CORRIDOR_ROUTE,
+    CORRIDOR_SINGLE_ACTUATED_CONFIG,
+    CORRIDOR_TLS_ID,
+    CSV_HEADER,
+    DELTA_TIME,
+    MAX_GREEN,
+    MIN_GREEN,
+    SIM_SECONDS,
+    TRAIN_SEEDS,
+    WEEK3_CSV,
+    YELLOW_TIME,
+    model_path,
+)
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)-7s %(message)s")
 log = logging.getLogger(__name__)
 
+BASELINE_CONFIGS = {
+    "fixed": CORRIDOR_FIXED_CONFIG,
+    "actuated": CORRIDOR_ACTUATED_CONFIG,
+    "actuated_single": CORRIDOR_SINGLE_ACTUATED_CONFIG,
+}
 
-def _sumo_binary() -> str:
-    """Return the configured SUMO binary path."""
-    sumo_home = os.environ.get("SUMO_HOME")
-    if not sumo_home:
-        raise EnvironmentError("SUMO_HOME is not set.")
-    return os.path.join(sumo_home, "bin", "sumo.exe")
-
-
-def _save_row(row: dict[str, Any]) -> None:
-    """Append a metrics row to the Week 3 CSV."""
-    os.makedirs(os.path.dirname(WEEK3_CSV), exist_ok=True)
-    write_header = not os.path.isfile(WEEK3_CSV)
-    with open(WEEK3_CSV, "a", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=CSV_HEADER)
-        if write_header:
-            writer.writeheader()
-        writer.writerow(row)
+CONTROLLERS = ["fixed", "actuated", "actuated_single", "ppo"]
 
 
-def _collect_traci_metrics(controller: str, seed: int, config_path: str) -> dict[str, Any]:
-    """Run a full SUMO episode and collect corridor-wide metrics."""
+def _save_rows(rows: list[dict[str, Any]], csv_path: str = WEEK3_CSV) -> None:
+    """Append metric rows to the Week 3 CSV, writing the header on first use.
+
+    Args:
+        rows: dicts whose keys are a subset of ``CSV_HEADER``.
+        csv_path: destination CSV.
+    """
+    os.makedirs(os.path.dirname(csv_path), exist_ok=True)
+    write_header = not os.path.isfile(csv_path)
+    try:
+        with open(csv_path, "a", newline="", encoding="utf-8") as handle:
+            writer = csv.DictWriter(handle, fieldnames=CSV_HEADER, extrasaction="ignore")
+            if write_header:
+                writer.writeheader()
+            writer.writerows(rows)
+    except OSError as exc:
+        raise OSError(f"Could not append metrics to {csv_path}: {exc}. Is the file open elsewhere?") from exc
+
+
+def _rows_from(collector: MetricsCollector, controller: str, seed: int) -> list[dict[str, Any]]:
+    """Turn a finished collector into one junction-scope and one corridor-scope row."""
+    junction = collector.junction_row()
+    corridor = collector.corridor_row()
+    return [
+        {
+            "controller": controller,
+            "seed": seed,
+            "scope": "junction",
+            "tls_id": CORRIDOR_TLS_ID,
+            "total_co2_kg": "",  # not attributable to a single junction
+            **junction,
+        },
+        {
+            "controller": controller,
+            "seed": seed,
+            "scope": "corridor",
+            "tls_id": "all",
+            **corridor,
+        },
+    ]
+
+
+def eval_baseline(controller: str, seed: int) -> list[dict[str, Any]]:
+    """Run a non-RL controller for one episode and return its metric rows.
+
+    Args:
+        controller: ``"fixed"``, ``"actuated"`` or ``"actuated_single"``.
+        seed: SUMO RNG seed.
+
+    Returns:
+        Two rows (junction scope, corridor scope).
+
+    Raises:
+        FileNotFoundError: if the controller's ``.sumocfg`` is missing.
+    """
+    require_sumo_home()
     import traci
 
-    if not os.path.isfile(config_path):
-        raise FileNotFoundError(f"SUMO config not found: {config_path}")
-    traci.start([_sumo_binary(), "-c", config_path, "--seed", str(seed), "--no-step-log", "--no-warnings"])
-    veh_stopped_s: dict[str, int] = {}
-    completed_waits: list[int] = []
-    max_queue = 0
-    arrived = 0
-    total_co2_mg = 0.0
-    lane_ids = traci.lane.getIDList()
+    cfg = BASELINE_CONFIGS[controller]
+    if not os.path.isfile(cfg):
+        raise FileNotFoundError(
+            f"SUMO config not found for controller '{controller}': {cfg}. "
+            "Run src/make_single_actuated_net.py if this is the actuated_single config."
+        )
+
+    traci.start(baseline_sumo_cmd(config=cfg, seed=seed))
     try:
-        while traci.simulation.getTime() < 1800:
+        junction_lanes = list(dict.fromkeys(traci.trafficlight.getControlledLanes(CORRIDOR_TLS_ID)))
+        collector = MetricsCollector(traci, junction_lanes=junction_lanes)
+        while traci.simulation.getTime() < SIM_SECONDS:
             traci.simulationStep()
-            for vid in traci.vehicle.getIDList():
-                if traci.vehicle.getWaitingTime(vid) > 0:
-                    veh_stopped_s[vid] = veh_stopped_s.get(vid, 0) + 1
-                total_co2_mg += traci.vehicle.getCO2Emission(vid)
-            for vid in traci.simulation.getArrivedIDList():
-                completed_waits.append(veh_stopped_s.pop(vid, 0))
-                arrived += 1
-            max_queue = max(max_queue, sum(traci.lane.getLastStepHaltingNumber(lid) for lid in lane_ids))
+            collector.sample()
     finally:
         traci.close()
-    avg_wait = sum(completed_waits) / len(completed_waits) if completed_waits else 0.0
-    return {
-        "controller": controller,
-        "seed": seed,
-        "scope": "corridor-wide",
-        "tls_id": CORRIDOR_TLS_ID,
-        "avg_wait_time_s": round(avg_wait, 2),
-        "max_queue_len": max_queue,
-        "throughput_veh": arrived,
-        "total_co2_kg": round(total_co2_mg / 1e6, 4),
-    }
+    return _rows_from(collector, controller, seed)
 
 
-def _ppo_model_path(seed: int, tag: str = "") -> str:
-    """Return the PPO model path for a seed and optional training tag."""
-    if not tag:
-        return model_path(seed)
-    return os.path.join(MODELS_DIR, f"ppo_corridor_seed{seed}_{tag}.zip")
+def eval_ppo(seed: int, tag: str = "", model_file: str | None = None,
+             controller_label: str | None = None) -> list[dict[str, Any]]:
+    """Run a trained PPO policy deterministically for one episode.
 
+    Only ``CORRIDOR_TLS_ID`` is under RL control; the other eleven junctions run the
+    fixed-time program from the network file, matching the ``fixed`` baseline.
 
-def _collect_ppo_metrics(seed: int, tag: str = "") -> dict[str, Any]:
-    """Evaluate a trained PPO model deterministically through sumo-rl."""
-    if not os.environ.get("SUMO_HOME"):
-        raise EnvironmentError("SUMO_HOME is not set.")
-    import traci
-    from stable_baselines3 import PPO
-    from sumo_rl import SumoEnvironment
-    from week3_config import CORRIDOR_NET, CORRIDOR_ROUTE, DELTA_TIME, MAX_GREEN, MIN_GREEN, SIM_SECONDS, YELLOW_TIME
+    Args:
+        seed: SUMO RNG seed (and, unless ``model_file`` is given, the model selector).
+        tag: optional model tag, e.g. ``"short"``.
+        model_file: evaluate this exact ``.zip`` instead of the seed's saved model.
+            Used by ``select_best_checkpoint.py`` to score intermediate checkpoints.
+        controller_label: override the ``controller`` value written to the CSV.
 
-    path = _ppo_model_path(seed, tag)
+    Returns:
+        Two rows (junction scope, corridor scope).
+
+    Raises:
+        FileNotFoundError: if the requested model does not exist.
+    """
+    require_sumo_home()
+    try:
+        from stable_baselines3 import PPO
+    except Exception as exc:  # pragma: no cover
+        raise RuntimeError(f"Could not import stable_baselines3: {exc}") from exc
+
+    path = model_file or model_path(seed, tag)
     if not os.path.isfile(path):
-        tag_hint = f" with tag '{tag}'" if tag else ""
-        raise FileNotFoundError(f"Missing PPO model for seed {seed}{tag_hint}: {path}")
-    env = SumoEnvironment(
+        raise FileNotFoundError(
+            f"No trained PPO model at {path}. Train it first with "
+            f"'python src/train_ppo_corridor.py --seed {seed}"
+            + (f" --tag {tag}'" if tag else "'")
+        )
+
+    env = make_single_agent_env(
         net_file=CORRIDOR_NET,
         route_file=CORRIDOR_ROUTE,
-        out_csv_name=None,
+        controlled_ts=CORRIDOR_TLS_ID,
         num_seconds=SIM_SECONDS,
         delta_time=DELTA_TIME,
         yellow_time=YELLOW_TIME,
         min_green=MIN_GREEN,
         max_green=MAX_GREEN,
-        single_agent=True,
-        use_gui=False,
-        sumo_warnings=False,
-        sumo_seed=seed,
+        seed=seed,
         reward_fn="diff-waiting-time",
-        add_system_info=True,
+        add_system_info=False,
     )
     model = PPO.load(path)
-    veh_stopped_s: dict[str, int] = {}
-    completed_waits: list[int] = []
-    seen_vehicles: set[str] = set()
-    max_queue = 0
-    total_co2_mg = 0.0
     try:
         obs, _ = env.reset(seed=seed)
+        # The collector needs a live connection, so it is built after reset and then
+        # attached as the per-second hook for the rest of the episode.
+        junction_lanes = list(env.traffic_signals[CORRIDOR_TLS_ID].lanes)
+        collector = MetricsCollector(env.sumo, junction_lanes=junction_lanes)
+        env.set_step_hook(lambda _conn: collector.sample())
+
         terminated = truncated = False
         while not (terminated or truncated):
             action, _ = model.predict(obs, deterministic=True)
-            obs, _, terminated, truncated, _ = env.step(int(action))
-            veh_ids = set(traci.vehicle.getIDList())
-            seen_vehicles.update(veh_ids)
-            for vid in veh_ids:
-                if traci.vehicle.getWaitingTime(vid) > 0:
-                    veh_stopped_s[vid] = veh_stopped_s.get(vid, 0) + 1
-                total_co2_mg += traci.vehicle.getCO2Emission(vid)
-            departed = set(veh_stopped_s.keys()) - veh_ids
-            for vid in departed:
-                completed_waits.append(veh_stopped_s.pop(vid))
-            max_queue = max(max_queue, sum(traci.lane.getLastStepHaltingNumber(lid) for lid in traci.lane.getIDList()))
+            obs, _reward, terminated, truncated, _info = env.step(int(action))
     finally:
         env.close()
-    throughput = len(seen_vehicles) - len(traci.vehicle.getIDList()) if traci.isLoaded() else len(completed_waits)
-    avg_wait = sum(completed_waits) / len(completed_waits) if completed_waits else 0.0
-    return {
-        "controller": "ppo",
-        "seed": seed,
-        "scope": "corridor-wide",
-        "tls_id": CORRIDOR_TLS_ID,
-        "avg_wait_time_s": round(avg_wait, 2),
-        "max_queue_len": max_queue,
-        "throughput_veh": throughput,
-        "total_co2_kg": round(total_co2_mg / 1e6, 4),
-    }
+
+    controller = controller_label or (f"ppo_{tag}" if tag else "ppo")
+    return _rows_from(collector, controller, seed)
 
 
-def run(controller: str, seeds: list[int], tag: str = "") -> None:
-    """Run the requested controller for each seed."""
+def run(controller: str, seeds: list[int], tag: str = "", csv_path: str = WEEK3_CSV) -> None:
+    """Evaluate one controller across seeds and append the results to a CSV.
+
+    Args:
+        controller: one of :data:`CONTROLLERS`.
+        seeds: SUMO seeds to evaluate.
+        tag: optional PPO model tag.
+        csv_path: destination CSV. Give each concurrently-running process its own
+            file and merge afterwards — appending to one file from several processes
+            can interleave partial lines.
+    """
     for seed in seeds:
-        if controller == "fixed":
-            row = _collect_traci_metrics("fixed", seed, CORRIDOR_FIXED_CONFIG)
-        elif controller == "actuated":
-            row = _collect_traci_metrics("actuated", seed, CORRIDOR_ACTUATED_CONFIG)
+        if controller == "ppo":
+            rows = eval_ppo(seed, tag)
         else:
-            row = _collect_ppo_metrics(seed, tag)
-            if tag:
-                row["controller"] = f"ppo_{tag}"
-        _save_row(row)
-        log.info("Logged %s seed=%d wait=%.2f queue=%s throughput=%s", controller, seed, row["avg_wait_time_s"], row["max_queue_len"], row["throughput_veh"])
+            rows = eval_baseline(controller, seed)
+        _save_rows(rows, csv_path)
+        for row in rows:
+            log.info(
+                "%-16s seed=%d scope=%-8s wait=%7.2fs queue=%4s throughput=%s",
+                row["controller"], seed, row["scope"],
+                row["avg_wait_time_s"], row["max_queue_len"], row["throughput_veh"],
+            )
 
 
 def main() -> None:
     """CLI entry point."""
     parser = argparse.ArgumentParser(description="Evaluate Week 3 corridor controllers.")
-    parser.add_argument("--controller", choices=["fixed", "actuated", "ppo"], required=True)
+    parser.add_argument("--controller", choices=CONTROLLERS, required=True)
     parser.add_argument("--seeds", nargs="+", type=int, default=TRAIN_SEEDS)
-    parser.add_argument(
-        "--tag",
-        type=str,
-        default="",
-        help="Optional PPO model tag, e.g. 'short' for ppo_corridor_seed0_short.zip.",
-    )
+    parser.add_argument("--tag", type=str, default="", help="Optional PPO model tag, e.g. 'short'.")
+    parser.add_argument("--out", type=str, default=WEEK3_CSV, help="Destination CSV path.")
     args = parser.parse_args()
-    run(args.controller, args.seeds, args.tag)
+    run(args.controller, args.seeds, args.tag, args.out)
 
 
 if __name__ == "__main__":

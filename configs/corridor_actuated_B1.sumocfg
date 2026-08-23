@@ -1,0 +1,14 @@
+<configuration>
+    <input>
+        <net-file value="../data/corridor_actuated_B1.net.xml"/>
+        <route-files value="../data/corridor.rou.xml"/>
+    </input>
+    <time>
+        <begin value="0"/>
+        <end value="1800"/>
+    </time>
+    <report>
+        <no-step-log value="true"/>
+        <no-warnings value="true"/>
+    </report>
+</configuration>

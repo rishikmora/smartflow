@@ -1,0 +1,20 @@
+{
+  "algorithm": "PPO",
+  "seed": 1,
+  "timesteps": 100000,
+  "chunk_size": 20000,
+  "policy": "MlpPolicy",
+  "learning_rate": 0.0003,
+  "n_steps": 2048,
+  "batch_size": 64,
+  "n_epochs": 10,
+  "gamma": 0.99,
+  "gae_lambda": 0.95,
+  "clip_range": 0.2,
+  "ent_coef": 0.0,
+  "reward_fn": "diff-waiting-time",
+  "delta_time": 5,
+  "sim_seconds": 3600,
+  "benchmark_net": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\venv\\Lib\\site-packages\\sumo_rl\\nets\\2way-single-intersection\\single-intersection.net.xml",
+  "benchmark_route": "C:\\Users\\sirin\\Desktop\\projects\\smartflow\\venv\\Lib\\site-packages\\sumo_rl\\nets\\2way-single-intersection\\single-intersection-vhvh.rou.xml"
+}
