@@ -670,6 +670,10 @@ footer {
 
   // -- load strip: cars in the network across the whole episode ------------
   const strip = document.getElementById("loadstrip");
+  const loadCounts = {};
+  for (const k of KEYS) loadCounts[k] = RUNS[k].frames.map(f => f.v.length / 3);
+  const loadPeak = Math.max(...KEYS.map(k => Math.max(...loadCounts[k])));
+
   function drawLoadStrip() {
     const dpr = Math.min(2, window.devicePixelRatio || 1);
     const w = strip.clientWidth || 300, h = 34;
@@ -680,8 +684,9 @@ footer {
     ctx.fillStyle = C.panel2;
     ctx.fillRect(0, 0, w, h);
 
-    const counts = RUNS[primary].frames.map(f => f.v.length / 3);
-    const peakAll = Math.max(...KEYS.map(k => Math.max(...RUNS[k].frames.map(f => f.v.length / 3))));
+    // vehicle counts never change, so derive them once instead of on every tick
+    const counts = loadCounts[primary];
+    const peakAll = loadPeak;
     const bw = w / counts.length;
     for (let i = 0; i < counts.length; i++) {
       const bh = (counts[i] / peakAll) * (h - 4);
@@ -740,11 +745,14 @@ footer {
     if (!force) scrub.value = String(i);
   }
 
-  function tick(now) {
-    const dt = Math.min(0.1, (now - last) / 1000);
+  // One advance-and-render step, driven from two independent clocks below.
+  // `last` guards against double-advancing when both fire in the same instant.
+  function step(now) {
+    const dt = (now - last) / 1000;
+    if (dt <= 0.001) return;
     last = now;
     if (playing) {
-      pos += (dt * speed) / (stepS / 4);
+      pos += Math.min(0.1, dt) * speed / (stepS / 4);
       if (pos >= nFrames - 1) { pos = nFrames - 1; playing = false; syncPlay(); }
       renderAll(false);
       drawLoadStrip();
@@ -753,8 +761,16 @@ footer {
       drawLoadStrip();
       renderAll(true);
     }
-    requestAnimationFrame(tick);
   }
+
+  // requestAnimationFrame is the preferred clock — it is frame-accurate and pauses
+  // with the compositor. But browsers suspend it entirely for hidden or background
+  // tabs, and some embedded viewers never composite at all, which leaves playback
+  // frozen with no error. The interval is a floor, not a duplicate: whichever clock
+  // fires first advances time, and the other sees dt ~ 0 and returns.
+  function rafLoop(now) { step(now); requestAnimationFrame(rafLoop); }
+  requestAnimationFrame(rafLoop);
+  setInterval(() => step(performance.now()), 1000 / 30);
 
   // -- controls ------------------------------------------------------------
   function syncPlay() { el("play").textContent = playing ? "Pause" : "Play"; el("play").setAttribute("aria-pressed", String(playing)); }
@@ -810,6 +826,6 @@ footer {
 
   window.addEventListener("resize", () => { renderAll(true); drawLoadStrip(); });
   syncPlay(); updateFinal(); renderAll(true); drawLoadStrip();
-  requestAnimationFrame(tick);
+  last = performance.now();
 })();
 </script>
