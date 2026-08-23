@@ -1,0 +1,35 @@
+services:
+  sim_service:
+    build: ./services/sim_service
+    ports: ["8001:8000"]
+  rl_service:
+    build: ./services/rl_service
+    ports: ["8002:8000"]
+  vision_service:
+    build: ./services/vision_service
+    ports: ["8003:8000"]
+  graph_service:
+    build: ./services/graph_service
+    ports: ["8004:8000"]
+  llm_service:
+    build: ./services/llm_service
+    ports: ["8005:8000"]
+  chroma:
+    image: chromadb/chroma:latest
+    ports: ["8006:8000"]
+  redpanda:
+    image: docker.redpanda.com/redpandadata/redpanda:latest
+    command:
+      - redpanda
+      - start
+      - --overprovisioned
+      - --smp
+      - "1"
+      - --memory
+      - 512M
+      - --reserve-memory
+      - 0M
+      - --node-id
+      - "0"
+      - --check=false
+    ports: ["9092:9092", "9644:9644"]

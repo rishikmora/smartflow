@@ -1,0 +1,21 @@
+services:
+  sim_service:
+    build: ./services/sim_service
+    restart: always
+    mem_limit: 512m
+  rl_service:
+    build: ./services/rl_service
+    restart: always
+    mem_limit: 512m
+  vision_service:
+    build: ./services/vision_service
+    restart: always
+    mem_limit: 512m
+  graph_service:
+    build: ./services/graph_service
+    restart: always
+    mem_limit: 512m
+  llm_service:
+    build: ./services/llm_service
+    restart: always
+    mem_limit: 512m

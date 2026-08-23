@@ -122,6 +122,36 @@ and averaging the results ensures we're seeing a real pattern, not just luck.
 
 ---
 
+## Current Implementation Status
+
+The repository now contains the Week 3 corridor PPO pipeline scaffolding and later-week platform scaffolding:
+
+- Week 3: corridor config, smoke test, PPO trainer, evaluator, comparison chart, and report writer.
+- Week 4: multi-agent PettingZoo smoke test plus PyTorch Geometric graph/GAT scaffolds.
+- Week 5/8/9: reusable reward shaping and anomaly detection utilities.
+- Week 10: five FastAPI service skeletons, Dockerfiles, Docker Compose, production Compose, and CI health tests.
+- Week 12: draft final report, viva prep, benchmark report, and citation/deferred-status files.
+
+Important: long-running RL training, SUMO GUI recording, Auth0 setup, k3d/Helm deployment, citation verification, and GitHub push are not claimed as complete in this repo. They are documented in `outputs/week*_deferred.md` until run on a machine with SUMO configured, approved package installs, credentials, and compute time.
+
+Week 3 entry points:
+
+```powershell
+python src\week3_smoketest.py
+python src\train_ppo_corridor.py --timesteps 30000 --seed 0 --tag short
+python src\eval_corridor.py --controller fixed --seeds 0 1 2
+python src\eval_corridor.py --controller actuated --seeds 0 1 2
+python src\eval_corridor.py --controller ppo --seeds 0 1 2
+python src\compare_week3.py
+```
+
+Service health tests:
+
+```powershell
+pip install pytest fastapi httpx pydantic
+python -m pytest tests\test_health.py
+```
+
 ## 🗓️ 12-Week Roadmap
 
 This is Week 1 of 12. Here's the journey ahead:
