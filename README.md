@@ -184,8 +184,15 @@ smartflow/
 │   ├── scenarios.py           — light / peak / asymmetric demand
 │   ├── compare_week4.py / compare_week5.py / week6_benchmark.py
 │   │
+│   │  ── visualiser ──
+│   ├── viz_recorder.py        — record a live TraCI run into a compact replay
+│   ├── viz_build.py           — inline replays into one self-contained page
+│   ├── viz/template.html      — the control-room UI (canvas renderer)
+│   │
 │   │  ── tooling ──
 │   ├── run_experiments.py     — the whole experiment matrix, one command
+│   ├── policy_agreement.py    — do the policy variants actually behave differently?
+│   ├── select_best_checkpoint.py — validation-based checkpoint selection
 │   ├── env_smoketest.py       — verify SUMO + both environments
 │   └── test_core_logic.py     — self-checks for the correctness-critical logic
 │
@@ -274,6 +281,37 @@ python src\week6_benchmark.py
 ```powershell
 python src\update_readme.py
 ```
+
+---
+
+## 🎬 Watch it run
+
+`outputs/viz/corridor_control_room.html` is a single self-contained page that replays
+the corridor: roads, signal heads changing per approach, and every vehicle — blue when
+moving, red when stopped in a queue. Fixed-time and RL can be played **side by side on
+identical traffic**, which is the clearest way to see the result. At t = 20:00,
+fixed-time has 116 cars stopped; the RL policy has 13.
+
+It replays recorded TraCI output rather than driving SUMO live, so it opens anywhere
+with no server and cannot fail mid-demo. Regenerate it with:
+
+```powershell
+python src\viz_recorder.py --controller fixed
+```
+
+```powershell
+python src\viz_recorder.py --controller actuated
+```
+
+```powershell
+python src\viz_recorder.py --controller marl --mode shared --tag w5
+```
+
+```powershell
+python src\viz_build.py
+```
+
+Add `--scenario peak` to any recorder call to watch the corridor gridlock instead.
 
 ---
 
