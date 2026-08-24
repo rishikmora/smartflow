@@ -1,9 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Corridor Control Room</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 
 <style>
 /* -- tokens -----------------------------------------------------------------
@@ -43,9 +40,14 @@
   --shadow: 0 1px 2px rgba(20,26,34,.07), 0 8px 24px rgba(20,26,34,.055);
   --shadow-lg: 0 2px 6px rgba(20,26,34,.09), 0 18px 46px rgba(20,26,34,.10);
 
-  --f-display: Overpass, "Helvetica Neue", Arial, sans-serif;
-  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  /* Local-only stacks: named families are used if the machine happens to have
+     them, otherwise the system UI font. Nothing here triggers a network request. */
+  --f-display: Overpass, "Segoe UI Variable Display", "Segoe UI", system-ui,
+               -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto,
+            "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas,
+            "SF Mono", Menlo, monospace;
 
   --r: 12px;
   --r-sm: 8px;
@@ -604,10 +606,40 @@ footer .spacer { margin-left: auto; }
   </footer>
 </div>
 
+<script>
+// Any uncaught error would otherwise leave a page that looks fine and does nothing,
+// with the reason buried in a console. Put it on screen.
+window.addEventListener("error", (e) => {
+  const box = document.createElement("div");
+  box.setAttribute("role", "alert");
+  box.style.cssText =
+    "position:fixed;left:0;right:0;bottom:0;z-index:9999;padding:12px 16px;" +
+    "font:400 13px/1.5 ui-monospace,Consolas,monospace;background:#7f1d1d;color:#fff";
+  box.textContent = "Visualiser error: " + (e.message || e.error) +
+    (e.filename ? "  (" + e.filename.split("/").pop() + ":" + e.lineno + ")" : "");
+  (document.body || document.documentElement).appendChild(box);
+});
+</script>
+
 <script id="replay-data" type="application/json">/*__REPLAY_DATA__*/</script>
 <script>
 (() => {
   "use strict";
+
+  // roundRect is Chrome 99+ / Firefox 112+. It draws every vehicle, so on an older
+  // browser its absence would silently empty the whole vehicle layer.
+  if (!CanvasRenderingContext2D.prototype.roundRect) {
+    CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+      const k = Math.min(typeof r === "number" ? r : 0, Math.abs(w) / 2, Math.abs(h) / 2);
+      this.moveTo(x + k, y);
+      this.arcTo(x + w, y, x + w, y + h, k);
+      this.arcTo(x + w, y + h, x, y + h, k);
+      this.arcTo(x, y + h, x, y, k);
+      this.arcTo(x, y, x + w, y, k);
+      this.closePath();
+      return this;
+    };
+  }
   // This file is a TEMPLATE: src/viz_build.py substitutes the replay JSON into the
   // block above. Opened directly, that block is still a comment placeholder and the
   // parse throws, leaving a page that looks built but does nothing. Say so instead.
