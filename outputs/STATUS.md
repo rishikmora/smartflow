@@ -1,8 +1,12 @@
 # SmartFlow — Status Index
 
 One line per week, so nothing in this directory has to be read to find out whether
-it describes a measured result or an empty scaffold. Every "MET / NOT MET" below is
-copied from that week's own report, not re-judged here.
+it describes a measured result or an empty scaffold.
+
+Weeks 3, 4, 5, 6 and 7 each state a verdict in their own report, and those are copied
+here verbatim. Weeks 1 and 2 predate that convention and have no verdict line, so their
+"MET" is read directly off the committed metrics CSVs — the derivation is given in the
+footnote below rather than asserted.
 
 Last updated: 2026-08-24.
 
@@ -16,6 +20,12 @@ Last updated: 2026-08-24.
 | 4 | Full corridor trains end-to-end without diverging | **MET** | `week4_report.md` |
 | 5 | Corridor RL beats both baselines on wait + throughput, fairness caps worst-case wait | **NOT MET** (both parts) | `week5_report.md` |
 | 6 | Viva-defensible benchmark report incl. one honest loss | **MET** | `../BENCHMARK_REPORT.md` |
+
+**Weeks 1–2, derived not quoted.** Week 1: `metrics.csv` plus
+`baseline_comparison.png` exist and actuated beats fixed, which is exactly what that
+week's DoD asked for. Week 2: `week2_benchmark_metrics.csv` holds 3 seeds per
+controller — fixed-time 16.39 s mean wait against PPO 4.00 s, a 75.6% reduction — so
+"PPO beats fixed-time on the benchmark, 3-seed average" is met on the numbers.
 
 ### The two failures, in one line each
 
