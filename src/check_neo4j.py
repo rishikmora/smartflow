@@ -95,7 +95,9 @@ def main() -> None:
         message = str(exc)
         log.error("[2/3] could not connect: %s", type(exc).__name__)
         if "authentication" in message.lower() or "unauthorized" in message.lower():
-            log.error("  The username or password is wrong. Username is almost always 'neo4j'.")
+            log.error("  The username or password is wrong. Copy all three values from the "
+                      "console verbatim: some Aura instances use the instance id as the "
+                      "username and database name rather than the literal 'neo4j'.")
         elif "resolve" in message.lower() or "name or service" in message.lower():
             log.error("  The URI looks wrong. It should start with neo4j+s:// and end with "
                       ".databases.neo4j.io")

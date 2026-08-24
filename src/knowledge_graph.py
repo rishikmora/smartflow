@@ -445,7 +445,10 @@ class Neo4jGraph(GraphQueries):
             credentials["uri"], auth=(credentials["user"], credentials["password"])
         )
         self.driver.verify_connectivity()
-        log.info("Connected to Neo4j at %s", credentials["uri"])
+        # Log the host's shape, not the instance id: this line ends up in
+        # pasted terminal output and report appendices.
+        scheme = credentials["uri"].split("://", 1)[0]
+        log.info("Connected to Neo4j (%s, database=%s)", scheme, self.database)
 
     def _run(self, cypher: str, **params: Any) -> list[dict[str, Any]]:
         with self.driver.session(database=self.database) as session:
@@ -458,6 +461,12 @@ class Neo4jGraph(GraphQueries):
             document: output of :func:`build_document`.
             wipe: delete existing SmartFlow nodes first, so loads are idempotent.
         """
+        # Without this, every MERGE/MATCH on id is a full label scan. It also
+        # enforces the invariant the whole document relies on: ids are unique.
+        self._run(
+            "CREATE CONSTRAINT smartflow_id IF NOT EXISTS "
+            "FOR (n:SmartFlow) REQUIRE n.id IS UNIQUE"
+        )
         if wipe:
             self._run("MATCH (n:SmartFlow) DETACH DELETE n")
         for node in document["nodes"]:
@@ -468,7 +477,11 @@ class Neo4jGraph(GraphQueries):
             )
         for edge in document["edges"]:
             self._run(
-                f"MATCH (a:SmartFlow {{id: $from}}), (b:SmartFlow {{id: $to}}) "
+                # Two separate root patterns in one MATCH plan as a cartesian
+                # product (Neo4j notification 03N90). Threading the first match
+                # through WITH makes the second an index seek per row instead.
+                f"MATCH (a:SmartFlow {{id: $from}}) WITH a "
+                f"MATCH (b:SmartFlow {{id: $to}}) "
                 f"MERGE (a)-[:{edge['type']}]->(b)",
                 **{"from": edge["from"], "to": edge["to"]},
             )
