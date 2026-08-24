@@ -608,7 +608,26 @@ footer .spacer { margin-left: auto; }
 <script>
 (() => {
   "use strict";
-  const DATA = JSON.parse(document.getElementById("replay-data").textContent);
+  // This file is a TEMPLATE: src/viz_build.py substitutes the replay JSON into the
+  // block above. Opened directly, that block is still a comment placeholder and the
+  // parse throws, leaving a page that looks built but does nothing. Say so instead.
+  const raw = document.getElementById("replay-data").textContent.trim();
+  let DATA;
+  try {
+    DATA = JSON.parse(raw);
+  } catch (err) {
+    document.body.innerHTML =
+      '<div style="max-width:44rem;margin:16vh auto;padding:0 6vw;font:400 16px/1.6 ' +
+      'system-ui,sans-serif">' +
+      '<h1 style="font-size:1.5rem;margin:0 0 .6em">This is the template, not the built page.</h1>' +
+      '<p style="margin:0 0 1em">It has no replay data in it yet, so there is nothing to ' +
+      'play. Build the real page and open that instead:</p>' +
+      '<pre style="background:rgba(128,128,128,.14);padding:.9em 1.1em;border-radius:8px;' +
+      'overflow-x:auto"><code>python src/viz_build.py</code></pre>' +
+      '<p style="margin:1em 0 0">Then open <code>outputs/viz/corridor_control_room.html</code>.</p>' +
+      '</div>';
+    return;
+  }
   const RUNS = DATA.runs;
   const FINAL = DATA.final;
   const KEYS = ["fixed", "actuated", "rl"];
