@@ -38,6 +38,10 @@ outputs/tmp_marl/
 outputs/checkpoints/
 # throwaway checkpoints written by the online-learning loop
 models/_online_scratch_*/
+# Chroma's binary index: regenerated in seconds by src/vector_store.py from the
+# reports, which are themselves tracked. The graph JSON next to it IS kept, because it
+# is small, readable, and the fallback backend loads it directly.
+outputs/kg/chroma/
 # RLlib optimiser state: ~13 MB per run and needed only to *resume* training. The
 # policy weights under learner_group/learner/rl_module/ are kept, and those are what
 # eval_marl_corridor.load_multi_rl_module() actually loads.

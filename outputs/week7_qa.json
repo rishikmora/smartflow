@@ -1,0 +1,568 @@
+[
+  {
+    "question": "Which junctions does C2 feed into?",
+    "answer": "From the corridor knowledge graph:\n  - Junction C2 sits at x=400.0, y=400.0 and is signalised with 4 incoming and 4 outgoing roads.\n  - Junction C2 feeds directly into B2, C1, C3, D2.\nFrom outputs/week3_report.md (Why it failed, and what that means):\n  ine. 2. **One junction cannot be judged in isolation.** The RL agent optimises its own accumulated wait, which it can reduce by discharging vehicles into neighbours it does not control and cannot see. Throughput at B1 suffers because the downstream links back up. That is precisely the credit-assignment problem Weeks 4-6 exist to address, and corridor-wide the shared policy does beat actuated control. The verdict is...",
+    "grounded": true,
+    "generator": "extractive",
+    "backends": {
+      "graph": "embedded (networkx)",
+      "documents": "chroma",
+      "llm": "none"
+    },
+    "facts": [
+      {
+        "text": "Junction C2 sits at x=400.0, y=400.0 and is signalised with 4 incoming and 4 outgoing roads.",
+        "source": "graph:Junction:C2",
+        "kind": "graph"
+      },
+      {
+        "text": "Junction C2 feeds directly into B2, C1, C3, D2.",
+        "source": "graph:FEEDS:C2",
+        "kind": "graph"
+      }
+    ],
+    "passages": [
+      {
+        "text": "ine.\n2. **One junction cannot be judged in isolation.** The RL agent optimises its own\n   accumulated wait, which it can reduce by discharging vehicles into neighbours it\n   does not control and cannot see. Throughput at B1 suffers because the downstream\n   links back up. That is precisely the credit-assignment problem Weeks 4-6 exist to\n   address, and corridor-wide the shared policy does beat actuated control.\n\nThe verdict is reported as failed rather than re-scoped until it passed. Changing the\ncomparison to the fully-actuated corridor would have produced a PASS against a\nbaseline that upgrades twelve junctions to the RL controller's one, which would not\nhave meant anything.",
+        "source": "outputs/week3_report.md",
+        "heading": "Why it failed, and what that means",
+        "chunk_id": "outputs/week3_report.md#Why it failed, and what that means#11",
+        "score": 0.419,
+        "retrieval": "chroma",
+        "relevance": 0.371
+      }
+    ],
+    "citations": [
+      "graph:FEEDS:C2",
+      "graph:Junction:C2",
+      "outputs/week3_report.md#Why it failed, and what that means#11"
+    ],
+    "category": "graph: topology"
+  },
+  {
+    "question": "How many signalised junctions does the corridor network have?",
+    "answer": "From the corridor knowledge graph:\n  - The corridor graph holds 301 nodes and 474 relationships: 11 Controller, 16 Junction, 48 Lane, 48 Phase, 12 Program, 69 Result, 48 Road, 5 Rule, 4 Scenario, 40 Sensor.\n  - 12 of the junctions are signalised: A1, A2, B0, B1, B2, B3, C0, C1, C2, C3, D1, D2.\nFrom outputs/week3_report.md (Why it failed, and what that means):\n  ine. 2. **One junction cannot be judged in isolation.** The RL agent optimises its own accumulated wait, which it can reduce by discharging vehicles into neighbours it does not control and cannot see. Throughput at B1 suffers because the downstream links back up. That is precisely the credit-assignment problem Weeks 4-6 exist to address, and corridor-wide the shared policy does beat actuated control. The verdict is...",
+    "grounded": true,
+    "generator": "extractive",
+    "backends": {
+      "graph": "embedded (networkx)",
+      "documents": "chroma",
+      "llm": "none"
+    },
+    "facts": [
+      {
+        "text": "The corridor graph holds 301 nodes and 474 relationships: 11 Controller, 16 Junction, 48 Lane, 48 Phase, 12 Program, 69 Result, 48 Road, 5 Rule, 4 Scenario, 40 Sensor.",
+        "source": "graph:stats",
+        "kind": "graph"
+      },
+      {
+        "text": "12 of the junctions are signalised: A1, A2, B0, B1, B2, B3, C0, C1, C2, C3, D1, D2.",
+        "source": "graph:Junction:signalised",
+        "kind": "graph"
+      }
+    ],
+    "passages": [
+      {
+        "text": "ine.\n2. **One junction cannot be judged in isolation.** The RL agent optimises its own\n   accumulated wait, which it can reduce by discharging vehicles into neighbours it\n   does not control and cannot see. Throughput at B1 suffers because the downstream\n   links back up. That is precisely the credit-assignment problem Weeks 4-6 exist to\n   address, and corridor-wide the shared policy does beat actuated control.\n\nThe verdict is reported as failed rather than re-scoped until it passed. Changing the\ncomparison to the fully-actuated corridor would have produced a PASS against a\nbaseline that upgrades twelve junctions to the RL controller's one, which would not\nhave meant anything.",
+        "source": "outputs/week3_report.md",
+        "heading": "Why it failed, and what that means",
+        "chunk_id": "outputs/week3_report.md#Why it failed, and what that means#11",
+        "score": 0.534,
+        "retrieval": "chroma",
+        "relevance": 0.277
+      },
+      {
+        "text": "All 12 corridor junctions are placed under RL control at once,\none independent PPO policy per junction (Ray RLlib multi-agent, identity policy\nmapping). Observation and reward functions are unchanged from Weeks 2-3, so the only\nnew variable is that twelve agents now learn simultaneously.",
+        "source": "outputs/week4_report.md",
+        "heading": "Week 4 — Independent Multi-Agent PPO on the Full Corridor",
+        "chunk_id": "outputs/week4_report.md#Week 4 — Independent Multi-Agent PPO on the Full Corridor#0",
+        "score": 0.515,
+        "retrieval": "chroma",
+        "relevance": 0.277
+      },
+      {
+        "text": "| Controller | What it does |\n|---|---|\n| `fixed` | all 12 junctions fixed-time (Week 1 reference) |\n| `actuated` | all 12 junctions SUMO-actuated (Week 1 reference) |\n| `actuated_single` | only B1 actuated, other 11 fixed-time |\n| `ppo` | only B1 under RL, other 11 fixed-time |\n\n`actuated_single` is the controlled comparison for `ppo`: both change exactly one\njunction and leave the other eleven alone, so the difference between them is the\ncontroller, not the number of junctions upgraded. Comparing a single RL junction\nagainst a fully-actuated corridor would confound those two effects.",
+        "source": "outputs/week3_report.md",
+        "heading": "Experimental design",
+        "chunk_id": "outputs/week3_report.md#Experimental design#1",
+        "score": 0.507,
+        "retrieval": "chroma",
+        "relevance": 0.277
+      }
+    ],
+    "citations": [
+      "graph:Junction:signalised",
+      "graph:stats",
+      "outputs/week3_report.md#Experimental design#1",
+      "outputs/week3_report.md#Why it failed, and what that means#11",
+      "outputs/week4_report.md#Week 4 — Independent Multi-Agent PPO on the Full Corridor#0"
+    ],
+    "category": "graph: topology"
+  },
+  {
+    "question": "How many incoming lanes does junction B1 have?",
+    "answer": "From the corridor knowledge graph:\n  - Junction B1 sits at x=200.0, y=200.0 and is signalised with 4 incoming and 4 outgoing roads.\n  - Junction B1 feeds directly into A1, B0, B2, C1.\n  - Junction B1 has 4 incoming lanes: A1B1_0, B0B1_0, B2B1_0, C1B1_0.\nFrom outputs/week3_report.md (Why it failed, and what that means):\n  ine. 2. **One junction cannot be judged in isolation.** The RL agent optimises its own accumulated wait, which it can reduce by discharging vehicles into neighbours it does not control and cannot see. Throughput at B1 suffers because the downstream links back up. That is precisely the credit-assignment problem Weeks 4-6 exist to address, and corridor-wide the shared policy does beat actuated control. The verdict is...",
+    "grounded": true,
+    "generator": "extractive",
+    "backends": {
+      "graph": "embedded (networkx)",
+      "documents": "chroma",
+      "llm": "none"
+    },
+    "facts": [
+      {
+        "text": "Junction B1 sits at x=200.0, y=200.0 and is signalised with 4 incoming and 4 outgoing roads.",
+        "source": "graph:Junction:B1",
+        "kind": "graph"
+      },
+      {
+        "text": "Junction B1 feeds directly into A1, B0, B2, C1.",
+        "source": "graph:FEEDS:B1",
+        "kind": "graph"
+      },
+      {
+        "text": "Junction B1 has 4 incoming lanes: A1B1_0, B0B1_0, B2B1_0, C1B1_0.",
+        "source": "graph:Lane:B1",
+        "kind": "graph"
+      }
+    ],
+    "passages": [
+      {
+        "text": "ine.\n2. **One junction cannot be judged in isolation.** The RL agent optimises its own\n   accumulated wait, which it can reduce by discharging vehicles into neighbours it\n   does not control and cannot see. Throughput at B1 suffers because the downstream\n   links back up. That is precisely the credit-assignment problem Weeks 4-6 exist to\n   address, and corridor-wide the shared policy does beat actuated control.\n\nThe verdict is reported as failed rather than re-scoped until it passed. Changing the\ncomparison to the fully-actuated corridor would have produced a PASS against a\nbaseline that upgrades twelve junctions to the RL controller's one, which would not\nhave meant anything.",
+        "source": "outputs/week3_report.md",
+        "heading": "Why it failed, and what that means",
+        "chunk_id": "outputs/week3_report.md#Why it failed, and what that means#11",
+        "score": 0.553,
+        "retrieval": "chroma",
+        "relevance": 0.262
+      },
+      {
+        "text": "Week 2 validated the PPO pipeline on sumo-rl's standard 2-way single-intersection\nbenchmark. Week 3 ports that pipeline, unchanged in its observation and reward\nfunctions, onto junction **B1** of the Week 1 corridor. The other\neleven junctions keep the fixed-time program from `data/corridor.net.xml`.",
+        "source": "outputs/week3_report.md",
+        "heading": "Week 3 — Single-Agent PPO on One Corridor Junction",
+        "chunk_id": "outputs/week3_report.md#Week 3 — Single-Agent PPO on One Corridor Junction#0",
+        "score": 0.49,
+        "retrieval": "chroma",
+        "relevance": 0.262
+      },
+      {
+        "text": "| Controller | What it does |\n|---|---|\n| `fixed` | all 12 junctions fixed-time (Week 1 reference) |\n| `actuated` | all 12 junctions SUMO-actuated (Week 1 reference) |\n| `actuated_single` | only B1 actuated, other 11 fixed-time |\n| `ppo` | only B1 under RL, other 11 fixed-time |\n\n`actuated_single` is the controlled comparison for `ppo`: both change exactly one\njunction and leave the other eleven alone, so the difference between them is the\ncontroller, not the number of junctions upgraded. Comparing a single RL junction\nagainst a fully-actuated corridor would confound those two effects.",
+        "source": "outputs/week3_report.md",
+        "heading": "Experimental design",
+        "chunk_id": "outputs/week3_report.md#Experimental design#1",
+        "score": 0.476,
+        "retrieval": "chroma",
+        "relevance": 0.262
+      }
+    ],
+    "citations": [
+      "graph:FEEDS:B1",
+      "graph:Junction:B1",
+      "graph:Lane:B1",
+      "outputs/week3_report.md#Experimental design#1",
+      "outputs/week3_report.md#Week 3 — Single-Agent PPO on One Corridor Junction#0",
+      "outputs/week3_report.md#Why it failed, and what that means#11"
+    ],
+    "category": "graph: lanes"
+  },
+  {
+    "question": "What sensors does junction B1 have?",
+    "answer": "From the corridor knowledge graph:\n  - Junction B1 sits at x=200.0, y=200.0 and is signalised with 4 incoming and 4 outgoing roads.\n  - Junction B1 feeds directly into A1, B0, B2, C1.\n  - Junction B1 is monitored by 4 induction-loop sensors (one per controlled lane). These are inferred: SUMO instantiates them implicitly for actuated control rather than declaring them in the network file.\nFrom outputs/week3_report.md (Why it failed, and what that means):\n  ine. 2. **One junction cannot be judged in isolation.** The RL agent optimises its own accumulated wait, which it can reduce by discharging vehicles into neighbours it does not control and cannot see. Throughput at B1 suffers because the downstream links back up. That is precisely the credit-assignment problem Weeks 4-6 exist to address, and corridor-wide the shared policy does beat actuated control. The verdict is...",
+    "grounded": true,
+    "generator": "extractive",
+    "backends": {
+      "graph": "embedded (networkx)",
+      "documents": "chroma",
+      "llm": "none"
+    },
+    "facts": [
+      {
+        "text": "Junction B1 sits at x=200.0, y=200.0 and is signalised with 4 incoming and 4 outgoing roads.",
+        "source": "graph:Junction:B1",
+        "kind": "graph"
+      },
+      {
+        "text": "Junction B1 feeds directly into A1, B0, B2, C1.",
+        "source": "graph:FEEDS:B1",
+        "kind": "graph"
+      },
+      {
+        "text": "Junction B1 is monitored by 4 induction-loop sensors (one per controlled lane). These are inferred: SUMO instantiates them implicitly for actuated control rather than declaring them in the network file.",
+        "source": "graph:Sensor:B1",
+        "kind": "graph"
+      }
+    ],
+    "passages": [
+      {
+        "text": "ine.\n2. **One junction cannot be judged in isolation.** The RL agent optimises its own\n   accumulated wait, which it can reduce by discharging vehicles into neighbours it\n   does not control and cannot see. Throughput at B1 suffers because the downstream\n   links back up. That is precisely the credit-assignment problem Weeks 4-6 exist to\n   address, and corridor-wide the shared policy does beat actuated control.\n\nThe verdict is reported as failed rather than re-scoped until it passed. Changing the\ncomparison to the fully-actuated corridor would have produced a PASS against a\nbaseline that upgrades twelve junctions to the RL controller's one, which would not\nhave meant anything.",
+        "source": "outputs/week3_report.md",
+        "heading": "Why it failed, and what that means",
+        "chunk_id": "outputs/week3_report.md#Why it failed, and what that means#11",
+        "score": 0.401,
+        "retrieval": "chroma",
+        "relevance": 0.515
+      },
+      {
+        "text": "| Controller | What it does |\n|---|---|\n| `fixed` | all 12 junctions fixed-time (Week 1 reference) |\n| `actuated` | all 12 junctions SUMO-actuated (Week 1 reference) |\n| `actuated_single` | only B1 actuated, other 11 fixed-time |\n| `ppo` | only B1 under RL, other 11 fixed-time |\n\n`actuated_single` is the controlled comparison for `ppo`: both change exactly one\njunction and leave the other eleven alone, so the difference between them is the\ncontroller, not the number of junctions upgraded. Comparing a single RL junction\nagainst a fully-actuated corridor would confound those two effects.",
+        "source": "outputs/week3_report.md",
+        "heading": "Experimental design",
+        "chunk_id": "outputs/week3_report.md#Experimental design#1",
+        "score": 0.395,
+        "retrieval": "chroma",
+        "relevance": 0.515
+      }
+    ],
+    "citations": [
+      "graph:FEEDS:B1",
+      "graph:Junction:B1",
+      "graph:Sensor:B1",
+      "outputs/week3_report.md#Experimental design#1",
+      "outputs/week3_report.md#Why it failed, and what that means#11"
+    ],
+    "category": "graph: sensors"
+  },
+  {
+    "question": "What phases does junction B1 run and how long is its cycle?",
+    "answer": "From the corridor knowledge graph:\n  - Junction B1 sits at x=200.0, y=200.0 and is signalised with 4 incoming and 4 outgoing roads.\n  - Junction B1 feeds directly into A1, B0, B2, C1.\n  - Junction B1 runs a static program with 4 phases and a 90s cycle: phase 0 green 42s; phase 1 yellow 3s; phase 2 green 42s; phase 3 yellow 3s.\n  - episode_s = 1800s - simulated seconds per evaluation episode (defined in week4_config.SIM_SECONDS).\nFrom README.md (🧪 What each week proved):\n  Definitions of Done are reported as they came out, including the two that failed. | Week | Question | Answer | DoD | |---|---|---|---| | 1 | Does adaptive beat fixed-time at all? | Yes — actuated control cut average wait 53% on the corridor. | ✅ | | 2 | Does the RL pipeline work on a *standard* benchmark? | Yes — PPO cut wait 76% on sumo-rl's 2-way intersection. [Sanity check](outputs/week2_literature_note.md) | ✅ |...",
+    "grounded": true,
+    "generator": "extractive",
+    "backends": {
+      "graph": "embedded (networkx)",
+      "documents": "chroma",
+      "llm": "none"
+    },
+    "facts": [
+      {
+        "text": "Junction B1 sits at x=200.0, y=200.0 and is signalised with 4 incoming and 4 outgoing roads.",
+        "source": "graph:Junction:B1",
+        "kind": "graph"
+      },
+      {
+        "text": "Junction B1 feeds directly into A1, B0, B2, C1.",
+        "source": "graph:FEEDS:B1",
+        "kind": "graph"
+      },
+      {
+        "text": "Junction B1 runs a static program with 4 phases and a 90s cycle: phase 0 green 42s; phase 1 yellow 3s; phase 2 green 42s; phase 3 yellow 3s.",
+        "source": "graph:Program:B1",
+        "kind": "graph"
+      },
+      {
+        "text": "episode_s = 1800s - simulated seconds per evaluation episode (defined in week4_config.SIM_SECONDS).",
+        "source": "graph:Rule:episode_s",
+        "kind": "graph"
+      }
+    ],
+    "passages": [
+      {
+        "text": "Definitions of Done are reported as they came out, including the two that failed.\n\n| Week | Question | Answer | DoD |\n|---|---|---|---|\n| 1 | Does adaptive beat fixed-time at all? | Yes — actuated control cut average wait 53% on the corridor. | ✅ |\n| 2 | Does the RL pipeline work on a *standard* benchmark? | Yes — PPO cut wait 76% on sumo-rl's 2-way intersection. [Sanity check](outputs/week2_literature_note.md) | ✅ |\n| 3 | Does it transfer to one junction of a real corridor? | It beats fixed-time there by 67%, but **loses to an actuated controller** at the same junction on queue and throughput. One junction of twelve also barely moves the corridor. [Report](outputs/week3_report.md) | ❌ |\n| 4 | Can all twelve junctions learn at once without diverging? | Yes — 0 of 3 seeds diverged, with a measured 20–28% rate of gridlock collapses along the way. [Report](outputs/week4_report.md) · [Notes]",
+        "source": "README.md",
+        "heading": "🧪 What each week proved",
+        "chunk_id": "README.md#🧪 What each week proved#12",
+        "score": 0.441,
+        "retrieval": "chroma",
+        "relevance": 0.324
+      }
+    ],
+    "citations": [
+      "README.md#🧪 What each week proved#12",
+      "graph:FEEDS:B1",
+      "graph:Junction:B1",
+      "graph:Program:B1",
+      "graph:Rule:episode_s"
+    ],
+    "category": "graph: signal program"
+  },
+  {
+    "question": "What is the minimum green time and where is it defined?",
+    "answer": "From the corridor knowledge graph:\n  - min_green_s = 5s - minimum green time before a phase may be cut (defined in week4_config.MIN_GREEN).\nFrom outputs/week2_literature_note.md (Why the margin is large — read the demand file):\n  e green time has a lot of headroom to recover. A large improvement is the expected outcome here, not an anomaly. The throughput figure supports this reading rather than contradicting it. Total demand over the episode is about 2500 vehicles. Fixed-time clears 2089 (~84%) and leaves the rest queued; PPO clears 2430 (~97%), which is close to the ceiling. Throughput improves by \"only\" 16% because it *cannot* improve...",
+    "grounded": true,
+    "generator": "extractive",
+    "backends": {
+      "graph": "embedded (networkx)",
+      "documents": "chroma",
+      "llm": "none"
+    },
+    "facts": [
+      {
+        "text": "min_green_s = 5s - minimum green time before a phase may be cut (defined in week4_config.MIN_GREEN).",
+        "source": "graph:Rule:min_green_s",
+        "kind": "graph"
+      }
+    ],
+    "passages": [
+      {
+        "text": "e green time has a lot of headroom to recover. A large improvement is the\nexpected outcome here, not an anomaly.\n\nThe throughput figure supports this reading rather than contradicting it. Total demand\nover the episode is about 2500 vehicles. Fixed-time clears 2089 (~84%) and leaves the\nrest queued; PPO clears 2430 (~97%), which is close to the ceiling. Throughput improves\nby \"only\" 16% because it *cannot* improve much more — the remaining metric with room to\nmove is delay, and that is where the 76% appears.",
+        "source": "outputs/week2_literature_note.md",
+        "heading": "Why the margin is large — read the demand file",
+        "chunk_id": "outputs/week2_literature_note.md#Why the margin is large — read the demand file#3",
+        "score": 0.507,
+        "retrieval": "chroma",
+        "relevance": 0.443
+      },
+      {
+        "text": "`single-intersection-vhvh.rou.xml` (\"vertical-horizontal-vertical-horizontal\")\ndefines flows in 25000-second blocks. In the first block, which is the only one a\n3600 s episode ever reaches:\n\n- north-south movements: 350 + 350 + 300 + 300 + 350 + 350 = **2000 veh/h**\n- east-west movements: 100 + 100 + 50 + 50 + 100 + 100 = **500 veh/h**\n\nSo demand is roughly **4:1 in favour of the north-south axis**.\n\nThe static `tlLogic` shipped in `single-intersection.net.xml` splits green time\n**symmetrically** between the two axes — 33 s of through-green each, plus 6 s turn\nphases and 2 s yellows, for an 86 s cycle. A fixed program giving equal green to a 4:1\ndemand split is badly matched to this demand by construction, so a controller that can\nreallocate green time has a lot of headroom to recover. A large improvement is the\nexpected outcome here, not an anomaly.\n\nThe throughput figure supports this",
+        "source": "outputs/week2_literature_note.md",
+        "heading": "Why the margin is large — read the demand file",
+        "chunk_id": "outputs/week2_literature_note.md#Why the margin is large — read the demand file#2",
+        "score": 0.451,
+        "retrieval": "chroma",
+        "relevance": 0.276
+      }
+    ],
+    "citations": [
+      "graph:Rule:min_green_s",
+      "outputs/week2_literature_note.md#Why the margin is large — read the demand file#2",
+      "outputs/week2_literature_note.md#Why the margin is large — read the demand file#3"
+    ],
+    "category": "graph: rules"
+  },
+  {
+    "question": "How did the RL controller do on peak demand throughput?",
+    "answer": "From the corridor knowledge graph:\n  - marl_independent on peak demand: throughput_veh = 528.33 (std 8.18, 3 seeds).\n  - marl_shared_w5 on peak demand: throughput_veh = 508.67 (std 34.2, 3 seeds).\nFrom README.md (🔬 How the Benchmark Works):\n  Every controller — fixed-time, actuated, single-agent PPO, and every multi-agent variant — is measured by the **same collector** in `src/metrics.py`, sampled once per *simulated second*: - **avg_wait_time_s** — mean seconds a completed trip spent stopped - **max_queue_len** — peak number of halting vehicles - **throughput_veh** — vehicles that reached their destination - **total_co2_kg** — integrated CO₂ emissions -...",
+    "grounded": true,
+    "generator": "extractive",
+    "backends": {
+      "graph": "embedded (networkx)",
+      "documents": "chroma",
+      "llm": "none"
+    },
+    "facts": [
+      {
+        "text": "marl_independent on peak demand: throughput_veh = 528.33 (std 8.18, 3 seeds).",
+        "source": "graph:Result:marl_independent|peak|throughput_veh",
+        "kind": "graph"
+      },
+      {
+        "text": "marl_shared_w5 on peak demand: throughput_veh = 508.67 (std 34.2, 3 seeds).",
+        "source": "graph:Result:marl_shared_w5|peak|throughput_veh",
+        "kind": "graph"
+      }
+    ],
+    "passages": [
+      {
+        "text": "Every controller — fixed-time, actuated, single-agent PPO, and every multi-agent\nvariant — is measured by the **same collector** in `src/metrics.py`, sampled once per\n*simulated second*:\n\n- **avg_wait_time_s** — mean seconds a completed trip spent stopped\n- **max_queue_len** — peak number of halting vehicles\n- **throughput_veh** — vehicles that reached their destination\n- **total_co2_kg** — integrated CO₂ emissions\n- **wait_p95_s / worst_vehicle_wait_s** — the tail, which is what the fairness\n  constraint is judged on\n\nSampling per *agent decision* instead of per simulated second would divide every\nwaiting time by `delta_time` and silently flatter the RL controllers, so the RL path\nhooks the collector into the simulation loop rather than the decision loop.\n\nEvery reported figure is a **3-seed mean ± standard deviation**.\n\n---",
+        "source": "README.md",
+        "heading": "🔬 How the Benchmark Works",
+        "chunk_id": "README.md#🔬 How the Benchmark Works#23",
+        "score": 0.507,
+        "retrieval": "chroma",
+        "relevance": 0.765
+      },
+      {
+        "text": "| Controller | Avg wait (s) | Max queue (veh) | Throughput (veh) | CO2 (kg) | Avg wait (s) vs fixed | Max queue (veh) vs fixed | Throughput (veh) vs fixed | CO2 (kg) vs fixed |\n|---|---|---|---|---|---|---|---|---|\n| fixed | 86.26 ± 1.73 | 387.33 ± 154.39 | 1294.00 ± 177.28 | 731.13 ± 63.11 | — | — | — | — |\n| actuated | 40.89 ± 2.88 | 76.33 ± 1.70 | 1646.67 ± 3.40 | 508.26 ± 11.21 | +52.6% | +80.3% | +27.2% | +30.5% |",
+        "source": "README.md",
+        "heading": "Week 1 — fixed-time vs actuated baselines (corridor, 3 seeds)",
+        "chunk_id": "README.md#Week 1 — fixed-time vs actuated baselines (corridor, 3 seeds)#3",
+        "score": 0.506,
+        "retrieval": "chroma",
+        "relevance": 0.352
+      },
+      {
+        "text": "> RL beats both baselines on >=2 of 3 metrics, 3-seed average + variance.\n\n- vs `fixed`: beats it on **3 of 3** metrics (avg_wait_time_s +67.3%, max_queue_len +51.5%, throughput_veh +18.7%) — PASS\n- vs `actuated_single`: beats it on **1 of 3** metrics (avg_wait_time_s +33.1%, max_queue_len -22.0%, throughput_veh -10.5%) — FAIL\n\n**Verdict: NOT MET**",
+        "source": "outputs/week3_report.md",
+        "heading": "Definition of Done",
+        "chunk_id": "outputs/week3_report.md#Definition of Done#9",
+        "score": 0.498,
+        "retrieval": "chroma",
+        "relevance": 0.355
+      },
+      {
+        "text": "| Controller | Avg wait (s) | Max queue (veh) | Throughput (veh) | CO2 (kg) | Avg wait (s) vs fixed | Max queue (veh) vs fixed | Throughput (veh) vs fixed | CO2 (kg) vs fixed |\n|---|---|---|---|---|---|---|---|---|\n| fixed | 83.10 ± 1.62 | 427.67 ± 176.42 | 1280.00 ± 189.40 | 732.60 ± 64.95 | — | — | — | — |\n| actuated | 40.89 ± 2.88 | 76.33 ± 1.70 | 1646.67 ± 3.40 | 508.26 ± 11.21 | +50.8% | +82.2% | +28.6% | +30.6% |\n| marl_independent | 17.80 ± 0.28 | 41.00 ± 2.83 | 1679.67 ± 4.11 | 450.96 ± 0.50 | +78.6% | +90.4% | +31.2% | +38.4% |\n| marl_shared_w5 | 17.85 ± 0.38 | 149.67 ± 150.15 | 1569.33 ± 148.02 | 474.66 ± 33.18 | +78.5% | +65.0% | +22.6% | +35.2% |\n| marl_shared_w5gnn | 18.16 ± 0.14 | 42.33 ± 2.06 | 1678.67 ± 6.65 | 452.00 ± 1.28 | +78.2% | +90.1% | +31.1% | +38.3% |\n| marl_shared_w5nocoord | 18.16 ± 0.14 | 42.33 ± 2.06 | 1678.67 ± 6.65 | 452.00 ± 1.28 | +78.2% | +90.1% | +31.1",
+        "source": "outputs/week4_report.md",
+        "heading": "Corridor-wide evaluation (context)",
+        "chunk_id": "outputs/week4_report.md#Corridor-wide evaluation (context)#3",
+        "score": 0.496,
+        "retrieval": "chroma",
+        "relevance": 0.523
+      }
+    ],
+    "citations": [
+      "README.md#Week 1 — fixed-time vs actuated baselines (corridor, 3 seeds)#3",
+      "README.md#🔬 How the Benchmark Works#23",
+      "graph:Result:marl_independent|peak|throughput_veh",
+      "graph:Result:marl_shared_w5|peak|throughput_veh",
+      "outputs/week3_report.md#Definition of Done#9",
+      "outputs/week4_report.md#Corridor-wide evaluation (context)#3"
+    ],
+    "category": "graph: results"
+  },
+  {
+    "question": "What average wait did actuated control achieve on base demand?",
+    "answer": "From the corridor knowledge graph:\n  - actuated on base demand: avg_wait_time_s = 40.89 (std 2.88, 3 seeds).\nFrom README.md (Week 1 — fixed-time vs actuated baselines (corridor, 3 seeds)):\n  | Controller | Avg wait (s) | Max queue (veh) | Throughput (veh) | CO2 (kg) | Avg wait (s) vs fixed | Max queue (veh) vs fixed | Throughput (veh) vs fixed | CO2 (kg) vs fixed | |---|---|---|---|---|---|---|---|---| | fixed | 86.26 ± 1.73 | 387.33 ± 154.39 | 1294.00 ± 177.28 | 731.13 ± 63.11 | — | — | — | — | | actuated | 40.89 ± 2.88 | 76.33 ± 1.70 | 1646.67 ± 3.40 | 508.26 ± 11.21 | +52.6% | +80.3% | +27.2% |...",
+    "grounded": true,
+    "generator": "extractive",
+    "backends": {
+      "graph": "embedded (networkx)",
+      "documents": "chroma",
+      "llm": "none"
+    },
+    "facts": [
+      {
+        "text": "actuated on base demand: avg_wait_time_s = 40.89 (std 2.88, 3 seeds).",
+        "source": "graph:Result:actuated|base|avg_wait_time_s",
+        "kind": "graph"
+      }
+    ],
+    "passages": [
+      {
+        "text": "| Controller | Avg wait (s) | Max queue (veh) | Throughput (veh) | CO2 (kg) | Avg wait (s) vs fixed | Max queue (veh) vs fixed | Throughput (veh) vs fixed | CO2 (kg) vs fixed |\n|---|---|---|---|---|---|---|---|---|\n| fixed | 86.26 ± 1.73 | 387.33 ± 154.39 | 1294.00 ± 177.28 | 731.13 ± 63.11 | — | — | — | — |\n| actuated | 40.89 ± 2.88 | 76.33 ± 1.70 | 1646.67 ± 3.40 | 508.26 ± 11.21 | +52.6% | +80.3% | +27.2% | +30.5% |",
+        "source": "README.md",
+        "heading": "Week 1 — fixed-time vs actuated baselines (corridor, 3 seeds)",
+        "chunk_id": "README.md#Week 1 — fixed-time vs actuated baselines (corridor, 3 seeds)#3",
+        "score": 0.539,
+        "retrieval": "chroma",
+        "relevance": 0.308
+      },
+      {
+        "text": "| Controller | Avg wait (s) | Max queue (veh) | Throughput (veh) | CO2 (kg) | Avg wait (s) vs fixed | Max queue (veh) vs fixed | Throughput (veh) vs fixed | CO2 (kg) vs fixed |\n|---|---|---|---|---|---|---|---|---|\n| fixed | 86.26 ± 1.73 | 387.33 ± 154.39 | 1294.00 ± 177.28 | 731.13 ± 63.11 | — | — | — | — |\n| actuated | 40.89 ± 2.88 | 76.33 ± 1.70 | 1646.67 ± 3.40 | 508.26 ± 11.21 | +52.6% | +80.3% | +27.2% | +30.5% |\n| actuated_single | 78.54 ± 2.93 | 146.00 ± 0.82 | 1596.00 ± 15.94 | 636.23 ± 10.02 | +8.9% | +62.3% | +23.3% | +13.0% |\n| ppo_final_iterate | 73.31 ± 5.53 | 260.67 ± 182.72 | 1469.33 ± 193.99 | 656.97 ± 66.09 | +15.0% | +32.7% | +13.6% | +10.1% |\n| ppo | 73.31 ± 5.53 | 260.67 ± 182.72 | 1469.33 ± 193.99 | 656.97 ± 66.09 | +15.0% | +32.7% | +13.6% | +10.1% |\n\nOne junction out of twelve cannot move corridor-wide numbers much, and the table\nshows that plainly. That ceiling i",
+        "source": "outputs/week3_report.md",
+        "heading": "Results corridor-wide (context)",
+        "chunk_id": "outputs/week3_report.md#Results corridor-wide (context)#7",
+        "score": 0.527,
+        "retrieval": "chroma",
+        "relevance": 0.308
+      },
+      {
+        "text": "| Controller | Avg wait (s) | Max queue (veh) | Throughput (veh) | 95th pct wait (s) | Worst wait (s) | Avg wait (s) vs fixed | Max queue (veh) vs fixed | Throughput (veh) vs fixed | 95th pct wait (s) vs fixed | Worst wait (s) vs fixed |\n|---|---|---|---|---|---|---|---|---|---|---|\n| fixed | 36.99 ± 1.24 | 47.00 ± 1.63 | 836.33 ± 0.47 | 89.67 ± 4.92 | 157.33 ± 10.34 | — | — | — | — | — |\n| actuated | 6.35 ± 0.07 | 11.33 ± 0.47 | 859.33 ± 1.25 | 19.00 ± 0.82 | 49.67 ± 9.57 | +82.8% | +75.9% | +2.8% | +78.8% | +68.4% |\n| marl_independent | 6.58 ± 0.09 | 16.00 ± 0.82 | 855.00 ± 1.63 | 18.67 ± 0.94 | 47.00 ± 8.83 | +82.2% | +66.0% | +2.2% | +79.2% | +70.1% |\n| marl_shared_w5 | 6.70 ± 0.20 | 16.00 ± 0.82 | 855.33 ± 1.25 | 18.33 ± 0.47 | 45.67 ± 7.59 | +81.9% | +66.0% | +2.3% | +79.5% | +71.0% |",
+        "source": "BENCHMARK_REPORT.md",
+        "heading": "`light` — ~50% of base demand",
+        "chunk_id": "BENCHMARK_REPORT.md#`light` — ~50% of base demand#4",
+        "score": 0.524,
+        "retrieval": "chroma",
+        "relevance": 0.308
+      },
+      {
+        "text": "| Controller | Avg wait (s) | Max queue (veh) | Throughput (veh) | 95th pct wait (s) | Worst wait (s) | Avg wait (s) vs fixed | Max queue (veh) vs fixed | Throughput (veh) vs fixed | 95th pct wait (s) vs fixed | Worst wait (s) vs fixed |\n|---|---|---|---|---|---|---|---|---|---|---|\n| fixed | 54.15 ± 0.75 | 89.00 ± 2.16 | 1269.67 ± 6.34 | 125.00 ± 4.55 | 207.33 ± 14.52 | — | — | — | — | — |\n| actuated | 11.32 ± 0.66 | 22.33 ± 1.25 | 1320.00 ± 2.16 | 34.00 ± 2.83 | 79.00 ± 9.90 | +79.1% | +74.9% | +4.0% | +72.8% | +61.9% |\n| marl_independent | 10.86 ± 0.48 | 27.00 ± 2.94 | 1320.33 ± 0.47 | 30.33 ± 2.06 | 67.33 ± 5.44 | +79.9% | +69.7% | +4.0% | +75.7% | +67.5% |\n| marl_shared_w5 | 10.76 ± 0.34 | 26.00 ± 1.63 | 1322.67 ± 1.89 | 30.33 ± 2.06 | 75.67 ± 14.01 | +80.1% | +70.8% | +4.2% | +75.7% | +63.5% |",
+        "source": "BENCHMARK_REPORT.md",
+        "heading": "`asymmetric` — full east-west demand, north-south thinned to 40%",
+        "chunk_id": "BENCHMARK_REPORT.md#`asymmetric` — full east-west demand, north-south thinned to 40%#6",
+        "score": 0.523,
+        "retrieval": "chroma",
+        "relevance": 0.308
+      }
+    ],
+    "citations": [
+      "BENCHMARK_REPORT.md#`asymmetric` — full east-west demand, north-south thinned to 40%#6",
+      "BENCHMARK_REPORT.md#`light` — ~50% of base demand#4",
+      "README.md#Week 1 — fixed-time vs actuated baselines (corridor, 3 seeds)#3",
+      "graph:Result:actuated|base|avg_wait_time_s",
+      "outputs/week3_report.md#Results corridor-wide (context)#7"
+    ],
+    "category": "graph: results"
+  },
+  {
+    "question": "Why did the fairness constraint fail to change anything?",
+    "answer": "From outputs/week5_report.md (Why the ablations return identical numbers):\n  ed: reward shaping, a 20x stronger fairness weight, and a completely different network architecture all change the *learned distribution* without changing the *deterministic behaviour*. The reward-shaping ablations therefore cannot be distinguished by deterministic evaluation on this task, and the fairness constraint cannot be shown to cap worst-case wait. That is a finding about the task's action resolution, not...",
+    "grounded": true,
+    "generator": "extractive",
+    "backends": {
+      "graph": "embedded (networkx)",
+      "documents": "chroma",
+      "llm": "none"
+    },
+    "facts": [],
+    "passages": [
+      {
+        "text": "ed: reward shaping, a 20x\nstronger fairness weight, and a completely different network architecture all change\nthe *learned distribution* without changing the *deterministic behaviour*. The\nreward-shaping ablations therefore cannot be distinguished by deterministic\nevaluation on this task, and the fairness constraint cannot be shown to cap\nworst-case wait.\n\nThat is a finding about the task's action resolution, not evidence that the terms are\nimplemented wrongly — `src/test_core_logic.py` verifies each term's arithmetic\ndirectly. The way to make these ablations measurable would be a finer action space\n(phase-duration control rather than a binary next-phase choice), which is a change to\nthe environment interface rather than to the reward, and is left as documented future\nwork.\n\n**Verdict: NOT MET**",
+        "source": "outputs/week5_report.md",
+        "heading": "Why the ablations return identical numbers",
+        "chunk_id": "outputs/week5_report.md#Why the ablations return identical numbers#15",
+        "score": 0.477,
+        "retrieval": "chroma",
+        "relevance": 0.372
+      },
+      {
+        "text": "ed: reward shaping, a 20x\nstronger fairness weight, and a completely different network architecture all change\nthe *learned distribution* without changing the *deterministic behaviour*. The\nreward-shaping ablations therefore cannot be distinguished by deterministic\nevaluation on this task, and the fairness constraint cannot be shown to cap\nworst-case wait.\n\nThat is a finding about the task's action resolution, not evidence that the terms are\nimplemented wrongly — `src/test_core_logic.py` verifies each term's arithmetic\ndirectly. The way to make these ablations measurable would be a finer action space\n(phase-duration control rather than a binary next-phase choice), which is a change to\nthe environment interface rather than to the reward, and is left as documented future\nwork.",
+        "source": "BENCHMARK_REPORT.md",
+        "heading": "Why the ablations return identical numbers",
+        "chunk_id": "BENCHMARK_REPORT.md#Why the ablations return identical numbers#15",
+        "score": 0.476,
+        "retrieval": "chroma",
+        "relevance": 0.372
+      },
+      {
+        "text": "th, not like an adaptive multiplier. The adaptivity only shows in the\n   early iterations before the clamp is reached.\n2. The cap is likely infeasible for this corridor at this demand. A constraint\n   the policy cannot meet is a statement about the network's capacity, not a\n   failure of the optimiser. Choosing a feasible cap — or reporting the\n   achievable frontier by sweeping it — is the honest next step, and is left\n   as documented future work rather than quietly retuned until it looked good.",
+        "source": "outputs/week5_report.md",
+        "heading": "Dual ascent on the fairness multiplier",
+        "chunk_id": "outputs/week5_report.md#Dual ascent on the fairness multiplier#5",
+        "score": 0.463,
+        "retrieval": "chroma",
+        "relevance": 0.297
+      },
+      {
+        "text": "diverging? | Yes — 0 of 3 seeds diverged, with a measured 20–28% rate of gridlock collapses along the way. [Report](outputs/week4_report.md) · [Notes](outputs/week4_nonstationarity_notes.md) | ✅ |\n| 5 | Does parameter sharing + green-wave shaping + a fairness cap beat the baselines? | Corridor-wide RL does beat both baselines — but the *shaping* adds nothing, and one seed of the shaped run jams the corridor. The fairness constraint provably cannot be shown to work here. [Report](outputs/week5_report.md) | ❌ |\n| 6 | Does it hold up when the traffic changes? | It generalises well to light and asymmetric demand and degrades gracefully at peak, but loses to fixed-time on peak queue length. [BENCHMARK_REPORT.md](BENCHMARK_REPORT.md) | ✅ |\n\n**The most interesting result is a negative one.** Five policy variants — with and\nwithout the fairness constraint, with and without green-wave shaping, wi",
+        "source": "README.md",
+        "heading": "🧪 What each week proved",
+        "chunk_id": "README.md#🧪 What each week proved#13",
+        "score": 0.462,
+        "retrieval": "chroma",
+        "relevance": 0.372
+      }
+    ],
+    "citations": [
+      "BENCHMARK_REPORT.md#Why the ablations return identical numbers#15",
+      "README.md#🧪 What each week proved#13",
+      "outputs/week5_report.md#Dual ascent on the fairness multiplier#5",
+      "outputs/week5_report.md#Why the ablations return identical numbers#15"
+    ],
+    "category": "documents: why"
+  },
+  {
+    "question": "Why did Week 3's Definition of Done fail?",
+    "answer": "From README.md (🧪 What each week proved):\n  Definitions of Done are reported as they came out, including the two that failed. | Week | Question | Answer | DoD | |---|---|---|---| | 1 | Does adaptive beat fixed-time at all? | Yes — actuated control cut average wait 53% on the corridor. | ✅ | | 2 | Does the RL pipeline work on a *standard* benchmark? | Yes — PPO cut wait 76% on sumo-rl's 2-way intersection. [Sanity check](outputs/week2_literature_note.md) | ✅ |...",
+    "grounded": true,
+    "generator": "extractive",
+    "backends": {
+      "graph": "embedded (networkx)",
+      "documents": "chroma",
+      "llm": "none"
+    },
+    "facts": [],
+    "passages": [
+      {
+        "text": "Definitions of Done are reported as they came out, including the two that failed.\n\n| Week | Question | Answer | DoD |\n|---|---|---|---|\n| 1 | Does adaptive beat fixed-time at all? | Yes — actuated control cut average wait 53% on the corridor. | ✅ |\n| 2 | Does the RL pipeline work on a *standard* benchmark? | Yes — PPO cut wait 76% on sumo-rl's 2-way intersection. [Sanity check](outputs/week2_literature_note.md) | ✅ |\n| 3 | Does it transfer to one junction of a real corridor? | It beats fixed-time there by 67%, but **loses to an actuated controller** at the same junction on queue and throughput. One junction of twelve also barely moves the corridor. [Report](outputs/week3_report.md) | ❌ |\n| 4 | Can all twelve junctions learn at once without diverging? | Yes — 0 of 3 seeds diverged, with a measured 20–28% rate of gridlock collapses along the way. [Report](outputs/week4_report.md) · [Notes]",
+        "source": "README.md",
+        "heading": "🧪 What each week proved",
+        "chunk_id": "README.md#🧪 What each week proved#12",
+        "score": 0.405,
+        "retrieval": "chroma",
+        "relevance": 0.758
+      }
+    ],
+    "citations": [
+      "README.md#🧪 What each week proved#12"
+    ],
+    "category": "documents: why"
+  },
+  {
+    "question": "What is the average rainfall in Hyderabad?",
+    "answer": "I don't have data for that. The corridor knowledge graph and the project's reports contain nothing matching this question, and this service only answers from those two sources.",
+    "grounded": false,
+    "generator": "refusal",
+    "backends": {
+      "graph": "embedded (networkx)",
+      "documents": "chroma",
+      "llm": "none"
+    },
+    "facts": [],
+    "passages": [],
+    "citations": [],
+    "category": "refusal"
+  },
+  {
+    "question": "Who won the 2019 cricket world cup?",
+    "answer": "I don't have data for that. The corridor knowledge graph and the project's reports contain nothing matching this question, and this service only answers from those two sources.",
+    "grounded": false,
+    "generator": "refusal",
+    "backends": {
+      "graph": "embedded (networkx)",
+      "documents": "chroma",
+      "llm": "none"
+    },
+    "facts": [],
+    "passages": [],
+    "citations": [],
+    "category": "refusal"
+  }
+]

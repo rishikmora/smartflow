@@ -137,6 +137,7 @@ Definitions of Done are reported as they came out, including the two that failed
 | 4 | Can all twelve junctions learn at once without diverging? | Yes — 0 of 3 seeds diverged, with a measured 20–28% rate of gridlock collapses along the way. [Report](outputs/week4_report.md) · [Notes](outputs/week4_nonstationarity_notes.md) | ✅ |
 | 5 | Does parameter sharing + green-wave shaping + a fairness cap beat the baselines? | Corridor-wide RL does beat both baselines — but the *shaping* adds nothing, and one seed of the shaped run jams the corridor. The fairness constraint provably cannot be shown to work here. [Report](outputs/week5_report.md) | ❌ |
 | 6 | Does it hold up when the traffic changes? | It generalises well to light and asymmetric demand and degrades gracefully at peak, but loses to fixed-time on peak queue length. [BENCHMARK_REPORT.md](BENCHMARK_REPORT.md) | ✅ |
+| 7 | Can you ask it questions in English and trust the answer? | Yes — a 301-node knowledge graph plus RAG over the project's own reports, and out-of-domain questions are **refused** rather than guessed. [Report](outputs/week7_report.md) | ✅ |
 
 **The most interesting result is a negative one.** Five policy variants — with and
 without the fairness constraint, with and without green-wave shaping, with a 20×
@@ -183,6 +184,13 @@ smartflow/
 │   ├── online_learning.py     — keep learning after deployment
 │   ├── scenarios.py           — light / peak / asymmetric demand
 │   ├── compare_week4.py / compare_week5.py / week6_benchmark.py
+│   │
+│   │  ── week 7: knowledge graph + grounded QA ──
+│   ├── knowledge_graph.py     — corridor graph (Neo4j or in-process NetworkX)
+│   ├── vector_store.py        — Chroma RAG over the project's own reports
+│   ├── llm_service.py         — read-only grounded QA; refuses when ungrounded
+│   ├── week7_demo.py          — question set + report
+│   ├── test_week7.py          — 9 checks incl. the read-only boundary
 │   │
 │   │  ── visualiser ──
 │   ├── viz_recorder.py        — record a live TraCI run into a compact replay
@@ -356,7 +364,7 @@ being learned, so untouched junctions keep the program defined in the `.net.xml`
 |---|---|---|
 | **A — Foundation** | 1–3 | ✅ Simulation, baselines, single-agent RL |
 | **B — Multi-Agent** | 4–6 | ✅ Independent → parameter-shared MARL, fairness, GNN, stress tests |
-| **C — Features** | 7–9 | ⬜ Knowledge graph, vision, federated learning |
+| **C — Features** | 7–9 | 🟨 Knowledge graph + RAG done; vision and federated learning to come |
 | **D — Platform** | 10–11 | ⬜ Microservices, Kubernetes, live dashboard |
 | **E — Demo** | 12 | ⬜ Final report, demo video, viva prep |
 
