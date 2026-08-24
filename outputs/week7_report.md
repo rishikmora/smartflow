@@ -8,7 +8,7 @@ checked against a source.
 
 ## What the graph contains
 
-`embedded (networkx)` — **301 nodes**, **474 relationships**.
+`neo4j aura` — **301 nodes**, **474 relationships**.
 
 | Node type | Count | Derived from |
 |---|---|---|
@@ -56,136 +56,100 @@ question, and when nothing survives the service declines instead of guessing.
 
 ### Which junctions does C2 feed into?
 
-*graph: topology · generator: `extractive` · grounded: True*
+*graph: topology · generator: `claude` · grounded: True*
 
 ```
-From the corridor knowledge graph:
-  - Junction C2 sits at x=400.0, y=400.0 and is signalised with 4 incoming and 4 outgoing roads.
-  - Junction C2 feeds directly into B2, C1, C3, D2.
-From outputs/week3_report.md (Why it failed, and what that means):
-  ine. 2. **One junction cannot be judged in isolation.** The RL agent optimises its own accumulated wait, which it can reduce by discharging vehicles into neighbours it does not control and cannot see. Throughput at B1 suffers because the downstream links back up. That is precisely the credit-assignment problem Weeks 4-6 exist to address, and corridor-wide the shared policy does beat actuated control. The verdict is...
+C2 feeds directly into four junctions: B2, C1, C3, and D2. It is a signalised junction at x=400.0, y=400.0 with 4 incoming and 4 outgoing roads. The available evidence doesn't say anything further about traffic volumes or conditions on those downstream links.
 ```
 
 Sources: `graph:FEEDS:C2`, `graph:Junction:C2`, `outputs/week3_report.md#Why it failed, and what that means#11`
 
 ### How many signalised junctions does the corridor network have?
 
-*graph: topology · generator: `extractive` · grounded: True*
+*graph: topology · generator: `claude` · grounded: True*
 
 ```
-From the corridor knowledge graph:
-  - The corridor graph holds 301 nodes and 474 relationships: 11 Controller, 16 Junction, 48 Lane, 48 Phase, 12 Program, 69 Result, 48 Road, 5 Rule, 4 Scenario, 40 Sensor.
-  - 12 of the junctions are signalised: A1, A2, B0, B1, B2, B3, C0, C1, C2, C3, D1, D2.
-From outputs/week3_report.md (Why it failed, and what that means):
-  ine. 2. **One junction cannot be judged in isolation.** The RL agent optimises its own accumulated wait, which it can reduce by discharging vehicles into neighbours it does not control and cannot see. Throughput at B1 suffers because the downstream links back up. That is precisely the credit-assignment problem Weeks 4-6 exist to address, and corridor-wide the shared policy does beat actuated control. The verdict is...
+The corridor network has 12 signalised junctions — A1, A2, B0, B1, B2, B3, C0, C1, C2, C3, D1 and D2 — out of 16 Junction nodes in the graph. The project reports corroborate this: Week 3's controller definitions cover "all 12 junctions", and Week 4 places "All 12 corridor junctions" under RL control with one PPO policy each.
 ```
 
 Sources: `graph:Junction:signalised`, `graph:stats`, `outputs/week3_report.md#Experimental design#1`, `outputs/week3_report.md#Why it failed, and what that means#11`, `outputs/week4_report.md#Week 4 — Independent Multi-Agent PPO on the Full Corridor#0`
 
 ### How many incoming lanes does junction B1 have?
 
-*graph: lanes · generator: `extractive` · grounded: True*
+*graph: lanes · generator: `claude` · grounded: True*
 
 ```
-From the corridor knowledge graph:
-  - Junction B1 sits at x=200.0, y=200.0 and is signalised with 4 incoming and 4 outgoing roads.
-  - Junction B1 feeds directly into A1, B0, B2, C1.
-  - Junction B1 has 4 incoming lanes: A1B1_0, B0B1_0, B2B1_0, C1B1_0.
-From outputs/week3_report.md (Why it failed, and what that means):
-  ine. 2. **One junction cannot be judged in isolation.** The RL agent optimises its own accumulated wait, which it can reduce by discharging vehicles into neighbours it does not control and cannot see. Throughput at B1 suffers because the downstream links back up. That is precisely the credit-assignment problem Weeks 4-6 exist to address, and corridor-wide the shared policy does beat actuated control. The verdict is...
+Junction B1 has 4 incoming lanes: A1B1_0, B0B1_0, B2B1_0, and C1B1_0. These correspond to its 4 incoming roads, from the neighbouring junctions A1, B0, B2 and C1. B1 is the signalised junction at x=200.0, y=200.0 that was placed under RL control in Week 3.
 ```
 
 Sources: `graph:FEEDS:B1`, `graph:Junction:B1`, `graph:Lane:B1`, `outputs/week3_report.md#Experimental design#1`, `outputs/week3_report.md#Week 3 — Single-Agent PPO on One Corridor Junction#0`, `outputs/week3_report.md#Why it failed, and what that means#11`
 
 ### What sensors does junction B1 have?
 
-*graph: sensors · generator: `extractive` · grounded: True*
+*graph: sensors · generator: `claude` · grounded: True*
 
 ```
-From the corridor knowledge graph:
-  - Junction B1 sits at x=200.0, y=200.0 and is signalised with 4 incoming and 4 outgoing roads.
-  - Junction B1 feeds directly into A1, B0, B2, C1.
-  - Junction B1 is monitored by 4 induction-loop sensors (one per controlled lane). These are inferred: SUMO instantiates them implicitly for actuated control rather than declaring them in the network file.
-From outputs/week3_report.md (Why it failed, and what that means):
-  ine. 2. **One junction cannot be judged in isolation.** The RL agent optimises its own accumulated wait, which it can reduce by discharging vehicles into neighbours it does not control and cannot see. Throughput at B1 suffers because the downstream links back up. That is precisely the credit-assignment problem Weeks 4-6 exist to address, and corridor-wide the shared policy does beat actuated control. The verdict is...
+Junction B1 is monitored by 4 induction-loop sensors, one per controlled lane. Note that these are inferred rather than declared: SUMO instantiates them implicitly for actuated control instead of listing them in the network file, so they don't appear explicitly in the network definition. No other sensor types at B1 are present in the available data.
 ```
 
 Sources: `graph:FEEDS:B1`, `graph:Junction:B1`, `graph:Sensor:B1`, `outputs/week3_report.md#Experimental design#1`, `outputs/week3_report.md#Why it failed, and what that means#11`
 
 ### What phases does junction B1 run and how long is its cycle?
 
-*graph: signal program · generator: `extractive` · grounded: True*
+*graph: signal program · generator: `claude` · grounded: True*
 
 ```
-From the corridor knowledge graph:
-  - Junction B1 sits at x=200.0, y=200.0 and is signalised with 4 incoming and 4 outgoing roads.
-  - Junction B1 feeds directly into A1, B0, B2, C1.
-  - Junction B1 runs a static program with 4 phases and a 90s cycle: phase 0 green 42s; phase 1 yellow 3s; phase 2 green 42s; phase 3 yellow 3s.
-  - episode_s = 1800s - simulated seconds per evaluation episode (defined in week4_config.SIM_SECONDS).
-From README.md (🧪 What each week proved):
-  Definitions of Done are reported as they came out, including the two that failed. | Week | Question | Answer | DoD | |---|---|---|---| | 1 | Does adaptive beat fixed-time at all? | Yes — actuated control cut average wait 53% on the corridor. | ✅ | | 2 | Does the RL pipeline work on a *standard* benchmark? | Yes — PPO cut wait 76% on sumo-rl's 2-way intersection. [Sanity check](outputs/week2_literature_note.md) | ✅ |...
+Junction B1 runs a static (fixed-time) program with 4 phases totalling a 90s cycle: phase 0 green 42s, phase 1 yellow 3s, phase 2 green 42s, phase 3 yellow 3s. It is a signalised junction at x=200.0, y=200.0 with 4 incoming and 4 outgoing roads, feeding into A1, B0, B2 and C1. No other timing details for B1 are in the available data.
 ```
 
 Sources: `README.md#🧪 What each week proved#12`, `graph:FEEDS:B1`, `graph:Junction:B1`, `graph:Program:B1`, `graph:Rule:episode_s`
 
 ### What is the minimum green time and where is it defined?
 
-*graph: rules · generator: `extractive` · grounded: True*
+*graph: rules · generator: `claude` · grounded: True*
 
 ```
-From the corridor knowledge graph:
-  - min_green_s = 5s - minimum green time before a phase may be cut (defined in week4_config.MIN_GREEN).
-From outputs/week2_literature_note.md (Why the margin is large — read the demand file):
-  e green time has a lot of headroom to recover. A large improvement is the expected outcome here, not an anomaly. The throughput figure supports this reading rather than contradicting it. Total demand over the episode is about 2500 vehicles. Fixed-time clears 2089 (~84%) and leaves the rest queued; PPO clears 2430 (~97%), which is close to the ceiling. Throughput improves by "only" 16% because it *cannot* improve...
+The minimum green time is **5 s** — the minimum a phase must be held before it may be cut. It is defined in `week4_config.MIN_GREEN` (recorded in the knowledge graph as the rule `min_green_s`). The supplied document passages cover demand splits and the fixed-time signal program but do not add further detail on this constraint.
 ```
 
 Sources: `graph:Rule:min_green_s`, `outputs/week2_literature_note.md#Why the margin is large — read the demand file#2`, `outputs/week2_literature_note.md#Why the margin is large — read the demand file#3`
 
 ### How did the RL controller do on peak demand throughput?
 
-*graph: results · generator: `extractive` · grounded: True*
+*graph: results · generator: `claude` · grounded: True*
 
 ```
-From the corridor knowledge graph:
-  - marl_independent on peak demand: throughput_veh = 528.33 (std 8.18, 3 seeds).
-  - marl_shared_w5 on peak demand: throughput_veh = 508.67 (std 34.2, 3 seeds).
-From README.md (🔬 How the Benchmark Works):
-  Every controller — fixed-time, actuated, single-agent PPO, and every multi-agent variant — is measured by the **same collector** in `src/metrics.py`, sampled once per *simulated second*: - **avg_wait_time_s** — mean seconds a completed trip spent stopped - **max_queue_len** — peak number of halting vehicles - **throughput_veh** — vehicles that reached their destination - **total_co2_kg** — integrated CO₂ emissions -...
+On the peak demand scenario the evidence covers two multi-agent RL variants: `marl_independent` reached a throughput of 528.33 vehicles (std 8.18, 3 seeds) and `marl_shared_w5` reached 508.67 vehicles (std 34.2, 3 seeds) — so the independent variant was higher and far more consistent across seeds. No peak-demand throughput figures for the fixed-time, actuated, or single-agent controllers are present in the supplied evidence, so I can't say how the RL runs compare to a baseline at peak. The corridor-wide table shown is a different (non-peak) evaluation, where `marl_independent` reached 1679.67 ± 4.11 vehicles versus 1646.67 ± 3.40 for actuated. Which RL variant you mean matters here, since the two differ by roughly 20 vehicles at peak.
 ```
 
-Sources: `README.md#Week 1 — fixed-time vs actuated baselines (corridor, 3 seeds)#3`, `README.md#🔬 How the Benchmark Works#23`, `graph:Result:marl_independent|peak|throughput_veh`, `graph:Result:marl_shared_w5|peak|throughput_veh`, `outputs/week3_report.md#Definition of Done#9`, `outputs/week4_report.md#Corridor-wide evaluation (context)#3`
+Sources: `README.md#Week 1 — fixed-time vs actuated baselines (corridor, 3 seeds)#3`, `README.md#🔬 How the Benchmark Works#24`, `graph:Result:marl_independent|peak|throughput_veh`, `graph:Result:marl_shared_w5|peak|throughput_veh`, `outputs/week3_report.md#Definition of Done#9`, `outputs/week4_report.md#Corridor-wide evaluation (context)#3`
 
 ### What average wait did actuated control achieve on base demand?
 
-*graph: results · generator: `extractive` · grounded: True*
+*graph: results · generator: `claude` · grounded: True*
 
 ```
-From the corridor knowledge graph:
-  - actuated on base demand: avg_wait_time_s = 40.89 (std 2.88, 3 seeds).
-From README.md (Week 1 — fixed-time vs actuated baselines (corridor, 3 seeds)):
-  | Controller | Avg wait (s) | Max queue (veh) | Throughput (veh) | CO2 (kg) | Avg wait (s) vs fixed | Max queue (veh) vs fixed | Throughput (veh) vs fixed | CO2 (kg) vs fixed | |---|---|---|---|---|---|---|---|---| | fixed | 86.26 ± 1.73 | 387.33 ± 154.39 | 1294.00 ± 177.28 | 731.13 ± 63.11 | — | — | — | — | | actuated | 40.89 ± 2.88 | 76.33 ± 1.70 | 1646.67 ± 3.40 | 508.26 ± 11.21 | +52.6% | +80.3% | +27.2% |...
+On base demand, actuated control achieved an average wait of 40.89 s (± 2.88, 3 seeds). That is a 52.6% improvement over the fixed-time baseline's 86.26 ± 1.73 s. It also reached a max queue of 76.33 ± 1.70 veh, throughput of 1646.67 ± 3.40 veh, and CO2 of 508.26 ± 11.21 kg on the same runs.
 ```
 
 Sources: `BENCHMARK_REPORT.md#`asymmetric` — full east-west demand, north-south thinned to 40%#6`, `BENCHMARK_REPORT.md#`light` — ~50% of base demand#4`, `README.md#Week 1 — fixed-time vs actuated baselines (corridor, 3 seeds)#3`, `graph:Result:actuated|base|avg_wait_time_s`, `outputs/week3_report.md#Results corridor-wide (context)#7`
 
 ### Why did the fairness constraint fail to change anything?
 
-*documents: why · generator: `extractive` · grounded: True*
+*documents: why · generator: `claude` · grounded: True*
 
 ```
-From outputs/week5_report.md (Why the ablations return identical numbers):
-  ed: reward shaping, a 20x stronger fairness weight, and a completely different network architecture all change the *learned distribution* without changing the *deterministic behaviour*. The reward-shaping ablations therefore cannot be distinguished by deterministic evaluation on this task, and the fairness constraint cannot be shown to cap worst-case wait. That is a finding about the task's action resolution, not...
+Per the project's own reports, the fairness weight (even at 20x strength) changes the *learned distribution* but not the *deterministic behaviour*, so under deterministic evaluation the ablation is indistinguishable and the constraint "cannot be shown to cap worst-case wait." The reports attribute this to the task's action resolution — a binary next-phase choice — not to a bug; `src/test_core_logic.py` verifies each term's arithmetic directly. Separately, the dual-ascent multiplier hits its clamp and then behaves like a fixed weight rather than an adaptive one, with adaptivity visible only in early iterations. The reports also note the cap is likely infeasible for this corridor at this demand, which they frame as a statement about network capacity; the suggested measurable alternative is a finer action space (phase-duration control), documented as future work.
 ```
 
-Sources: `BENCHMARK_REPORT.md#Why the ablations return identical numbers#15`, `README.md#🧪 What each week proved#13`, `outputs/week5_report.md#Dual ascent on the fairness multiplier#5`, `outputs/week5_report.md#Why the ablations return identical numbers#15`
+Sources: `BENCHMARK_REPORT.md#Why the ablations return identical numbers#15`, `outputs/week5_report.md#Dual ascent on the fairness multiplier#5`, `outputs/week5_report.md#Why the ablations return identical numbers#15`
 
 ### Why did Week 3's Definition of Done fail?
 
-*documents: why · generator: `extractive` · grounded: True*
+*documents: why · generator: `claude` · grounded: True*
 
 ```
-From README.md (🧪 What each week proved):
-  Definitions of Done are reported as they came out, including the two that failed. | Week | Question | Answer | DoD | |---|---|---|---| | 1 | Does adaptive beat fixed-time at all? | Yes — actuated control cut average wait 53% on the corridor. | ✅ | | 2 | Does the RL pipeline work on a *standard* benchmark? | Yes — PPO cut wait 76% on sumo-rl's 2-way intersection. [Sanity check](outputs/week2_literature_note.md) | ✅ |...
+Week 3 asked whether the RL approach transfers to one junction of a real corridor, and the Definition of Done was marked ❌. Although the RL controller beat fixed-time at that junction by 67%, it **lost to an actuated controller** at the same junction on both queue and throughput. Additionally, controlling one junction out of twelve barely moved the corridor overall. Further detail would be in the linked week3_report.md, which isn't included in the evidence here.
 ```
 
 Sources: `README.md#🧪 What each week proved#12`
@@ -210,21 +174,11 @@ I don't have data for that. The corridor knowledge graph and the project's repor
 
 | Layer | Configured | Used in this run |
 |---|---|---|
-| Knowledge graph | not configured | `embedded (networkx)` |
+| Knowledge graph | Neo4j AuraDB | `neo4j aura` |
 | Vector store | Chroma (local, no credentials) | `chroma` |
-| Answer generation | not configured | `none` |
+| Answer generation | Claude API | `claude-opus-5` |
 
-Two of these need credentials this machine does not have, so the run above used
-the fallbacks: the graph was served from an in-process NetworkX build of the same
-document, and answers were composed directly from retrieved evidence rather than
-phrased by Claude. Both paths are real code exercised by the tests, and the roadmap
-already nominates the in-memory graph as the Week 7 fallback.
-
-What this does **not** demonstrate is AuraDB's Cypher path or Claude's phrasing
-under load. `src/knowledge_graph.py` contains the Cypher for every query and
-`src/llm_service.py` the Claude call; adding credentials to `.env` switches both
-with no code change. Until someone runs it that way, that is a claim about the
-code, not a measured result.
+Both credentialed backends ran for real in this run: every graph fact above was fetched over Cypher from AuraDB, and every answer was phrased by Claude from the retrieved evidence. The NetworkX and extractive fallbacks remain in the code and are still exercised by `src/test_week7.py`, so the service degrades rather than breaks when credentials are absent.
 
 ## Read-only boundary
 

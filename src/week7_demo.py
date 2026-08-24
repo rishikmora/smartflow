@@ -186,18 +186,36 @@ def write_report(records: list[dict]) -> None:
                  f"`{backends.get('documents', '?')}` |\n")
     parts.append(f"| Answer generation | {'Claude API' if anthropic_available() else 'not configured'} | "
                  f"`{backends.get('llm', 'none')}` |\n")
-    parts.append(
-        "\nTwo of these need credentials this machine does not have, so the run above used\n"
-        "the fallbacks: the graph was served from an in-process NetworkX build of the same\n"
-        "document, and answers were composed directly from retrieved evidence rather than\n"
-        "phrased by Claude. Both paths are real code exercised by the tests, and the roadmap\n"
-        "already nominates the in-memory graph as the Week 7 fallback.\n\n"
-        "What this does **not** demonstrate is AuraDB's Cypher path or Claude's phrasing\n"
-        "under load. `src/knowledge_graph.py` contains the Cypher for every query and\n"
-        "`src/llm_service.py` the Claude call; adding credentials to `.env` switches both\n"
-        "with no code change. Until someone runs it that way, that is a claim about the\n"
-        "code, not a measured result.\n"
-    )
+    # This paragraph is derived, not written: a hardcoded "the fallbacks were used"
+    # note silently becomes a lie the moment credentials are added, which is exactly
+    # the kind of stale claim this report exists to prevent.
+    live_graph = backends.get("graph", "").startswith("neo4j")
+    live_llm = backends.get("llm", "none") not in ("none", "", "extractive")
+    fell_back = [name for name, live in
+                 (("the knowledge graph", live_graph), ("answer generation", live_llm))
+                 if not live]
+    if not fell_back:
+        parts.append(
+            "\nBoth credentialed backends ran for real in this run: every graph fact "
+            "above was fetched over Cypher from AuraDB, and every answer was phrased by "
+            "Claude from the retrieved evidence. The NetworkX and extractive fallbacks "
+            "remain in the code and are still exercised by `src/test_week7.py`, so the "
+            "service degrades rather than breaks when credentials are absent.\n"
+        )
+    else:
+        joined = " and ".join(fell_back)
+        parts.append(
+            "\n" + joined[0].upper() + joined[1:] + " fell back to the credential-free "
+            "path in this run: the graph is served from an in-process NetworkX build of "
+            "the same document, and/or answers are composed directly from retrieved "
+            "evidence rather than phrased by Claude. Both paths are real code exercised "
+            "by the tests, and the roadmap already nominates the in-memory graph as the "
+            "Week 7 fallback.\n\n"
+            "`src/knowledge_graph.py` contains the Cypher for every query and "
+            "`src/llm_service.py` the Claude call; adding credentials to `.env` switches "
+            "both with no code change. Until someone runs it that way, that is a claim "
+            "about the code, not a measured result.\n"
+        )
 
     parts.append("\n## Read-only boundary\n\n")
     parts.append(

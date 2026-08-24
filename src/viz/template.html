@@ -1,3 +1,5 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Corridor Control Room</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -6,78 +8,122 @@
 <style>
 /* -- tokens -----------------------------------------------------------------
    Chrome is neutral on purpose. In a control room colour carries meaning, so
-   saturation is reserved for signal state and vehicle motion &mdash; nothing else. */
+   saturation is reserved for signal state and vehicle motion — nothing else.
+   Every colour is defined on bare :root first; the dark blocks only override.  */
 :root {
-  --ground: #F2F0EB;
+  --ground: #F1EFEA;
+  --ground-2: #E7E4DD;
   --panel: #FFFFFF;
-  --panel-2: #E9E6DF;
-  --asphalt: #C4C0B7;
-  --asphalt-edge: #B0ABA1;
-  --junction: #B8B4AA;
-  --ink: #1A2029;
-  --ink-2: #46505E;
-  --muted: #6E7885;
-  --line: #D8D4CC;
+  --panel-2: #EAE7E0;
+  --asphalt: #C2BEB5;
+  --asphalt-edge: #ABA69C;
+  --lane-mark: #EFEDE7;
+  --junction: #B5B1A7;
+  --junction-hi: #8F8A7E;
+  --ink: #171D26;
+  --ink-2: #434D5B;
+  --muted: #6B7581;
+  --line: #D6D2CA;
+  --line-2: #C6C1B8;
 
-  --sig-green: #1E9E5A;
-  --sig-amber: #D18A12;
-  --sig-red: #C7362F;
-  --flow: #1E7FA8;
-  --stopped: #B4564F;
+  --sig-green: #1B9455;
+  --sig-amber: #CE860F;
+  --sig-red: #BE332C;
+  --flow: #1A7BA4;
+  --stopped: #B04F48;
 
-  --grid-glow: rgba(30,127,168,.10);
-  --shadow: 0 1px 2px rgba(20,26,34,.08), 0 8px 24px rgba(20,26,34,.06);
+  --accent: #1A7BA4;
+  --good: #1B9455;
+  --bad: #BE332C;
+
+  --series-fixed: #8A929E;
+  --series-actuated: #CE860F;
+  --series-rl: #1A7BA4;
+
+  --shadow: 0 1px 2px rgba(20,26,34,.07), 0 8px 24px rgba(20,26,34,.055);
+  --shadow-lg: 0 2px 6px rgba(20,26,34,.09), 0 18px 46px rgba(20,26,34,.10);
 
   --f-display: Overpass, "Helvetica Neue", Arial, sans-serif;
-  --f-body: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --r: 12px;
+  --r-sm: 8px;
 }
+
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --ground: #0E1620;
-    --panel: #16202C;
-    --panel-2: #1E2A38;
-    --asphalt: #2A3644;
-    --asphalt-edge: #354354;
-    --junction: #33404F;
-    --ink: #E6EDF5;
-    --ink-2: #B4C2D2;
-    --muted: #8899AB;
-    --line: #26313E;
+    --ground: #0D141D;
+    --ground-2: #111A25;
+    --panel: #151E2A;
+    --panel-2: #1C2734;
+    --asphalt: #27323F;
+    --asphalt-edge: #32404F;
+    --lane-mark: #46586C;
+    --junction: #2F3C4A;
+    --junction-hi: #5A6C80;
+    --ink: #E7EDF5;
+    --ink-2: #B2C0D0;
+    --muted: #8695A8;
+    --line: #232E3A;
+    --line-2: #2E3A48;
 
     --sig-green: #3FD07A;
     --sig-amber: #F5B23D;
     --sig-red: #E8544E;
-    --flow: #62C6F2;
-    --stopped: #C2564F;
+    --flow: #5FC4F2;
+    --stopped: #C85B53;
 
-    --grid-glow: rgba(98,198,242,.12);
+    --accent: #5FC4F2;
+    --good: #3FD07A;
+    --bad: #E8544E;
+
+    --series-fixed: #7E8A99;
+    --series-actuated: #F5B23D;
+    --series-rl: #5FC4F2;
+
     --shadow: 0 1px 0 rgba(255,255,255,.03), 0 12px 32px rgba(0,0,0,.42);
+    --shadow-lg: 0 1px 0 rgba(255,255,255,.04), 0 22px 54px rgba(0,0,0,.55);
   }
 }
+
 :root[data-theme="dark"] {
-  --ground: #0E1620;
-  --panel: #16202C;
-  --panel-2: #1E2A38;
-  --asphalt: #2A3644;
-  --asphalt-edge: #354354;
-  --junction: #33404F;
-  --ink: #E6EDF5;
-  --ink-2: #B4C2D2;
-  --muted: #8899AB;
-  --line: #26313E;
+  --ground: #0D141D;
+  --ground-2: #111A25;
+  --panel: #151E2A;
+  --panel-2: #1C2734;
+  --asphalt: #27323F;
+  --asphalt-edge: #32404F;
+  --lane-mark: #46586C;
+  --junction: #2F3C4A;
+  --junction-hi: #5A6C80;
+  --ink: #E7EDF5;
+  --ink-2: #B2C0D0;
+  --muted: #8695A8;
+  --line: #232E3A;
+  --line-2: #2E3A48;
 
   --sig-green: #3FD07A;
   --sig-amber: #F5B23D;
   --sig-red: #E8544E;
-  --flow: #62C6F2;
-  --stopped: #C2564F;
+  --flow: #5FC4F2;
+  --stopped: #C85B53;
 
-  --grid-glow: rgba(98,198,242,.12);
+  --accent: #5FC4F2;
+  --good: #3FD07A;
+  --bad: #E8544E;
+
+  --series-fixed: #7E8A99;
+  --series-actuated: #F5B23D;
+  --series-rl: #5FC4F2;
+
   --shadow: 0 1px 0 rgba(255,255,255,.03), 0 12px 32px rgba(0,0,0,.42);
+  --shadow-lg: 0 1px 0 rgba(255,255,255,.04), 0 22px 54px rgba(0,0,0,.55);
 }
 
 * { box-sizing: border-box; }
+
+html, body { height: 100%; }
 
 body {
   margin: 0;
@@ -85,251 +131,355 @@ body {
   color: var(--ink);
   font-family: var(--f-body);
   font-size: 15px;
-  line-height: 1.55;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 .shell {
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 560px;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding: 18px clamp(14px, 3vw, 30px) 26px;
-  max-width: 1680px;
+  padding: 16px clamp(12px, 2.4vw, 26px) 18px;
+  max-width: 1720px;
   margin: 0 auto;
 }
 
 /* -- header --------------------------------------------------------------- */
-header { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 18px 26px; }
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px 26px;
+}
 
 .brand h1 {
   font-family: var(--f-display);
   font-weight: 800;
-  font-size: clamp(24px, 3.1vw, 38px);
-  letter-spacing: -.022em;
-  line-height: 1;
+  font-size: clamp(22px, 2.7vw, 33px);
+  letter-spacing: -.024em;
+  line-height: 1.04;
   margin: 0;
-  text-wrap: balance;
 }
-.brand p { margin: 7px 0 0; color: var(--muted); font-size: 13.5px; max-width: 62ch; }
+.brand p.tag {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 66ch;
+}
 .eyebrow {
   font-family: var(--f-mono);
-  font-size: 10.5px;
-  letter-spacing: .16em;
+  font-size: 10px;
+  letter-spacing: .17em;
   text-transform: uppercase;
   color: var(--muted);
-  margin: 0 0 7px;
+  margin: 0 0 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-.brand .live {
-  display: inline-flex; align-items: center; gap: 6px;
-  color: var(--flow);
-}
-.live .dot {
+.eyebrow .dot {
   width: 6px; height: 6px; border-radius: 50%;
-  background: currentColor;
+  background: var(--good);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--good) 22%, transparent);
 }
 
-.controls { display: flex; flex-wrap: wrap; gap: 10px; margin-left: auto; align-items: center; }
+/* -- controls ------------------------------------------------------------- */
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 
 .seg {
   display: inline-flex;
-  background: var(--panel);
+  background: var(--panel-2);
   border: 1px solid var(--line);
-  border-radius: 9px;
+  border-radius: 10px;
   padding: 3px;
   gap: 2px;
-  box-shadow: var(--shadow);
 }
-.seg button {
-  font: 600 12.5px/1 var(--f-body);
+.seg button, .btn {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
   color: var(--ink-2);
-  background: none;
+  background: transparent;
   border: 0;
-  padding: 9px 13px;
-  border-radius: 6px;
+  border-radius: 7px;
+  padding: 6px 12px;
   cursor: pointer;
   white-space: nowrap;
-  transition: background .14s ease, color .14s ease;
+  transition: background .14s ease, color .14s ease, box-shadow .14s ease;
 }
-.seg button:hover { background: var(--panel-2); color: var(--ink); }
-.seg button[aria-pressed="true"] { background: var(--ink); color: var(--panel); }
-.seg button:focus-visible,
-.icon-btn:focus-visible,
-#scrub:focus-visible { outline: 2px solid var(--flow); outline-offset: 2px; }
-
-.icon-btn {
-  font: 600 12.5px/1 var(--f-body);
-  display: inline-flex; align-items: center; gap: 7px;
+.seg button:hover, .btn:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 7%, transparent); }
+.seg button[aria-pressed="true"] {
   background: var(--panel);
   color: var(--ink);
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  padding: 10px 14px;
-  cursor: pointer;
   box-shadow: var(--shadow);
-  transition: background .14s ease;
+  font-weight: 600;
 }
-.icon-btn:hover { background: var(--panel-2); }
-.icon-btn[aria-pressed="true"] { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+.seg.compact button { padding: 6px 9px; font-family: var(--f-mono); font-size: 12px; }
 
-/* -- main grid ------------------------------------------------------------ */
-.main {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 310px;
-  gap: 14px;
-  align-items: start;
+.btn {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  padding: 7px 13px;
 }
-@media (max-width: 1080px) { .main { grid-template-columns: minmax(0, 1fr); } }
+.btn[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--accent) 16%, var(--panel));
+  border-color: color-mix(in srgb, var(--accent) 46%, var(--line));
+  color: var(--ink);
+  font-weight: 600;
+}
+button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* -- layout --------------------------------------------------------------- */
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 336px;
+  gap: 14px;
+  align-items: stretch;
+  min-height: 0;
+}
 
 .stage {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.canvas-wrap {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 340px;
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 12px;
+  border-radius: var(--r);
   box-shadow: var(--shadow);
+  overflow: hidden;
 }
-.canvas-row { display: grid; gap: 12px; grid-template-columns: 1fr; }
-.canvas-row.split { grid-template-columns: 1fr 1fr; }
-@media (max-width: 760px) { .canvas-row.split { grid-template-columns: 1fr; } }
+.canvas-row { display: flex; gap: 10px; flex: 1; min-height: 0; }
+.view { position: relative; flex: 1; min-width: 0; display: flex; flex-direction: column; margin: 0; }
+.view canvas { display: block; width: 100%; height: 100%; }
 
-.view { position: relative; min-width: 0; }
-.view canvas {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 9px;
-  background: var(--ground);
-}
-.view figcaption {
-  display: flex; align-items: baseline; gap: 9px;
-  margin: 0 2px 8px;
-  font-family: var(--f-mono);
-  font-size: 11px;
-  letter-spacing: .07em;
-  text-transform: uppercase;
+.view-head {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 2;
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  padding: 10px 13px;
+  font-size: 12.5px;
   color: var(--muted);
+  pointer-events: none;
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--panel) 92%, transparent), transparent);
 }
-.view figcaption b {
-  font-family: var(--f-display);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: -.01em;
-  text-transform: none;
+.view-head b { color: var(--ink); font-size: 13.5px; font-weight: 600; letter-spacing: -.01em; }
+.view-head .now { margin-left: auto; font-family: var(--f-mono); font-size: 11.5px; }
+
+/* junction tooltip */
+.tip {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  background: var(--panel);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow-lg);
+  padding: 9px 11px;
+  font-size: 12px;
+  min-width: 152px;
+  opacity: 0;
+  transform: translateY(3px);
+  transition: opacity .12s ease, transform .12s ease;
+}
+.tip.on { opacity: 1; transform: translateY(0); }
+.tip h4 {
+  margin: 0 0 6px;
+  font-family: var(--f-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: .04em;
   color: var(--ink);
 }
-.view figcaption .now {
-  margin-left: auto;
-  font-variant-numeric: tabular-nums;
-  color: var(--ink-2);
-  text-transform: none;
-  letter-spacing: 0;
+.tip .row { display: flex; justify-content: space-between; gap: 14px; color: var(--muted); line-height: 1.65; }
+.tip .row b { color: var(--ink); font-family: var(--f-mono); font-weight: 500; }
+.tip .phase { display: flex; gap: 3px; margin-top: 7px; }
+.tip .phase i {
+  width: 100%; height: 5px; border-radius: 2px; display: block;
 }
 
 /* -- transport ------------------------------------------------------------ */
 .transport {
-  display: flex; align-items: center; gap: 14px;
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  padding: 9px 13px;
   flex-wrap: wrap;
 }
-.clock {
-  font-family: var(--f-mono);
-  font-size: 13px;
-  font-variant-numeric: tabular-nums;
-  color: var(--ink-2);
-  white-space: nowrap;
-}
+.clock { font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); white-space: nowrap; }
 .clock b { color: var(--ink); font-weight: 600; }
 
-.track { position: relative; flex: 1 1 260px; min-width: 200px; }
-/* the timeline doubles as a load profile: bar height is cars in the network,
-   so where the corridor fills up is visible before you scrub to it */
-#loadstrip { display: block; width: 100%; height: 34px; border-radius: 6px; background: var(--panel-2); }
-#scrub {
-  -webkit-appearance: none; appearance: none;
+.track { position: relative; flex: 1; min-width: 190px; height: 34px; }
+.track canvas { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 6px; }
+.track input {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  margin: 0; background: transparent; cursor: pointer;
-}
-#scrub::-webkit-slider-thumb {
+  margin: 0; padding: 0;
   -webkit-appearance: none; appearance: none;
-  width: 3px; height: 34px; border-radius: 1px;
-  background: var(--ink); border: 0; cursor: pointer;
+  background: transparent; cursor: pointer;
 }
-#scrub::-moz-range-thumb {
-  width: 3px; height: 34px; border-radius: 1px;
-  background: var(--ink); border: 0; cursor: pointer;
+.track input::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 3px; height: 34px; border-radius: 2px;
+  background: var(--ink);
+  box-shadow: 0 0 0 1px var(--panel);
+}
+.track input::-moz-range-thumb {
+  width: 3px; height: 34px; border: 0; border-radius: 2px;
+  background: var(--ink);
+  box-shadow: 0 0 0 1px var(--panel);
 }
 
 /* -- rail ----------------------------------------------------------------- */
-.rail { display: flex; flex-direction: column; gap: 12px; }
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 2px;
+}
 .card {
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 15px 16px;
+  border-radius: var(--r);
   box-shadow: var(--shadow);
+  padding: 13px 15px;
 }
 .card h2 {
+  margin: 0 0 9px;
   font-family: var(--f-mono);
-  font-size: 10.5px;
+  font-size: 10px;
+  font-weight: 600;
   letter-spacing: .15em;
   text-transform: uppercase;
   color: var(--muted);
-  margin: 0 0 12px;
-  font-weight: 500;
 }
+.card .sub { margin: 9px 0 0; font-size: 11.5px; color: var(--muted); line-height: 1.5; }
 
-.hero-metric { display: flex; align-items: baseline; gap: 9px; }
-.hero-metric .val {
-  font-family: var(--f-mono);
-  font-weight: 600;
+.hero { display: flex; align-items: baseline; gap: 7px; }
+.hero .val {
+  font-family: var(--f-display);
+  font-weight: 800;
   font-size: 44px;
-  line-height: .92;
+  line-height: .95;
   letter-spacing: -.03em;
   font-variant-numeric: tabular-nums;
 }
-.hero-metric .unit { color: var(--muted); font-size: 13px; }
-.sub { margin: 9px 0 0; color: var(--muted); font-size: 12.5px; }
+.hero .unit { font-size: 12.5px; color: var(--muted); }
 
 .chip {
-  display: inline-flex; align-items: center; gap: 5px;
+  display: inline-block;
   font-family: var(--f-mono);
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 600;
-  padding: 4px 8px;
-  border-radius: 999px;
+  padding: 2px 7px;
+  border-radius: 5px;
+  letter-spacing: .01em;
+}
+.chip.good { background: color-mix(in srgb, var(--good) 17%, transparent); color: var(--good); }
+.chip.bad  { background: color-mix(in srgb, var(--bad) 17%, transparent); color: var(--bad); }
+.chip.flat { background: var(--panel-2); color: var(--muted); }
+
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 11px 10px; }
+.stat .k {
+  font-family: var(--f-mono);
+  font-size: 9.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.stat .v {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 21px;
+  letter-spacing: -.02em;
   font-variant-numeric: tabular-nums;
 }
-.chip.good { color: var(--sig-green); background: color-mix(in srgb, var(--sig-green) 13%, transparent); }
-.chip.bad { color: var(--sig-red); background: color-mix(in srgb, var(--sig-red) 13%, transparent); }
-.chip.flat { color: var(--muted); background: var(--panel-2); }
 
-.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border-radius: 9px; overflow: hidden; }
-.stat { background: var(--panel); padding: 11px 12px; }
-.stat .k { font-family: var(--f-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-.stat .v {
-  font-family: var(--f-mono); font-weight: 600; font-size: 20px;
-  font-variant-numeric: tabular-nums; letter-spacing: -.02em; margin-top: 3px;
+.chartbox { position: relative; height: 116px; margin: 2px 0 0; }
+.chartbox canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.chart-key { display: flex; flex-wrap: wrap; gap: 4px 13px; margin-top: 9px; font-size: 11.5px; color: var(--muted); }
+.chart-key span { display: inline-flex; align-items: center; gap: 5px; }
+.chart-key i { width: 13px; height: 2.5px; border-radius: 2px; display: inline-block; }
+
+.legend { display: grid; gap: 7px; font-size: 12px; color: var(--ink-2); }
+.legend div { display: flex; align-items: center; gap: 8px; }
+.sw { width: 13px; height: 5px; border-radius: 2px; flex: none; }
+.sw.round { width: 9px; height: 9px; border-radius: 50%; }
+
+.note { margin: 0; font-size: 12.5px; color: var(--ink-2); line-height: 1.6; }
+.note b { font-family: var(--f-mono); font-weight: 600; font-size: 12.5px; }
+code {
+  font-family: var(--f-mono);
+  font-size: .92em;
+  background: var(--panel-2);
+  padding: 1px 5px;
+  border-radius: 4px;
 }
 
-.legend { display: flex; flex-direction: column; gap: 9px; }
-.legend div { display: flex; align-items: center; gap: 9px; font-size: 12.5px; color: var(--ink-2); }
-.legend .sw { width: 13px; height: 13px; border-radius: 3px; flex: none; }
-.legend .sw.round { border-radius: 50%; }
-
-.note { font-size: 12.5px; color: var(--muted); }
-.note b { color: var(--ink-2); font-weight: 600; }
-.note code {
-  font-family: var(--f-mono); font-size: 11.5px;
-  background: var(--panel-2); padding: 1px 5px; border-radius: 4px;
+kbd {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  background: var(--panel-2);
+  border: 1px solid var(--line-2);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: var(--ink-2);
 }
 
 footer {
-  color: var(--muted); font-size: 12px;
-  border-top: 1px solid var(--line); padding-top: 14px;
-  display: flex; flex-wrap: wrap; gap: 6px 18px;
+  color: var(--muted);
+  font-size: 11.5px;
+  border-top: 1px solid var(--line);
+  padding-top: 11px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  align-items: center;
+}
+footer .spacer { margin-left: auto; }
+
+/* -- responsive ----------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .shell { height: auto; min-height: 100vh; }
+  .main { grid-template-columns: minmax(0, 1fr); }
+  .rail { overflow: visible; }
+  .canvas-wrap { min-height: 400px; }
+  .stats { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 620px) {
+  body { font-size: 14px; }
+  .canvas-row { flex-direction: column; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .controls { width: 100%; }
+  .hero .val { font-size: 38px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -340,13 +490,12 @@ footer {
 <div class="shell">
   <header>
     <div class="brand">
-      <p class="eyebrow">SmartFlow &middot; SUMO 1.27.1 &middot; 12-junction corridor</p>
+      <p class="eyebrow"><span class="dot"></span>SmartFlow &middot; SUMO 1.27.1 &middot; 12-junction corridor</p>
       <h1>Corridor Control Room</h1>
-      <p>
+      <p class="tag">
         Replay of real SUMO runs &mdash; 1,800 vehicles over 30 simulated minutes.
-        Every controller sees <b>identical traffic</b>, so what changes on screen is
-        the signal policy and nothing else.
-        <span class="live"><span class="dot"></span>recorded via TraCI</span>
+        Every controller sees <b>identical traffic</b>, so what changes on screen is the
+        signal policy and nothing else. Hover a junction for its live state.
       </p>
     </div>
     <div class="controls">
@@ -355,8 +504,8 @@ footer {
         <button data-run="actuated" aria-pressed="false">Actuated</button>
         <button data-run="rl" aria-pressed="false">SmartFlow RL</button>
       </div>
-      <button class="icon-btn" id="compare" aria-pressed="false">Compare vs fixed</button>
-      <div class="seg" role="group" aria-label="Speed">
+      <button class="btn" id="compare" aria-pressed="false">Compare vs fixed</button>
+      <div class="seg compact" role="group" aria-label="Playback speed">
         <button data-speed="1" aria-pressed="false">1&times;</button>
         <button data-speed="4" aria-pressed="true">4&times;</button>
         <button data-speed="12" aria-pressed="false">12&times;</button>
@@ -366,37 +515,57 @@ footer {
 
   <div class="main">
     <section class="stage">
-      <div class="canvas-row" id="row">
-        <figure class="view" id="viewA">
-          <figcaption><b data-role="name">Fixed-time</b><span data-role="desc"></span>
-            <span class="now" data-role="now"></span></figcaption>
-          <canvas></canvas>
-        </figure>
-        <figure class="view" id="viewB" hidden>
-          <figcaption><b data-role="name">Fixed-time</b><span data-role="desc"></span>
-            <span class="now" data-role="now"></span></figcaption>
-          <canvas></canvas>
-        </figure>
+      <div class="canvas-wrap">
+        <div class="canvas-row" id="row">
+          <figure class="view" id="viewA">
+            <div class="view-head">
+              <b data-role="name">Fixed-time</b>
+              <span data-role="desc"></span>
+              <span class="now" data-role="now"></span>
+            </div>
+            <canvas></canvas>
+          </figure>
+          <figure class="view" id="viewB" hidden>
+            <div class="view-head">
+              <b data-role="name">Fixed-time</b>
+              <span data-role="desc"></span>
+              <span class="now" data-role="now"></span>
+            </div>
+            <canvas></canvas>
+          </figure>
+        </div>
+        <div class="tip" id="tip" role="status" aria-live="off"></div>
       </div>
 
       <div class="transport">
-        <button class="icon-btn" id="play" aria-pressed="true">Pause</button>
-        <div class="clock">t = <b id="tnow">0:00</b> / 30:00</div>
+        <button class="btn" id="play" aria-pressed="true">Pause</button>
+        <button class="btn" id="restart">Restart</button>
+        <div class="clock">t = <b id="tnow">0:00</b> <span id="tend"></span></div>
         <div class="track">
           <canvas id="loadstrip"></canvas>
           <input id="scrub" type="range" min="0" max="449" value="0" step="1" aria-label="Scrub timeline">
         </div>
-        <button class="icon-btn" id="restart">Restart</button>
       </div>
     </section>
 
     <aside class="rail">
       <div class="card">
         <h2>Average wait per vehicle</h2>
-        <div class="hero-metric">
+        <div class="hero">
           <span class="val" id="m-wait">&mdash;</span><span class="unit">seconds</span>
         </div>
         <p class="sub"><span id="m-delta" class="chip flat">&mdash;</span> vs fixed-time at this moment</p>
+      </div>
+
+      <div class="card">
+        <h2>Wait time across the episode</h2>
+        <div class="chartbox"><canvas id="chart"></canvas></div>
+        <div class="chart-key">
+          <span><i style="background:var(--series-fixed)"></i>Fixed</span>
+          <span><i style="background:var(--series-actuated)"></i>Actuated</span>
+          <span><i style="background:var(--series-rl)"></i>SmartFlow RL</span>
+        </div>
+        <p class="sub">Cumulative mean wait, this recorded episode. All three run the same traffic.</p>
       </div>
 
       <div class="card">
@@ -430,8 +599,8 @@ footer {
 
   <footer>
     <span>Replays recorded from live TraCI &mdash; <code>src/viz_recorder.py</code></span>
-    <span>Policy: parameter-shared PPO, Ray RLlib</span>
     <span>Seed 0 &middot; base demand</span>
+    <span class="spacer"><kbd>space</kbd> play &middot; <kbd>&larr;</kbd><kbd>&rarr;</kbd> step &middot; <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> controller &middot; <kbd>c</kbd> compare</span>
   </footer>
 </div>
 
@@ -445,48 +614,57 @@ footer {
   const KEYS = ["fixed", "actuated", "rl"];
   const LABEL = { fixed: "Fixed-time", actuated: "Actuated", rl: "SmartFlow RL" };
   const DESC = {
-    fixed: "42 s cycle, never adapts",
-    actuated: "detector-triggered extension",
-    rl: "12 shared-policy PPO agents",
+    fixed: "· 42 s cycle, never adapts",
+    actuated: "· detector-triggered extension",
+    rl: "· 12 shared-policy PPO agents",
   };
 
   // -- theme-aware canvas colours ------------------------------------------
+  // Canvas cannot read CSS variables, so the palette is resolved from the
+  // computed style and re-resolved whenever the theme changes underneath us.
   let C = {};
   function readTheme() {
     const s = getComputedStyle(document.documentElement);
     const g = (n) => s.getPropertyValue(n).trim();
-    C = {
-      ground: g("--ground"), asphalt: g("--asphalt"), edge: g("--asphalt-edge"),
-      junction: g("--junction"), muted: g("--muted"), ink: g("--ink"),
-      green: g("--sig-green"), amber: g("--sig-amber"), red: g("--sig-red"),
-      flow: g("--flow"), stopped: g("--stopped"), glow: g("--grid-glow"),
-      line: g("--line"), panel2: g("--panel-2"),
+    return {
+      ground: g("--panel"),
+      ground2: g("--ground-2"),
+      asphalt: g("--asphalt"),
+      edge: g("--asphalt-edge"),
+      mark: g("--lane-mark"),
+      junction: g("--junction"),
+      junctionHi: g("--junction-hi"),
+      green: g("--sig-green"),
+      amber: g("--sig-amber"),
+      red: g("--sig-red"),
+      flow: g("--flow"),
+      stopped: g("--stopped"),
+      ink: g("--ink"),
+      muted: g("--muted"),
+      line: g("--line"),
+      line2: g("--line-2"),
+      panel2: g("--panel-2"),
+      sFixed: g("--series-fixed"),
+      sActuated: g("--series-actuated"),
+      sRl: g("--series-rl"),
     };
   }
-  readTheme();
-  // The canvas paints with literal colour values, so it has to be told when the
-  // tokens change. A matchMedia listener alone is not enough: it misses an explicit
-  // data-theme toggle, and does not always fire under devtools colour emulation.
-  // One cheap property read per frame catches every route into a theme change.
-  let themeStamp = "";
+  let themeKey = "";
   function syncTheme() {
-    const stamp = getComputedStyle(document.documentElement).getPropertyValue("--ground").trim();
-    if (stamp === themeStamp) return false;
-    themeStamp = stamp;
-    readTheme();
+    const key = (document.documentElement.getAttribute("data-theme") || "") + "|" +
+      (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "d" : "l");
+    if (key === themeKey) return false;
+    themeKey = key;
+    C = readTheme();
     return true;
   }
   syncTheme();
-
-  // Event-driven, because the per-frame check above rides on requestAnimationFrame
-  // and rAF is suspended whenever the page is not compositing (background tab, or a
-  // hidden preview pane). These two fire regardless.
-  function refreshTheme() {
-    if (syncTheme()) { drawLoadStrip(); renderAll(true); }
+  if (window.matchMedia) {
+    matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => refreshTheme());
   }
-  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", refreshTheme);
-  new MutationObserver(refreshTheme)
-    .observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme", "class", "style"] });
+  new MutationObserver(() => refreshTheme())
+    .observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  function refreshTheme() { themeKey = ""; syncTheme(); renderAll(true); drawLoadStrip(); drawChart(); }
 
   // -- per-frame vehicle index, built lazily -------------------------------
   const indexCache = new Map();
@@ -506,52 +684,86 @@ footer {
   // -- state ---------------------------------------------------------------
   const nFrames = RUNS.fixed.frames.length;
   const stepS = RUNS.fixed.meta.step_s;
+  const endT = RUNS.fixed.frames[nFrames - 1].t;
   let primary = "fixed";
   let compare = false;
   let playing = true;
   let speed = 4;
   let pos = 0;                       // fractional frame position
   let last = performance.now();
+  let hover = null;                  // {id, view} of the junction under the cursor
 
   // -- geometry / transform ------------------------------------------------
   const NET = RUNS.fixed.network;
   const [BX0, BY0, BX1, BY1] = NET.bounds;
+  const TLS_INDEX = new Map(RUNS.fixed.tls.ids.map((id, i) => [id, i]));
+
   function fit(cv) {
-    const pad = 14;
+    const pad = 18;
     const w = cv.width, h = cv.height;
-    const sx = (w - pad * 2) / (BX1 - BX0), sy = (h - pad * 2) / (BY1 - BY0);
-    const s = Math.min(sx, sy);
+    const s = Math.min((w - pad * 2) / (BX1 - BX0), (h - pad * 2) / (BY1 - BY0));
+    const ox = pad + (w - pad * 2 - (BX1 - BX0) * s) / 2;
+    const oy = pad + (h - pad * 2 - (BY1 - BY0) * s) / 2;
     return {
-      s,
-      ox: pad + (w - pad * 2 - (BX1 - BX0) * s) / 2,
-      oy: pad + (h - pad * 2 - (BY1 - BY0) * s) / 2,
-      X: (x) => pad + (w - pad * 2 - (BX1 - BX0) * s) / 2 + (x - BX0) * s,
+      s, ox, oy,
+      X: (x) => ox + (x - BX0) * s,
       // SUMO's y axis points up; canvas y points down
-      Y: (y) => pad + (h - pad * 2 - (BY1 - BY0) * s) / 2 + (BY1 - y) * s,
+      Y: (y) => oy + (BY1 - y) * s,
+      // inverse, for hit-testing the cursor against junction positions
+      invX: (px) => (px - ox) / s + BX0,
+      invY: (py) => BY1 - (py - oy) / s,
     };
   }
 
   function drawNetwork(ctx, T) {
-    // roadway
     ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    // casing first, then the running surface on top, so junctions read as
+    // continuous asphalt rather than a pile of overlapping strokes
     for (const ln of NET.lanes) {
       const p = ln.p;
       ctx.strokeStyle = C.edge;
-      ctx.lineWidth = Math.max(2, ln.w * 10 * T.s + 3);
+      ctx.lineWidth = Math.max(2.5, ln.w * 10 * T.s + 3.5);
       ctx.beginPath();
       ctx.moveTo(T.X(p[0]), T.Y(p[1]));
       for (let i = 2; i < p.length; i += 2) ctx.lineTo(T.X(p[i]), T.Y(p[i + 1]));
       ctx.stroke();
-
+    }
+    for (const ln of NET.lanes) {
+      const p = ln.p;
       ctx.strokeStyle = C.asphalt;
-      ctx.lineWidth = Math.max(1.5, ln.w * 10 * T.s);
+      ctx.lineWidth = Math.max(1.8, ln.w * 10 * T.s);
+      ctx.beginPath();
+      ctx.moveTo(T.X(p[0]), T.Y(p[1]));
+      for (let i = 2; i < p.length; i += 2) ctx.lineTo(T.X(p[i]), T.Y(p[i + 1]));
       ctx.stroke();
     }
+
+    // centre dashes, only when there is room for them to read as markings
+    const lw = Math.max(1.8, 3.2 * 10 * T.s);
+    if (lw > 5) {
+      ctx.save();
+      ctx.strokeStyle = C.mark;
+      ctx.globalAlpha = .5;
+      ctx.lineWidth = Math.max(.7, lw * .07);
+      ctx.setLineDash([lw * 1.5, lw * 1.9]);
+      ctx.lineCap = "butt";
+      for (const ln of NET.lanes) {
+        const p = ln.p;
+        ctx.beginPath();
+        ctx.moveTo(T.X(p[0]), T.Y(p[1]));
+        for (let i = 2; i < p.length; i += 2) ctx.lineTo(T.X(p[i]), T.Y(p[i + 1]));
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
     // junction pads
-    ctx.fillStyle = C.junction;
     for (const j of NET.junctions) {
       const p = j.p;
       if (p.length < 6) continue;
+      ctx.fillStyle = (hover && hover.id === j.id) ? C.junctionHi : C.junction;
       ctx.beginPath();
       ctx.moveTo(T.X(p[0]), T.Y(p[1]));
       for (let i = 2; i < p.length; i += 2) ctx.lineTo(T.X(p[i]), T.Y(p[i + 1]));
@@ -560,16 +772,37 @@ footer {
     }
   }
 
+  // Junction ids are how every other surface in the project refers to these
+  // intersections (the knowledge graph answers "C2 feeds into B2, C1, C3, D2"),
+  // so the picture should use the same names.
+  function drawJunctionLabels(ctx, T) {
+    const size = Math.max(7, Math.min(13, 26 * T.s));
+    if (size < 8) return;
+    ctx.save();
+    ctx.font = `600 ${size}px ${getComputedStyle(document.body).getPropertyValue("--f-mono")}`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    for (const j of NET.junctions) {
+      if (!j.tls) continue;
+      const x = T.X(j.c[0]), y = T.Y(j.c[1]) - Math.max(13, 30 * T.s);
+      ctx.globalAlpha = (hover && hover.id === j.id) ? 1 : .55;
+      ctx.fillStyle = (hover && hover.id === j.id) ? C.ink : C.muted;
+      ctx.fillText(j.id, x, y);
+    }
+    ctx.restore();
+  }
+
   function drawSignals(ctx, T, run, frame) {
     const heads = run.tls.heads, ids = run.tls.ids;
     const bar = Math.max(2.4, 5 * T.s * 10);
     for (let t = 0; t < ids.length; t++) {
       const state = frame.s[t] || "";
       const list = heads[ids[t]];
+      if (!list) continue;
       for (let a = 0; a < list.length; a++) {
         const h = list[a];
         const ch = state[a] || "r";
-        const col = ch === "G" ? C.green : ch === "y" ? C.amber : C.red;
+        const col = ch === "G" || ch === "g" ? C.green : (ch === "y" || ch === "Y") ? C.amber : C.red;
         const x = T.X(h.x), y = T.Y(h.y);
         // sit the head just upstream of the stop line, across the approach
         const dx = h.dx, dy = -h.dy;           // flip dy into canvas space
@@ -580,7 +813,7 @@ footer {
         ctx.strokeStyle = col;
         ctx.lineWidth = Math.max(2, bar * 0.72);
         ctx.lineCap = "butt";
-        if (ch === "G") { ctx.shadowColor = col; ctx.shadowBlur = bar * 2.4; }
+        if (ch === "G" || ch === "g") { ctx.shadowColor = col; ctx.shadowBlur = bar * 2.6; }
         ctx.beginPath();
         ctx.moveTo(cx - px * half, cy - py * half);
         ctx.lineTo(cx + px * half, cy + py * half);
@@ -590,13 +823,34 @@ footer {
     }
   }
 
+  // Blend two CSS colours in canvas space. Speed is continuous, so a hard
+  // stopped/moving split throws away most of what the picture could show.
+  function mix(a, b, t) {
+    const pa = parse(a), pb = parse(b);
+    return `rgb(${Math.round(pa[0] + (pb[0] - pa[0]) * t)},${Math.round(pa[1] + (pb[1] - pa[1]) * t)},${Math.round(pa[2] + (pb[2] - pa[2]) * t)})`;
+  }
+  const parseCache = new Map();
+  function parse(css) {
+    let v = parseCache.get(css);
+    if (v) return v;
+    const d = document.createElement("canvas").getContext("2d");
+    d.fillStyle = css;
+    const hex = d.fillStyle;
+    v = hex.startsWith("#")
+      ? [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)]
+      : hex.match(/\d+/g).slice(0, 3).map(Number);
+    parseCache.set(css, v);
+    return v;
+  }
+
   function drawVehicles(ctx, T, runKey, i, frac) {
     const run = RUNS[runKey];
-    const a = run.frames[i], b = run.frames[Math.min(i + 1, run.frames.length - 1)];
+    const a = run.frames[i];
     const prev = frameIndex(runKey, Math.max(0, i - 1));
     const next = frameIndex(runKey, Math.min(i + 1, run.frames.length - 1));
     const L = Math.max(2.6, 48 * T.s);   // car length in px
     const W = Math.max(1.8, 22 * T.s);   // car width in px
+    const r = Math.min(W / 2, 2);
     let stopped = 0, active = 0;
 
     for (let k = 0; k < a.v.length; k += 3) {
@@ -621,14 +875,12 @@ footer {
       const isStopped = mps < 0.6;
       if (isStopped) stopped++;
 
-      const px = T.X(x), py = T.Y(y);
       ctx.save();
-      ctx.translate(px, py);
+      ctx.translate(T.X(x), T.Y(y));
       ctx.rotate(Math.atan2(-hy, hx));
-      ctx.fillStyle = isStopped ? C.stopped : C.flow;
-      ctx.globalAlpha = isStopped ? 0.95 : Math.min(1, 0.62 + mps / 14);
+      ctx.fillStyle = mix(C.stopped, C.flow, Math.max(0, Math.min(1, mps / 9)));
+      ctx.globalAlpha = isStopped ? .96 : Math.min(1, .68 + mps / 16);
       ctx.beginPath();
-      const r = Math.min(W / 2, 2);
       ctx.roundRect(-L / 2, -W / 2, L, W, r);
       ctx.fill();
       ctx.restore();
@@ -639,32 +891,32 @@ footer {
 
   function renderView(view, runKey, i, frac) {
     const cv = view.querySelector("canvas");
-    const box = cv.parentElement.getBoundingClientRect();
+    const box = view.getBoundingClientRect();
     const dpr = Math.min(2, window.devicePixelRatio || 1);
-    const cssW = Math.max(220, Math.floor(box.width));
-    const cssH = Math.floor(cssW * 0.86);
-    if (cv.width !== cssW * dpr || cv.height !== cssH * dpr) {
-      cv.width = cssW * dpr; cv.height = cssH * dpr;
-      cv.style.height = cssH + "px";
+    const cssW = Math.max(200, Math.floor(box.width));
+    const cssH = Math.max(200, Math.floor(box.height));
+    if (cv.width !== Math.floor(cssW * dpr) || cv.height !== Math.floor(cssH * dpr)) {
+      cv.width = Math.floor(cssW * dpr);
+      cv.height = Math.floor(cssH * dpr);
     }
     const ctx = cv.getContext("2d");
-    ctx.save();
-    ctx.scale(1, 1);
     ctx.fillStyle = C.ground;
     ctx.fillRect(0, 0, cv.width, cv.height);
 
     const T = fit(cv);
+    view._T = T;                       // kept for cursor hit-testing
+    view._dpr = dpr;
     const run = RUNS[runKey];
     const frame = run.frames[i];
     drawNetwork(ctx, T);
     drawSignals(ctx, T, run, frame);
     const live = drawVehicles(ctx, T, runKey, i, frac);
-    ctx.restore();
+    drawJunctionLabels(ctx, T);
 
     view.querySelector('[data-role="name"]').textContent = LABEL[runKey];
-    view.querySelector('[data-role="desc"]').textContent = "\u00b7 " + DESC[runKey];
+    view.querySelector('[data-role="desc"]').textContent = DESC[runKey];
     view.querySelector('[data-role="now"]').textContent =
-      live.active + " in network \u00b7 " + live.stopped + " stopped";
+      live.active + " in network · " + live.stopped + " stopped";
     return live;
   }
 
@@ -676,8 +928,10 @@ footer {
 
   function drawLoadStrip() {
     const dpr = Math.min(2, window.devicePixelRatio || 1);
-    const w = strip.clientWidth || 300, h = 34;
-    strip.width = w * dpr; strip.height = h * dpr;
+    const w = strip.clientWidth || 300, h = strip.clientHeight || 34;
+    if (strip.width !== Math.floor(w * dpr) || strip.height !== Math.floor(h * dpr)) {
+      strip.width = Math.floor(w * dpr); strip.height = Math.floor(h * dpr);
+    }
     const ctx = strip.getContext("2d");
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, w, h);
@@ -686,14 +940,192 @@ footer {
 
     // vehicle counts never change, so derive them once instead of on every tick
     const counts = loadCounts[primary];
-    const peakAll = loadPeak;
     const bw = w / counts.length;
     for (let i = 0; i < counts.length; i++) {
-      const bh = (counts[i] / peakAll) * (h - 4);
+      const bh = (counts[i] / loadPeak) * (h - 4);
       ctx.fillStyle = i <= pos ? C.flow : C.line;
       ctx.fillRect(i * bw, h - bh, Math.max(bw - 0.35, 0.6), bh);
     }
   }
+
+  // -- wait-over-time chart -------------------------------------------------
+  // The headline claim of the whole project is a wait-time difference, so the
+  // page shows all three controllers on one axis rather than making the viewer
+  // hold two screens in their head.
+  const chart = document.getElementById("chart");
+  const series = {};
+  for (const k of KEYS) series[k] = RUNS[k].frames.map(f => (f.m && f.m[0]) || 0);
+  const waitPeak = Math.max(1, ...KEYS.map(k => Math.max(...series[k])));
+
+  function drawChart() {
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const w = chart.clientWidth || 280, h = chart.clientHeight || 116;
+    if (chart.width !== Math.floor(w * dpr) || chart.height !== Math.floor(h * dpr)) {
+      chart.width = Math.floor(w * dpr); chart.height = Math.floor(h * dpr);
+    }
+    const ctx = chart.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+
+    const padL = 30, padB = 15, padT = 6, padR = 4;
+    const pw = w - padL - padR, ph = h - padT - padB;
+    const X = (i) => padL + (i / (nFrames - 1)) * pw;
+    const Y = (v) => padT + ph - (v / waitPeak) * ph;
+
+    // gridlines + y labels
+    ctx.font = `500 9px ${getComputedStyle(document.body).getPropertyValue("--f-mono")}`;
+    ctx.textAlign = "right";
+    ctx.textBaseline = "middle";
+    for (let g = 0; g <= 2; g++) {
+      const v = (waitPeak / 2) * g;
+      const y = Y(v);
+      ctx.strokeStyle = C.line;
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(w - padR, y); ctx.stroke();
+      ctx.fillStyle = C.muted;
+      ctx.fillText(Math.round(v) + "s", padL - 5, y);
+    }
+
+    const colour = { fixed: C.sFixed, actuated: C.sActuated, rl: C.sRl };
+    for (const k of KEYS) {
+      const s = series[k];
+      ctx.strokeStyle = colour[k];
+      ctx.lineWidth = k === primary ? 2.2 : 1.2;
+      ctx.globalAlpha = k === primary ? 1 : .5;
+      ctx.beginPath();
+      for (let i = 0; i < s.length; i++) {
+        const x = X(i), y = Y(s[i]);
+        i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+      }
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+
+    // playhead
+    const i = Math.min(nFrames - 1, Math.floor(pos));
+    const px = X(i);
+    ctx.strokeStyle = C.ink;
+    ctx.globalAlpha = .35;
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(px, padT); ctx.lineTo(px, padT + ph); ctx.stroke();
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = colour[primary];
+    ctx.beginPath(); ctx.arc(px, Y(series[primary][i]), 2.8, 0, Math.PI * 2); ctx.fill();
+
+    // x axis ends
+    ctx.fillStyle = C.muted;
+    ctx.textAlign = "left"; ctx.textBaseline = "top";
+    ctx.fillText("0:00", padL, padT + ph + 4);
+    ctx.textAlign = "right";
+    ctx.fillText(fmtClock(endT), w - padR, padT + ph + 4);
+  }
+
+  // -- junction hover -------------------------------------------------------
+  const tip = document.getElementById("tip");
+  const wrap = document.querySelector(".canvas-wrap");
+
+  function junctionAt(view, clientX, clientY) {
+    const T = view._T;
+    if (!T) return null;
+    const box = view.getBoundingClientRect();
+    const dpr = view._dpr || 1;
+    const cx = (clientX - box.left) * dpr, cy = (clientY - box.top) * dpr;
+    let best = null, bestD = Infinity;
+    for (const j of NET.junctions) {
+      if (!j.tls) continue;
+      const d = Math.hypot(T.X(j.c[0]) - cx, T.Y(j.c[1]) - cy);
+      if (d < bestD) { bestD = d; best = j; }
+    }
+    // generous but bounded: roughly the size of the junction pad on screen
+    return bestD < Math.max(22, 46 * T.s) * dpr ? best : null;
+  }
+
+  // Queues are not stored per junction in the replay, so they are counted from
+  // the frame on screen: stopped vehicles inside a radius of the junction.
+  function junctionState(j, runKey, i) {
+    const f = RUNS[runKey].frames[i];
+    const prev = frameIndex(runKey, Math.max(0, i - 1));
+    const R = 900;                    // sim units (scale 10) ≈ 90 m
+    let queued = 0, near = 0;
+    for (let k = 0; k < f.v.length; k += 3) {
+      const dx = f.v[k + 1] - j.c[0], dy = f.v[k + 2] - j.c[1];
+      if (Math.abs(dx) > R || Math.abs(dy) > R) continue;
+      if (dx * dx + dy * dy > R * R) continue;
+      near++;
+      const pv = prev.get(f.v[k]);
+      if (pv) {
+        const moved = Math.hypot(f.v[k + 1] - pv[0], f.v[k + 2] - pv[1]) / 10 / stepS;
+        if (moved < 0.6) queued++;
+      }
+    }
+    const ti = TLS_INDEX.get(j.id);
+    const state = ti === undefined ? "" : (f.s[ti] || "");
+    return { queued, near, state };
+  }
+
+  function showTip(j, view, clientX, clientY) {
+    const i = Math.min(nFrames - 1, Math.floor(pos));
+    const runKey = (compare && view.id === "viewA") ? "fixed" : primary;
+    const st = junctionState(j, runKey, i);
+    const lamps = [...st.state].map(ch => {
+      const c = (ch === "G" || ch === "g") ? "var(--sig-green)"
+        : (ch === "y" || ch === "Y") ? "var(--sig-amber)" : "var(--sig-red)";
+      return `<i style="background:${c}"></i>`;
+    }).join("");
+    tip.innerHTML =
+      `<h4>Junction ${j.id}</h4>` +
+      `<div class="row"><span>Under ${LABEL[runKey]}</span></div>` +
+      `<div class="row"><span>Vehicles nearby</span><b>${st.near}</b></div>` +
+      `<div class="row"><span>Stopped</span><b>${st.queued}</b></div>` +
+      `<div class="phase">${lamps}</div>`;
+    tip.classList.add("on");
+    const wb = wrap.getBoundingClientRect();
+    const tw = tip.offsetWidth, th = tip.offsetHeight;
+    let x = clientX - wb.left + 14, y = clientY - wb.top + 14;
+    if (x + tw > wb.width - 6) x = clientX - wb.left - tw - 14;
+    if (y + th > wb.height - 6) y = clientY - wb.top - th - 14;
+    tip.style.left = Math.max(6, x) + "px";
+    tip.style.top = Math.max(6, y) + "px";
+  }
+
+  function hideTip() {
+    if (!hover) return;
+    hover = null;
+    tip.classList.remove("on");
+    renderAll(true);
+  }
+
+  wrap.addEventListener("mousemove", (e) => {
+    const view = e.target.closest(".view") ||
+      [viewA, viewB].find(v => !v.hidden && (() => {
+        const b = v.getBoundingClientRect();
+        return e.clientX >= b.left && e.clientX <= b.right && e.clientY >= b.top && e.clientY <= b.bottom;
+      })());
+    if (!view) { hideTip(); return; }
+    const j = junctionAt(view, e.clientX, e.clientY);
+    if (!j) { hideTip(); return; }
+    const changed = !hover || hover.id !== j.id;
+    hover = { id: j.id, view };
+    showTip(j, view, e.clientX, e.clientY);
+    if (changed) renderAll(true);
+  });
+  wrap.addEventListener("mouseleave", hideTip);
+
+  // Touch devices never fire mousemove, which would leave the junction detail
+  // unreachable on a phone. A tap opens it; a tap on empty asphalt closes it.
+  wrap.addEventListener("click", (e) => {
+    const view = [viewA, viewB].find(v => {
+      if (v.hidden) return false;
+      const b = v.getBoundingClientRect();
+      return e.clientX >= b.left && e.clientX <= b.right && e.clientY >= b.top && e.clientY <= b.bottom;
+    });
+    if (!view) { hideTip(); return; }
+    const j = junctionAt(view, e.clientX, e.clientY);
+    if (!j) { hideTip(); return; }
+    hover = { id: j.id, view };
+    showTip(j, view, e.clientX, e.clientY);
+    renderAll(true);
+  });
 
   // -- metrics rail --------------------------------------------------------
   const el = (id) => document.getElementById(id);
@@ -709,11 +1141,11 @@ footer {
     const chip = el("m-delta");
     if (primary === "fixed" || !base[0]) {
       chip.className = "chip flat";
-      chip.textContent = primary === "fixed" ? "reference" : "-";
+      chip.textContent = primary === "fixed" ? "reference" : "—";
     } else {
       const d = (base[0] - m[0]) / base[0] * 100;
       chip.className = "chip " + (d > 0.5 ? "good" : d < -0.5 ? "bad" : "flat");
-      chip.textContent = (d >= 0 ? "\u2212" : "+") + Math.abs(d).toFixed(0) + "% wait";
+      chip.textContent = (d >= 0 ? "−" : "+") + Math.abs(d).toFixed(0) + "% wait";
     }
   }
 
@@ -726,9 +1158,10 @@ footer {
   const viewA = el("viewA"), viewB = el("viewB");
   const scrub = el("scrub");
   scrub.max = String(nFrames - 1);
+  el("tend").textContent = "/ " + fmtClock(endT);
 
   function renderAll(force) {
-    if (syncTheme()) drawLoadStrip();
+    if (syncTheme()) { drawLoadStrip(); drawChart(); }
     const i = Math.min(nFrames - 1, Math.floor(pos));
     const frac = pos - i;
     // in compare mode the left pane is always the fixed-time reference and the
@@ -756,9 +1189,11 @@ footer {
       if (pos >= nFrames - 1) { pos = nFrames - 1; playing = false; syncPlay(); }
       renderAll(false);
       drawLoadStrip();
+      drawChart();
     } else if (syncTheme()) {
       // paused pages still have to survive a theme switch
       drawLoadStrip();
+      drawChart();
       renderAll(true);
     }
   }
@@ -773,18 +1208,23 @@ footer {
   setInterval(() => step(performance.now()), 1000 / 30);
 
   // -- controls ------------------------------------------------------------
-  function syncPlay() { el("play").textContent = playing ? "Pause" : "Play"; el("play").setAttribute("aria-pressed", String(playing)); }
+  function syncPlay() {
+    el("play").textContent = playing ? "Pause" : "Play";
+    el("play").setAttribute("aria-pressed", String(playing));
+  }
   el("play").onclick = () => { playing = !playing; last = performance.now(); syncPlay(); };
-  el("restart").onclick = () => { pos = 0; playing = true; syncPlay(); renderAll(true); drawLoadStrip(); };
+  el("restart").onclick = () => {
+    pos = 0; playing = true; syncPlay(); renderAll(true); drawLoadStrip(); drawChart();
+  };
 
-  document.querySelectorAll("[data-run]").forEach(b => {
-    b.onclick = () => {
-      primary = b.dataset.run;
-      document.querySelectorAll("[data-run]").forEach(o => o.setAttribute("aria-pressed", String(o === b)));
-      setCompare(compare);
-      renderAll(true); drawLoadStrip(); updateFinal();
-    };
-  });
+  function selectRun(key) {
+    primary = key;
+    document.querySelectorAll("[data-run]").forEach(o => o.setAttribute("aria-pressed", String(o.dataset.run === key)));
+    setCompare(compare);
+    renderAll(true); drawLoadStrip(); drawChart(); updateFinal();
+  }
+  document.querySelectorAll("[data-run]").forEach(b => { b.onclick = () => selectRun(b.dataset.run); });
+
   document.querySelectorAll("[data-speed]").forEach(b => {
     b.onclick = () => {
       speed = Number(b.dataset.speed);
@@ -796,15 +1236,36 @@ footer {
     compare = on && primary !== "fixed";
     el("compare").setAttribute("aria-pressed", String(compare));
     el("compare").textContent = compare ? "Single view" : "Compare vs fixed";
-    document.getElementById("row").classList.toggle("split", compare);
     viewB.hidden = !compare;
   }
   el("compare").onclick = () => { setCompare(!compare); renderAll(true); };
 
-  scrub.oninput = () => { pos = Number(scrub.value); renderAll(true); drawLoadStrip(); };
+  scrub.oninput = () => { pos = Number(scrub.value); renderAll(true); drawLoadStrip(); drawChart(); };
+
+  // keyboard: a demo driven from the front of a room should not need the mouse
+  document.addEventListener("keydown", (e) => {
+    // e.target can be the document itself, which has no .matches — guarding on
+    // tagName keeps a stray keypress from throwing and killing every shortcut.
+    const tag = e.target && e.target.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+    const nudge = (d) => {
+      playing = false; syncPlay();
+      pos = Math.max(0, Math.min(nFrames - 1, pos + d));
+      renderAll(true); drawLoadStrip(); drawChart();
+    };
+    if (e.key === " ") { e.preventDefault(); playing = !playing; last = performance.now(); syncPlay(); }
+    else if (e.key === "ArrowRight") { e.preventDefault(); nudge(e.shiftKey ? 10 : 1); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); nudge(e.shiftKey ? -10 : -1); }
+    else if (e.key === "1") selectRun("fixed");
+    else if (e.key === "2") selectRun("actuated");
+    else if (e.key === "3") selectRun("rl");
+    else if (e.key === "c" || e.key === "C") { setCompare(!compare); renderAll(true); }
+    else if (e.key === "r" || e.key === "R") el("restart").click();
+  });
 
   function updateFinal() {
     const f = FINAL[primary], base = FINAL.fixed;
+    if (!f || !base) { el("finalnote").textContent = "Benchmark table unavailable."; return; }
     // improvement against the reference, signed so "down 78%" reads as an improvement
     const pct = (value, reference) => {
       const d = (reference - value) / reference * 100;
@@ -812,20 +1273,27 @@ footer {
     };
     if (primary === "fixed") {
       el("finalnote").innerHTML =
-        "<b>" + f.wait + " s</b> average wait \u00b7 <b>" + f.thru + "</b> vehicles arrived \u00b7 peak queue <b>" +
+        "<b>" + f.wait + " s</b> average wait · <b>" + f.thru + "</b> vehicles arrived · peak queue <b>" +
         f.queue + "</b>. This is the reference every other controller is measured against.";
     } else {
       el("finalnote").innerHTML =
         "<b>" + f.wait + " s</b> average wait (" + pct(f.wait, base.wait) +
-        " vs fixed-time) \u00b7 <b>" + f.thru + "</b> arrived \u00b7 peak queue <b>" + f.queue + "</b>." +
+        " vs fixed-time) · <b>" + f.thru + "</b> arrived · peak queue <b>" + f.queue + "</b>." +
         (primary === "rl"
-          ? " Corridor-wide across 3 seeds. Full analysis in <code>BENCHMARK_REPORT.md</code>."
-          : " SUMO's detector-based controller - a genuinely strong classical baseline.")
+          ? " Corridor-wide across 3 seeds. It beats actuated on wait, but <b>not reliably on throughput</b>:" +
+            " one seed of three converged to a policy that jams the corridor, which is why Week 5 is" +
+            " recorded as a failed Definition of Done. See <code>outputs/week5_report.md</code>."
+          : " SUMO's detector-based controller — a genuinely strong classical baseline.");
     }
   }
 
-  window.addEventListener("resize", () => { renderAll(true); drawLoadStrip(); });
-  syncPlay(); updateFinal(); renderAll(true); drawLoadStrip();
+  let resizeTimer = 0;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { renderAll(true); drawLoadStrip(); drawChart(); }, 60);
+  });
+
+  syncPlay(); updateFinal(); renderAll(true); drawLoadStrip(); drawChart();
   last = performance.now();
 })();
 </script>
