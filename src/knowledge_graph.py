@@ -68,6 +68,35 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)-7s %(me
 log = logging.getLogger(__name__)
 
 
+def _use_system_trust_store() -> bool:
+    """Make Python validate TLS against the OS certificate store.
+
+    AuraDB's ``neo4j+s://`` scheme requires full certificate verification, and on some
+    machines Python's bundled ``certifi`` chain rejects the Aura certificate with
+    "self signed certificate in certificate chain" even though the operating system and
+    every browser accept it — the root sits in the Windows store but not in certifi, or
+    a TLS-inspecting proxy re-signs the connection. The failure surfaces confusingly, as
+    ``ServiceUnavailable: Unable to retrieve routing information``.
+
+    Delegating to the OS trust store fixes it without weakening verification, which is
+    the important part: the alternative workarounds are ``neo4j+ssc://`` or disabling
+    encryption, and both actually stop checking who they are talking to.
+
+    Returns:
+        Whether the trust store was successfully installed.
+    """
+    try:
+        import truststore
+
+        truststore.inject_into_ssl()
+        return True
+    except ImportError:
+        log.debug("truststore unavailable; using certifi's default chain.")
+    except Exception as exc:  # pragma: no cover - platform dependent
+        log.warning("Could not install the system trust store: %s", exc)
+    return False
+
+
 # ── ingestion ───────────────────────────────────────────────────────────────
 def _axis_of(from_id: str, to_id: str) -> str:
     """Classify a link as east-west or north-south from the grid's node naming.
@@ -408,6 +437,7 @@ class Neo4jGraph(GraphQueries):
         Args:
             credentials: output of :func:`week7_config.neo4j_credentials`.
         """
+        _use_system_trust_store()
         from neo4j import GraphDatabase
 
         self.database = credentials["database"]
