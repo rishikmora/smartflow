@@ -86,6 +86,7 @@ pydantic_core==2.46.4
 pygame-ce==2.5.7
 Pygments==2.20.0
 pyparsing==3.3.2
+pypdf==6.16.2
 PyPika==0.51.1
 pyproject_hooks==1.2.0
 python-dateutil==2.9.0.post0
