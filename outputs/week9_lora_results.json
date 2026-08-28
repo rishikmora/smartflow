@@ -1,0 +1,35 @@
+{
+  "base_model": "distilgpt2",
+  "roadmap_model": "Phi-3-mini (substituted: CPU-only machine)",
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "epochs": 12,
+    "trainable_parameters": 294912,
+    "total_parameters": 82207488
+  },
+  "dataset": {
+    "train": 310,
+    "held_out": 87,
+    "kinds": [
+      "degree",
+      "lanes",
+      "phases",
+      "position",
+      "program",
+      "result",
+      "rule",
+      "sensors",
+      "topology"
+    ]
+  },
+  "base": {
+    "perplexity": 13.237679714131305,
+    "answer_accuracy": 0.034482758620689655
+  },
+  "lora_tuned": {
+    "perplexity": 1.8304278465238122,
+    "answer_accuracy": 0.08045977011494253
+  },
+  "dod_met": true
+}

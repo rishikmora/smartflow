@@ -1,0 +1,79 @@
+{
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "emergency_count": 12,
+  "preempt_range_m": 120.0,
+  "rows": [
+    {
+      "mode": "none",
+      "seed": 0,
+      "emergency_mean_wait_s": 252.66666666666666,
+      "emergency_mean_duration_s": 252.375,
+      "general_avg_wait_s": 83.61,
+      "general_throughput": 1149.0,
+      "general_max_queue": 567.0,
+      "preemptions": 0
+    },
+    {
+      "mode": "none",
+      "seed": 1,
+      "emergency_mean_wait_s": 502.25,
+      "emergency_mean_duration_s": 183.75,
+      "general_avg_wait_s": 71.03,
+      "general_throughput": 842.0,
+      "general_max_queue": 771.0,
+      "preemptions": 0
+    },
+    {
+      "mode": "none",
+      "seed": 2,
+      "emergency_mean_wait_s": 494.25,
+      "emergency_mean_duration_s": 208.5,
+      "general_avg_wait_s": 80.66,
+      "general_throughput": 841.0,
+      "general_max_queue": 763.0,
+      "preemptions": 0
+    },
+    {
+      "mode": "preemption",
+      "seed": 0,
+      "emergency_mean_wait_s": 7.25,
+      "emergency_mean_duration_s": 99.41666666666667,
+      "general_avg_wait_s": 83.73,
+      "general_throughput": 1547.0,
+      "general_max_queue": 161.0,
+      "preemptions": 657
+    },
+    {
+      "mode": "preemption",
+      "seed": 1,
+      "emergency_mean_wait_s": 122.58333333333333,
+      "emergency_mean_duration_s": 105.88888888888889,
+      "general_avg_wait_s": 73.38,
+      "general_throughput": 1153.0,
+      "general_max_queue": 567.0,
+      "preemptions": 1481
+    },
+    {
+      "mode": "preemption",
+      "seed": 2,
+      "emergency_mean_wait_s": 44.833333333333336,
+      "emergency_mean_duration_s": 126.63636363636364,
+      "general_avg_wait_s": 76.69,
+      "general_throughput": 1307.0,
+      "general_max_queue": 434.0,
+      "preemptions": 1151
+    }
+  ],
+  "summary": {
+    "emergency_wait_none_s": 416.38888888888886,
+    "emergency_wait_preempt_s": 58.22222222222222,
+    "emergency_improvement_pct": 86.01734489659772,
+    "general_wait_none_s": 78.43333333333332,
+    "general_wait_preempt_s": 77.93333333333334,
+    "general_cost_pct": -0.6374840628984095
+  }
+}

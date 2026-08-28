@@ -75,6 +75,20 @@ CHARTS: dict[str, list[tuple[str, str]]] = {
                "Online learning, peak demand."),
               ("week5_online_learning_asymmetric.png",
                "Online learning, asymmetric demand.")],
+    "week8": [("week8_detector_pr.png",
+               "Week 8 - detector precision/recall on the held-out junction."),
+              ("week8_detector_confusion.png",
+               "Week 8 - normalised confusion matrix, held-out junction."),
+              ("week8_detector_training.png",
+               "Week 8 - detector training curves over 40 CPU epochs."),
+              ("week8_anomalies.png",
+               "Week 8 - injected incidents, detector alarms and the operating-point sweep."),
+              ("week8_scenarios.png",
+               "Week 8 - scenario planner: closures crossed with weather, 3 seeds each.")],
+    "week9": [("week9_federated.png",
+               "Week 9 - federated averaging evaluated on a held-out district."),
+              ("week9_priority.png",
+               "Week 9 - emergency preemption: the gain, and the cost to general traffic.")],
     "week6": [("week6_scenarios.png",
                "Average wait across light, base, peak and asymmetric demand."),
               ("week6_ablations.png",
@@ -108,9 +122,11 @@ CONTENTS: list[tuple[str, str, str]] = [
     ("Part V", "Phase A-B benchmark report", "The full internal benchmark, Weeks 1-6"),
     ("Part VI", "Week-by-week evidence", "Each week's own report, with its charts"),
     ("Part VII", "Week 7: knowledge graph and RAG", "Graph, retrieval and the read-only service"),
-    ("Part VIII", "Phase D scaffold", "What exists for Weeks 10-12, and what does not"),
-    ("Part IX", "Deferred and draft material", "Items carried forward, honestly labelled"),
-    ("Part X", "Codebase", "Every source file and what it does"),
+    ("Part VIII", "Weeks 8-9: perception and federation",
+     "Vision, anomaly detection, planning, federated learning, LoRA"),
+    ("Part IX", "Phase D scaffold", "What exists for Weeks 10-12, and what does not"),
+    ("Part X", "Deferred and draft material", "Items carried forward, honestly labelled"),
+    ("Part XI", "Codebase", "Every source file and what it does"),
     ("Appendix A", "Complete metric tables", "Raw CSV data behind every claim"),
     ("Appendix B", "Commit history", "The full development record"),
 ]
@@ -603,12 +619,21 @@ def build_html() -> str:
              "graph of the network and in the project's own reports."),
         doc("outputs/week7_report.md"),
 
-        part("Part VIII", "Phase D scaffold",
+        part("Part VIII", "Weeks 8-9: perception and federation",
+             "Vehicle detection, incident detection and scenario planning; then "
+             "federated learning across districts, a LoRA adapter, and emergency "
+             "preemption."),
+        doc("outputs/week8_report.md"),
+        f'<div class="section">{charts_for("week8")}</div>',
+        doc("outputs/week9_report.md"),
+        f'<div class="section">{charts_for("week9")}</div>',
+
+        part("Part IX", "Phase D scaffold",
              "What exists on disk for Weeks 10-12, and - just as important - what "
              "does not."),
         doc("outputs/week10_report.md"),
 
-        part("Part IX", "Deferred and draft material",
+        part("Part X", "Deferred and draft material",
              "Items carried forward, plus the drafts that are labelled as drafts "
              "rather than presented as results."),
         doc("outputs/week7_deferred.md"),
@@ -620,7 +645,7 @@ def build_html() -> str:
         doc("outputs/FINAL_REPORT.md"),
         doc("outputs/VIVA_PREP.md"),
 
-        part("Part X", "Codebase",
+        part("Part XI", "Codebase",
              f"All {files} Python files, {lines:,} lines. Each description is the "
              "file's own module docstring, read from the source."),
         f'<div class="section">{inventory}</div>',

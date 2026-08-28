@@ -1,0 +1,213 @@
+{
+  "districts": [
+    "B1",
+    "B2",
+    "C1"
+  ],
+  "held_out": "C2",
+  "rounds": 3,
+  "steps_per_round": 3000,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "per_seed": [
+    {
+      "seed": 0,
+      "results": {
+        "fixed": {
+          "corridor_wait_s": 84.32,
+          "corridor_throughput": 1520.0,
+          "junction_wait_s": 18.33,
+          "junction_queue": 23.0
+        },
+        "fedavg": {
+          "corridor_wait_s": 64.98,
+          "corridor_throughput": 1255.0,
+          "junction_wait_s": 4.84,
+          "junction_queue": 60.0
+        },
+        "local_B1": {
+          "corridor_wait_s": 64.98,
+          "corridor_throughput": 1255.0,
+          "junction_wait_s": 4.84,
+          "junction_queue": 60.0
+        },
+        "local_B2": {
+          "corridor_wait_s": 64.98,
+          "corridor_throughput": 1255.0,
+          "junction_wait_s": 4.84,
+          "junction_queue": 60.0
+        },
+        "local_C1": {
+          "corridor_wait_s": 64.98,
+          "corridor_throughput": 1255.0,
+          "junction_wait_s": 4.84,
+          "junction_queue": 60.0
+        },
+        "local_mean": {
+          "corridor_wait_s": 64.98,
+          "corridor_throughput": 1255.0,
+          "junction_wait_s": 4.84,
+          "junction_queue": 60.0
+        }
+      },
+      "weight_divergence": {
+        "fedavg_vs_B1": 1.1701799631118774,
+        "fedavg_vs_B2": 1.0076206922531128,
+        "fedavg_vs_C1": 1.4302070140838623,
+        "B1_vs_B2": 1.6503785848617554,
+        "B1_vs_C1": 2.4112913608551025,
+        "B2_vs_C1": 2.1799685955047607
+      },
+      "action_agreement": {
+        "fedavg_vs_B1": {
+          "steps": 360.0,
+          "agreement": 1.0
+        },
+        "fedavg_vs_B2": {
+          "steps": 360.0,
+          "agreement": 1.0
+        },
+        "fedavg_vs_C1": {
+          "steps": 360.0,
+          "agreement": 1.0
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "results": {
+        "fixed": {
+          "corridor_wait_s": 84.16,
+          "corridor_throughput": 1263.0,
+          "junction_wait_s": 30.8,
+          "junction_queue": 61.0
+        },
+        "fedavg": {
+          "corridor_wait_s": 69.28,
+          "corridor_throughput": 1596.0,
+          "junction_wait_s": 6.05,
+          "junction_queue": 15.0
+        },
+        "local_B1": {
+          "corridor_wait_s": 69.28,
+          "corridor_throughput": 1596.0,
+          "junction_wait_s": 6.05,
+          "junction_queue": 15.0
+        },
+        "local_B2": {
+          "corridor_wait_s": 69.28,
+          "corridor_throughput": 1596.0,
+          "junction_wait_s": 6.05,
+          "junction_queue": 15.0
+        },
+        "local_C1": {
+          "corridor_wait_s": 69.28,
+          "corridor_throughput": 1596.0,
+          "junction_wait_s": 6.05,
+          "junction_queue": 15.0
+        },
+        "local_mean": {
+          "corridor_wait_s": 69.28,
+          "corridor_throughput": 1596.0,
+          "junction_wait_s": 6.05,
+          "junction_queue": 15.0
+        }
+      },
+      "weight_divergence": {
+        "fedavg_vs_B1": 0.5411424040794373,
+        "fedavg_vs_B2": 0.8496689796447754,
+        "fedavg_vs_C1": 0.8863455057144165,
+        "B1_vs_B2": 1.1153188943862915,
+        "B1_vs_C1": 1.197893738746643,
+        "B2_vs_C1": 1.6499261856079102
+      },
+      "action_agreement": {
+        "fedavg_vs_B1": {
+          "steps": 360.0,
+          "agreement": 1.0
+        },
+        "fedavg_vs_B2": {
+          "steps": 360.0,
+          "agreement": 1.0
+        },
+        "fedavg_vs_C1": {
+          "steps": 360.0,
+          "agreement": 1.0
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "results": {
+        "fixed": {
+          "corridor_wait_s": 80.81,
+          "corridor_throughput": 1057.0,
+          "junction_wait_s": 17.84,
+          "junction_queue": 79.0
+        },
+        "fedavg": {
+          "corridor_wait_s": 71.8,
+          "corridor_throughput": 1177.0,
+          "junction_wait_s": 6.62,
+          "junction_queue": 81.0
+        },
+        "local_B1": {
+          "corridor_wait_s": 71.8,
+          "corridor_throughput": 1177.0,
+          "junction_wait_s": 6.62,
+          "junction_queue": 81.0
+        },
+        "local_B2": {
+          "corridor_wait_s": 71.8,
+          "corridor_throughput": 1177.0,
+          "junction_wait_s": 6.62,
+          "junction_queue": 81.0
+        },
+        "local_C1": {
+          "corridor_wait_s": 71.8,
+          "corridor_throughput": 1177.0,
+          "junction_wait_s": 6.62,
+          "junction_queue": 81.0
+        },
+        "local_mean": {
+          "corridor_wait_s": 71.8,
+          "corridor_throughput": 1177.0,
+          "junction_wait_s": 6.62,
+          "junction_queue": 81.0
+        }
+      },
+      "weight_divergence": {
+        "fedavg_vs_B1": 0.6382618546485901,
+        "fedavg_vs_B2": 1.2045414447784424,
+        "fedavg_vs_C1": 1.588943362236023,
+        "B1_vs_B2": 1.0917214155197144,
+        "B1_vs_C1": 2.100790023803711,
+        "B2_vs_C1": 2.746623992919922
+      },
+      "action_agreement": {
+        "fedavg_vs_B1": {
+          "steps": 360.0,
+          "agreement": 1.0
+        },
+        "fedavg_vs_B2": {
+          "steps": 360.0,
+          "agreement": 1.0
+        },
+        "fedavg_vs_C1": {
+          "steps": 360.0,
+          "agreement": 1.0
+        }
+      }
+    }
+  ],
+  "summary": {
+    "fixed_wait_s": 22.323333333333334,
+    "local_mean_wait_s": 5.836666666666667,
+    "fedavg_wait_s": 5.836666666666667,
+    "improvement_pct_vs_local_mean": 0.0,
+    "dod_met": false
+  }
+}

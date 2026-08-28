@@ -1,0 +1,283 @@
+{
+  "incidents": [
+    [
+      420.0,
+      540.0
+    ],
+    [
+      900.0,
+      1020.0
+    ],
+    [
+      1350.0,
+      1470.0
+    ]
+  ],
+  "blocked_edges": [
+    "B1B2",
+    "C1C2",
+    "B2B3"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "detector": {
+    "window": 60,
+    "min_samples": 20,
+    "per_lane": true
+  },
+  "sweep": [
+    {
+      "threshold": 3.0,
+      "persistence": 3.0,
+      "precision": 0.403641456582633,
+      "recall": 1.0,
+      "f1": 0.5748733535967578,
+      "false_alarms": 20.666666666666668,
+      "detected": 3.0,
+      "mean_latency_s": 28.444444444444446
+    },
+    {
+      "threshold": 3.0,
+      "persistence": 6.0,
+      "precision": 0.41792114695340504,
+      "recall": 1.0,
+      "f1": 0.5891472868217054,
+      "false_alarms": 17.666666666666668,
+      "detected": 3.0,
+      "mean_latency_s": 23.222222222222225
+    },
+    {
+      "threshold": 3.0,
+      "persistence": 10.0,
+      "precision": 0.4703703703703703,
+      "recall": 1.0,
+      "f1": 0.6394716394716394,
+      "false_alarms": 9.333333333333334,
+      "detected": 3.0,
+      "mean_latency_s": 30.222222222222218
+    },
+    {
+      "threshold": 3.0,
+      "persistence": 15.0,
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1": 0.4000000000000001,
+      "false_alarms": 1.3333333333333333,
+      "detected": 1.0,
+      "mean_latency_s": 124.25
+    },
+    {
+      "threshold": 3.5,
+      "persistence": 3.0,
+      "precision": 0.39007724301841945,
+      "recall": 1.0,
+      "f1": 0.5612087573234659,
+      "false_alarms": 20.333333333333332,
+      "detected": 3.0,
+      "mean_latency_s": 32.22222222222222
+    },
+    {
+      "threshold": 3.5,
+      "persistence": 6.0,
+      "precision": 0.40689503732981996,
+      "recall": 1.0,
+      "f1": 0.5759013282732447,
+      "false_alarms": 13.666666666666666,
+      "detected": 3.0,
+      "mean_latency_s": 30.222222222222218
+    },
+    {
+      "threshold": 3.5,
+      "persistence": 10.0,
+      "precision": 0.4222222222222223,
+      "recall": 0.5555555555555555,
+      "f1": 0.47507658033973826,
+      "false_alarms": 3.0,
+      "detected": 1.6666666666666667,
+      "mean_latency_s": 45.333333333333336
+    },
+    {
+      "threshold": 3.5,
+      "persistence": 15.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_alarms": 0.0,
+      "detected": 0.0,
+      "mean_latency_s": NaN
+    },
+    {
+      "threshold": 4.0,
+      "persistence": 3.0,
+      "precision": 0.44741854636591477,
+      "recall": 1.0,
+      "f1": 0.617989417989418,
+      "false_alarms": 12.0,
+      "detected": 3.0,
+      "mean_latency_s": 29.444444444444443
+    },
+    {
+      "threshold": 4.0,
+      "persistence": 6.0,
+      "precision": 0.6388888888888888,
+      "recall": 0.5555555555555555,
+      "f1": 0.5739184562713975,
+      "false_alarms": 1.3333333333333333,
+      "detected": 1.6666666666666667,
+      "mean_latency_s": 76.0
+    },
+    {
+      "threshold": 4.0,
+      "persistence": 10.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_alarms": 0.0,
+      "detected": 0.0,
+      "mean_latency_s": NaN
+    },
+    {
+      "threshold": 4.0,
+      "persistence": 15.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_alarms": 0.0,
+      "detected": 0.0,
+      "mean_latency_s": NaN
+    },
+    {
+      "threshold": 4.5,
+      "persistence": 3.0,
+      "precision": 0.433958198664081,
+      "recall": 1.0,
+      "f1": 0.6049707602339182,
+      "false_alarms": 8.333333333333334,
+      "detected": 3.0,
+      "mean_latency_s": 44.666666666666664
+    },
+    {
+      "threshold": 4.5,
+      "persistence": 6.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_alarms": 0.0,
+      "detected": 0.0,
+      "mean_latency_s": NaN
+    },
+    {
+      "threshold": 4.5,
+      "persistence": 10.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_alarms": 0.0,
+      "detected": 0.0,
+      "mean_latency_s": NaN
+    },
+    {
+      "threshold": 4.5,
+      "persistence": 15.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_alarms": 0.0,
+      "detected": 0.0,
+      "mean_latency_s": NaN
+    },
+    {
+      "threshold": 5.0,
+      "persistence": 3.0,
+      "precision": 0.40277777777777773,
+      "recall": 0.6666666666666666,
+      "f1": 0.4997964997964998,
+      "false_alarms": 3.3333333333333335,
+      "detected": 2.0,
+      "mean_latency_s": 153.61111111111111
+    },
+    {
+      "threshold": 5.0,
+      "persistence": 6.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_alarms": 0.0,
+      "detected": 0.0,
+      "mean_latency_s": NaN
+    },
+    {
+      "threshold": 5.0,
+      "persistence": 10.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_alarms": 0.0,
+      "detected": 0.0,
+      "mean_latency_s": NaN
+    },
+    {
+      "threshold": 5.0,
+      "persistence": 15.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_alarms": 0.0,
+      "detected": 0.0,
+      "mean_latency_s": NaN
+    },
+    {
+      "threshold": 6.0,
+      "persistence": 3.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_alarms": 0.0,
+      "detected": 0.0,
+      "mean_latency_s": NaN
+    },
+    {
+      "threshold": 6.0,
+      "persistence": 6.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_alarms": 0.0,
+      "detected": 0.0,
+      "mean_latency_s": NaN
+    },
+    {
+      "threshold": 6.0,
+      "persistence": 10.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_alarms": 0.0,
+      "detected": 0.0,
+      "mean_latency_s": NaN
+    },
+    {
+      "threshold": 6.0,
+      "persistence": 15.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_alarms": 0.0,
+      "detected": 0.0,
+      "mean_latency_s": NaN
+    }
+  ],
+  "chosen": {
+    "threshold": 3.0,
+    "persistence": 10.0,
+    "precision": 0.4703703703703703,
+    "recall": 1.0,
+    "f1": 0.6394716394716394,
+    "false_alarms": 9.333333333333334,
+    "detected": 3.0,
+    "mean_latency_s": 30.222222222222218
+  }
+}

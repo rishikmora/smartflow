@@ -144,7 +144,7 @@ class ShapedReward:
     by reference into remote env runners.
     """
 
-    def __init__(self, weights: RewardWeights | None = None, use_fairness: bool = True,
+    def __init__(self, weights: RewardWeights | None = None, use_fairness: bool = True, use_emissions: bool = False,
                  use_coordination: bool = True) -> None:
         """Configure which shaping terms are active.
 
@@ -155,6 +155,7 @@ class ShapedReward:
         """
         self.weights = weights or RewardWeights()
         self.use_fairness = use_fairness
+        self.use_emissions = use_emissions
         self.use_coordination = use_coordination
 
     def __call__(self, ts: Any) -> float:
@@ -181,6 +182,17 @@ class ShapedReward:
             out_density = ts.get_out_lanes_density()
             if out_density:
                 reward -= cfg.coordination_alpha * (sum(out_density) / len(out_density))
+
+        # ── emission smoothing (Week 9) ──────────────────────────────────────
+        # CO2 per vehicle rather than total, for the same reason the fairness term
+        # is per-vehicle: a total rewards emptying the junction, which the delay
+        # term already does, and would double-count it. Converted mg -> g so the
+        # weight is on the same scale as the delay term.
+        if self.use_emissions and cfg.emissions_beta:
+            co2_mg = sum(ts.sumo.lane.getCO2Emission(lane) for lane in ts.lanes)
+            present = sum(ts.sumo.lane.getLastStepVehicleNumber(lane) for lane in ts.lanes)
+            if present > 0:
+                reward -= cfg.emissions_beta * (co2_mg / present) / 1000.0
 
         # ── Lagrangian fairness ──────────────────────────────────────────────
         # Convert each lane's summed accumulated wait into a per-vehicle mean, so the

@@ -1,0 +1,23 @@
+{
+  "dataset": {
+    "train_images": 360,
+    "train_boxes": 14156,
+    "train_cars": 11370,
+    "train_trucks": 2786,
+    "val_images": 120,
+    "val_boxes": 4958,
+    "val_cars": 3429,
+    "val_trucks": 1529
+  },
+  "metrics": {
+    "mAP50": 0.9884100119362587,
+    "mAP50_95": 0.7864288734743059,
+    "precision": 0.9864049274392791,
+    "recall": 0.9820465269397463,
+    "mAP50_car": 0.9821658207643978,
+    "mAP50_truck": 0.9946542031081195
+  },
+  "epochs": 40,
+  "model": "yolov8n.pt",
+  "device": "cpu"
+}

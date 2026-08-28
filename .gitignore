@@ -47,7 +47,26 @@ outputs/kg/chroma/
 # eval_marl_corridor.load_multi_rl_module() actually loads.
 models/marl_*/learner_group/learner/state.pkl
 
+# ── Week 8 vision dataset ────────────────────────────────────────────────────
+# 352 MB of rendered frames and labels. Fully regenerable and deterministic:
+# `python src/vision_dataset.py` reproduces it byte-for-byte (classes come from a
+# hash of the vehicle id, noise from a fixed seed). The trained weights and the
+# evaluation metrics next to it ARE kept - those are the evidence.
+outputs/vision/dataset/
+# ultralytics keeps a second copy of the final epoch; best.pt is the one that
+# gets loaded, and it is committed.
+models/yolo/corridor/weights/last.pt
+# HuggingFace Trainer scratch; the adapter in models/lora/adapter/ is kept
+models/lora/run/
+
+# ultralytics downloads the pretrained base weights into the working directory on
+# first use. Third-party, re-downloaded automatically, not project evidence.
+yolov8n.pt
+
 # ── deliberately NOT ignored ─────────────────────────────────────────────────
 # outputs/*.csv, outputs/*.png, outputs/*.md   — benchmark evidence
+# outputs/vision/detector_results.json         — held-out detector metrics
+# models/yolo/corridor/best.pt + charts        — trained detector and its curves
+# models/lora/adapter/                         — the LoRA adapter (1.2 MB)
 # outputs/monitor*/                            — per-episode returns behind the curves
 # models/*.zip, models/marl_*/                 — trained policies

@@ -8,7 +8,7 @@ here verbatim. Weeks 1 and 2 predate that convention and have no verdict line, s
 "MET" is read directly off the committed metrics CSVs — the derivation is given in the
 footnote below rather than asserted.
 
-Last updated: 2026-08-24.
+Last updated: 2026-08-28.
 
 ## Phase A–B — the RL core (Weeks 1–6)
 
@@ -27,7 +27,7 @@ week's DoD asked for. Week 2: `week2_benchmark_metrics.csv` holds 3 seeds per
 controller — fixed-time 16.39 s mean wait against PPO 4.00 s, a 75.6% reduction — so
 "PPO beats fixed-time on the benchmark, 3-seed average" is met on the numbers.
 
-### The two failures, in one line each
+### The Phase A–B failures, in one line each
 
 - **Week 3** — single-intersection RL beats fixed-time on all three metrics but
   beats actuated on only one of three. Reported as failed rather than re-scoped.
@@ -38,23 +38,44 @@ controller — fixed-time 16.39 s mean wait against PPO 4.00 s, a 75.6% reductio
   does clear the bar — it is the Week 5 *shaping* that fails to add to it.
 
 Both are genuine scientific results and stay in the final report. They are not
-outstanding work items.
+outstanding work items. A third failure — Week 9's federated DoD — is recorded
+under Phase C below and shares a root cause with Week 5's.
 
 ## Phase C — feature sprint (Weeks 7–9)
 
 | Week | Definition of Done | Verdict | Evidence |
 |---|---|---|---|
 | 7 | A natural-language query returns an answer grounded in real graph data | **MET** | `week7_report.md`, `week7_qa.json` |
-| 8 | Vision, anomaly detection, scenario planner | **NOT STARTED** | `week8_deferred.md` |
-| 9 | Federated learning, LoRA fine-tune, priority routing | **NOT STARTED** | `week9_deferred.md` |
+| 8 | Vision detects vehicles in a held-out clip; injected anomaly flagged; one closure scenario end-to-end | **MET** (all three) | `week8_report.md` |
+| 9 | Federated averaging improves a held-out district | **NOT MET** | `week9_report.md` |
+| 9 | Fine-tuned model beats the base prompt on domain questions | **MET** | `week9_report.md` |
 
 Week 7 runs against live backends: Neo4j AuraDB over Cypher, Chroma locally, and
 `claude-opus-5` for phrasing. Verify with `python src\check_neo4j.py` and
 `python src\week7_demo.py`.
 
-Week 8 is blocked on a manual ~5 GB UA-DETRAC download that requires registration.
-Weeks 8 and 9 sit at positions 4 and 1–2 in CLAUDE.md's fallback priority, so they
-are the first things to defer if the schedule slips.
+### Week 8, in one line each
+
+- **Vision** — YOLOv8n on 480 frames rendered from the twin, labelled from TraCI
+  ground truth. mAP50 0.988 on junction C2, held out of training entirely.
+- **Anomaly detection** — recall 1.00 on injected lane obstructions across 3
+  seeds, 30 s mean detection latency, per-lane causal z-score detectors.
+- **Scenario planner** — 18 closure × weather × seed runs complete. Weather
+  dominates the closure: fog cuts throughput to 564 against 1598 in the clear.
+
+### Week 9's third failure, and why it matters
+
+The federated DoD is **NOT MET**, and the reason is the same argmax saturation
+Weeks 5 and 6 documented. Separately trained district policies reach *byte-identical*
+wait times on the held-out junction, so averaging them changes nothing — the
+improvement over the local-only baseline is exactly 0.0%. This is the third
+independent sighting of the effect, and it is a property of the action space
+(binary next-phase, 5 s minimum green), not of the federation. The machinery
+itself runs end to end and is unit-tested.
+
+Priority routing and the emissions reward term are Week 9 deliverables without a
+numeric DoD. Both are implemented and measured: emergency-vehicle wait falls
+86% (416 s → 58 s) with no cost to general traffic.
 
 ## Phase D–E — platform and report (Weeks 10–12)
 

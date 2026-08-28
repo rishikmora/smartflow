@@ -1,0 +1,2785 @@
+{
+  "train": [
+    {
+      "question": "What is the value of the yellow_time_s rule?",
+      "answer": "The yellow_time_s rule is set to 2.",
+      "fact": "2",
+      "kind": "rule",
+      "group": "rule:yellow_time_s"
+    },
+    {
+      "question": "What does yellow_time_s control and what is it set to?",
+      "answer": "yellow_time_s is a signal-timing constant set to 2.",
+      "fact": "2",
+      "kind": "rule",
+      "group": "rule:yellow_time_s"
+    },
+    {
+      "question": "What is the value of the min_green_s rule?",
+      "answer": "The min_green_s rule is set to 5.",
+      "fact": "5",
+      "kind": "rule",
+      "group": "rule:min_green_s"
+    },
+    {
+      "question": "What does min_green_s control and what is it set to?",
+      "answer": "min_green_s is a signal-timing constant set to 5.",
+      "fact": "5",
+      "kind": "rule",
+      "group": "rule:min_green_s"
+    },
+    {
+      "question": "Which junctions does D1 feed into?",
+      "answer": "D1 feeds into C1, D2.",
+      "fact": "C1",
+      "kind": "topology",
+      "group": "topology:D1"
+    },
+    {
+      "question": "What are the downstream junctions of D1?",
+      "answer": "The downstream junctions of D1 are C1, D2.",
+      "fact": "C1",
+      "kind": "topology",
+      "group": "topology:D1"
+    },
+    {
+      "question": "Where can traffic from D1 go next?",
+      "answer": "Traffic from D1 can go to C1, D2.",
+      "fact": "C1",
+      "kind": "topology",
+      "group": "topology:D1"
+    },
+    {
+      "question": "What avg_wait_time_s did actuated achieve on asymmetric demand?",
+      "answer": "actuated achieved avg_wait_time_s of 11.32 on asymmetric demand.",
+      "fact": "11.32",
+      "kind": "result",
+      "group": "result:actuated|asymmetric|avg_wait_time_s"
+    },
+    {
+      "question": "On asymmetric demand, what was the avg_wait_time_s of actuated?",
+      "answer": "On asymmetric demand actuated recorded avg_wait_time_s of 11.32.",
+      "fact": "11.32",
+      "kind": "result",
+      "group": "result:actuated|asymmetric|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the actuated avg_wait_time_s result on asymmetric?",
+      "answer": "The actuated avg_wait_time_s result on asymmetric is a 3-seed mean of 11.32 with standard deviation 0.66.",
+      "fact": "11.32",
+      "kind": "result",
+      "group": "result:actuated|asymmetric|avg_wait_time_s"
+    },
+    {
+      "question": "What throughput_veh did actuated achieve on peak demand?",
+      "answer": "actuated achieved throughput_veh of 425.33 on peak demand.",
+      "fact": "425.33",
+      "kind": "result",
+      "group": "result:actuated|peak|throughput_veh"
+    },
+    {
+      "question": "On peak demand, what was the throughput_veh of actuated?",
+      "answer": "On peak demand actuated recorded throughput_veh of 425.33.",
+      "fact": "425.33",
+      "kind": "result",
+      "group": "result:actuated|peak|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the actuated throughput_veh result on peak?",
+      "answer": "The actuated throughput_veh result on peak is a 3-seed mean of 425.33 with standard deviation 42.93.",
+      "fact": "425.33",
+      "kind": "result",
+      "group": "result:actuated|peak|throughput_veh"
+    },
+    {
+      "question": "What throughput_veh did marl_independent achieve on base demand?",
+      "answer": "marl_independent achieved throughput_veh of 1679.67 on base demand.",
+      "fact": "1679.67",
+      "kind": "result",
+      "group": "result:marl_independent|base|throughput_veh"
+    },
+    {
+      "question": "On base demand, what was the throughput_veh of marl_independent?",
+      "answer": "On base demand marl_independent recorded throughput_veh of 1679.67.",
+      "fact": "1679.67",
+      "kind": "result",
+      "group": "result:marl_independent|base|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the marl_independent throughput_veh result on base?",
+      "answer": "The marl_independent throughput_veh result on base is a 3-seed mean of 1679.67 with standard deviation 4.11.",
+      "fact": "1679.67",
+      "kind": "result",
+      "group": "result:marl_independent|base|throughput_veh"
+    },
+    {
+      "question": "How many phases does junction B2 run?",
+      "answer": "Junction B2 runs 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:B2"
+    },
+    {
+      "question": "What is the phase count of the program at B2?",
+      "answer": "The program at B2 has 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:B2"
+    },
+    {
+      "question": "What max_queue_len did fixed achieve on base demand?",
+      "answer": "fixed achieved max_queue_len of 427.67 on base demand.",
+      "fact": "427.67",
+      "kind": "result",
+      "group": "result:fixed|base|max_queue_len"
+    },
+    {
+      "question": "On base demand, what was the max_queue_len of fixed?",
+      "answer": "On base demand fixed recorded max_queue_len of 427.67.",
+      "fact": "427.67",
+      "kind": "result",
+      "group": "result:fixed|base|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the fixed max_queue_len result on base?",
+      "answer": "The fixed max_queue_len result on base is a 3-seed mean of 427.67 with standard deviation 176.42.",
+      "fact": "427.67",
+      "kind": "result",
+      "group": "result:fixed|base|max_queue_len"
+    },
+    {
+      "question": "What throughput_veh did fixed achieve on base demand?",
+      "answer": "fixed achieved throughput_veh of 1280.0 on base demand.",
+      "fact": "1280.0",
+      "kind": "result",
+      "group": "result:fixed|base|throughput_veh"
+    },
+    {
+      "question": "On base demand, what was the throughput_veh of fixed?",
+      "answer": "On base demand fixed recorded throughput_veh of 1280.0.",
+      "fact": "1280.0",
+      "kind": "result",
+      "group": "result:fixed|base|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the fixed throughput_veh result on base?",
+      "answer": "The fixed throughput_veh result on base is a 3-seed mean of 1280.0 with standard deviation 189.4.",
+      "fact": "1280.0",
+      "kind": "result",
+      "group": "result:fixed|base|throughput_veh"
+    },
+    {
+      "question": "What max_queue_len did marl_shared_w5nofair achieve on base demand?",
+      "answer": "marl_shared_w5nofair achieved max_queue_len of 42.33 on base demand.",
+      "fact": "42.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5nofair|base|max_queue_len"
+    },
+    {
+      "question": "On base demand, what was the max_queue_len of marl_shared_w5nofair?",
+      "answer": "On base demand marl_shared_w5nofair recorded max_queue_len of 42.33.",
+      "fact": "42.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5nofair|base|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5nofair max_queue_len result on base?",
+      "answer": "The marl_shared_w5nofair max_queue_len result on base is a 3-seed mean of 42.33 with standard deviation 2.05.",
+      "fact": "42.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5nofair|base|max_queue_len"
+    },
+    {
+      "question": "What avg_wait_time_s did fixed achieve on light demand?",
+      "answer": "fixed achieved avg_wait_time_s of 36.99 on light demand.",
+      "fact": "36.99",
+      "kind": "result",
+      "group": "result:fixed|light|avg_wait_time_s"
+    },
+    {
+      "question": "On light demand, what was the avg_wait_time_s of fixed?",
+      "answer": "On light demand fixed recorded avg_wait_time_s of 36.99.",
+      "fact": "36.99",
+      "kind": "result",
+      "group": "result:fixed|light|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the fixed avg_wait_time_s result on light?",
+      "answer": "The fixed avg_wait_time_s result on light is a 3-seed mean of 36.99 with standard deviation 1.24.",
+      "fact": "36.99",
+      "kind": "result",
+      "group": "result:fixed|light|avg_wait_time_s"
+    },
+    {
+      "question": "Where is junction C3 located?",
+      "answer": "Junction C3 is at x=400, y=600.",
+      "fact": "400",
+      "kind": "position",
+      "group": "position:C3"
+    },
+    {
+      "question": "Where is junction A3 located?",
+      "answer": "Junction A3 is at x=0, y=600.",
+      "fact": "0",
+      "kind": "position",
+      "group": "position:A3"
+    },
+    {
+      "question": "What avg_wait_time_s did marl_independent achieve on light demand?",
+      "answer": "marl_independent achieved avg_wait_time_s of 6.58 on light demand.",
+      "fact": "6.58",
+      "kind": "result",
+      "group": "result:marl_independent|light|avg_wait_time_s"
+    },
+    {
+      "question": "On light demand, what was the avg_wait_time_s of marl_independent?",
+      "answer": "On light demand marl_independent recorded avg_wait_time_s of 6.58.",
+      "fact": "6.58",
+      "kind": "result",
+      "group": "result:marl_independent|light|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the marl_independent avg_wait_time_s result on light?",
+      "answer": "The marl_independent avg_wait_time_s result on light is a 3-seed mean of 6.58 with standard deviation 0.09.",
+      "fact": "6.58",
+      "kind": "result",
+      "group": "result:marl_independent|light|avg_wait_time_s"
+    },
+    {
+      "question": "What avg_wait_time_s did marl_shared_w5 achieve on light demand?",
+      "answer": "marl_shared_w5 achieved avg_wait_time_s of 6.7 on light demand.",
+      "fact": "6.7",
+      "kind": "result",
+      "group": "result:marl_shared_w5|light|avg_wait_time_s"
+    },
+    {
+      "question": "On light demand, what was the avg_wait_time_s of marl_shared_w5?",
+      "answer": "On light demand marl_shared_w5 recorded avg_wait_time_s of 6.7.",
+      "fact": "6.7",
+      "kind": "result",
+      "group": "result:marl_shared_w5|light|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5 avg_wait_time_s result on light?",
+      "answer": "The marl_shared_w5 avg_wait_time_s result on light is a 3-seed mean of 6.7 with standard deviation 0.2.",
+      "fact": "6.7",
+      "kind": "result",
+      "group": "result:marl_shared_w5|light|avg_wait_time_s"
+    },
+    {
+      "question": "What max_queue_len did marl_shared_w5 achieve on light demand?",
+      "answer": "marl_shared_w5 achieved max_queue_len of 16.0 on light demand.",
+      "fact": "16.0",
+      "kind": "result",
+      "group": "result:marl_shared_w5|light|max_queue_len"
+    },
+    {
+      "question": "On light demand, what was the max_queue_len of marl_shared_w5?",
+      "answer": "On light demand marl_shared_w5 recorded max_queue_len of 16.0.",
+      "fact": "16.0",
+      "kind": "result",
+      "group": "result:marl_shared_w5|light|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5 max_queue_len result on light?",
+      "answer": "The marl_shared_w5 max_queue_len result on light is a 3-seed mean of 16.0 with standard deviation 0.82.",
+      "fact": "16.0",
+      "kind": "result",
+      "group": "result:marl_shared_w5|light|max_queue_len"
+    },
+    {
+      "question": "Where is junction B1 located?",
+      "answer": "Junction B1 is at x=200, y=200.",
+      "fact": "200",
+      "kind": "position",
+      "group": "position:B1"
+    },
+    {
+      "question": "Where is junction D2 located?",
+      "answer": "Junction D2 is at x=600, y=400.",
+      "fact": "600",
+      "kind": "position",
+      "group": "position:D2"
+    },
+    {
+      "question": "How many phases does junction A2 run?",
+      "answer": "Junction A2 runs 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:A2"
+    },
+    {
+      "question": "What is the phase count of the program at A2?",
+      "answer": "The program at A2 has 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:A2"
+    },
+    {
+      "question": "Which junctions does B3 feed into?",
+      "answer": "B3 feeds into B2, C3.",
+      "fact": "B2",
+      "kind": "topology",
+      "group": "topology:B3"
+    },
+    {
+      "question": "What are the downstream junctions of B3?",
+      "answer": "The downstream junctions of B3 are B2, C3.",
+      "fact": "B2",
+      "kind": "topology",
+      "group": "topology:B3"
+    },
+    {
+      "question": "Where can traffic from B3 go next?",
+      "answer": "Traffic from B3 can go to B2, C3.",
+      "fact": "B2",
+      "kind": "topology",
+      "group": "topology:B3"
+    },
+    {
+      "question": "How many phases does junction C0 run?",
+      "answer": "Junction C0 runs 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:C0"
+    },
+    {
+      "question": "What is the phase count of the program at C0?",
+      "answer": "The program at C0 has 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:C0"
+    },
+    {
+      "question": "What avg_wait_time_s did actuated achieve on base demand?",
+      "answer": "actuated achieved avg_wait_time_s of 40.89 on base demand.",
+      "fact": "40.89",
+      "kind": "result",
+      "group": "result:actuated|base|avg_wait_time_s"
+    },
+    {
+      "question": "On base demand, what was the avg_wait_time_s of actuated?",
+      "answer": "On base demand actuated recorded avg_wait_time_s of 40.89.",
+      "fact": "40.89",
+      "kind": "result",
+      "group": "result:actuated|base|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the actuated avg_wait_time_s result on base?",
+      "answer": "The actuated avg_wait_time_s result on base is a 3-seed mean of 40.89 with standard deviation 2.88.",
+      "fact": "40.89",
+      "kind": "result",
+      "group": "result:actuated|base|avg_wait_time_s"
+    },
+    {
+      "question": "What max_queue_len did ppo_final_iterate achieve on base demand?",
+      "answer": "ppo_final_iterate achieved max_queue_len of 260.67 on base demand.",
+      "fact": "260.67",
+      "kind": "result",
+      "group": "result:ppo_final_iterate|base|max_queue_len"
+    },
+    {
+      "question": "On base demand, what was the max_queue_len of ppo_final_iterate?",
+      "answer": "On base demand ppo_final_iterate recorded max_queue_len of 260.67.",
+      "fact": "260.67",
+      "kind": "result",
+      "group": "result:ppo_final_iterate|base|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the ppo_final_iterate max_queue_len result on base?",
+      "answer": "The ppo_final_iterate max_queue_len result on base is a 3-seed mean of 260.67 with standard deviation 182.72.",
+      "fact": "260.67",
+      "kind": "result",
+      "group": "result:ppo_final_iterate|base|max_queue_len"
+    },
+    {
+      "question": "What throughput_veh did marl_shared_w5 achieve on light demand?",
+      "answer": "marl_shared_w5 achieved throughput_veh of 855.33 on light demand.",
+      "fact": "855.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5|light|throughput_veh"
+    },
+    {
+      "question": "On light demand, what was the throughput_veh of marl_shared_w5?",
+      "answer": "On light demand marl_shared_w5 recorded throughput_veh of 855.33.",
+      "fact": "855.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5|light|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5 throughput_veh result on light?",
+      "answer": "The marl_shared_w5 throughput_veh result on light is a 3-seed mean of 855.33 with standard deviation 1.25.",
+      "fact": "855.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5|light|throughput_veh"
+    },
+    {
+      "question": "How many sensors does junction A1 have?",
+      "answer": "Junction A1 has 3 sensors.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:A1"
+    },
+    {
+      "question": "How many detector loops are installed at A1?",
+      "answer": "There are 3 detector loops at A1.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:A1"
+    },
+    {
+      "question": "Where is junction C0 located?",
+      "answer": "Junction C0 is at x=400, y=0.",
+      "fact": "400",
+      "kind": "position",
+      "group": "position:C0"
+    },
+    {
+      "question": "What throughput_veh did marl_independent achieve on asymmetric demand?",
+      "answer": "marl_independent achieved throughput_veh of 1320.33 on asymmetric demand.",
+      "fact": "1320.33",
+      "kind": "result",
+      "group": "result:marl_independent|asymmetric|throughput_veh"
+    },
+    {
+      "question": "On asymmetric demand, what was the throughput_veh of marl_independent?",
+      "answer": "On asymmetric demand marl_independent recorded throughput_veh of 1320.33.",
+      "fact": "1320.33",
+      "kind": "result",
+      "group": "result:marl_independent|asymmetric|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the marl_independent throughput_veh result on asymmetric?",
+      "answer": "The marl_independent throughput_veh result on asymmetric is a 3-seed mean of 1320.33 with standard deviation 0.47.",
+      "fact": "1320.33",
+      "kind": "result",
+      "group": "result:marl_independent|asymmetric|throughput_veh"
+    },
+    {
+      "question": "How long is the signal cycle at junction B0?",
+      "answer": "The signal cycle at B0 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:B0"
+    },
+    {
+      "question": "What is the cycle time of B0?",
+      "answer": "The cycle time of B0 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:B0"
+    },
+    {
+      "question": "How many sensors does junction B3 have?",
+      "answer": "Junction B3 has 3 sensors.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:B3"
+    },
+    {
+      "question": "How many detector loops are installed at B3?",
+      "answer": "There are 3 detector loops at B3.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:B3"
+    },
+    {
+      "question": "What avg_wait_time_s did marl_shared_w5nocoord achieve on base demand?",
+      "answer": "marl_shared_w5nocoord achieved avg_wait_time_s of 18.16 on base demand.",
+      "fact": "18.16",
+      "kind": "result",
+      "group": "result:marl_shared_w5nocoord|base|avg_wait_time_s"
+    },
+    {
+      "question": "On base demand, what was the avg_wait_time_s of marl_shared_w5nocoord?",
+      "answer": "On base demand marl_shared_w5nocoord recorded avg_wait_time_s of 18.16.",
+      "fact": "18.16",
+      "kind": "result",
+      "group": "result:marl_shared_w5nocoord|base|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5nocoord avg_wait_time_s result on base?",
+      "answer": "The marl_shared_w5nocoord avg_wait_time_s result on base is a 3-seed mean of 18.16 with standard deviation 0.14.",
+      "fact": "18.16",
+      "kind": "result",
+      "group": "result:marl_shared_w5nocoord|base|avg_wait_time_s"
+    },
+    {
+      "question": "What avg_wait_time_s did fixed achieve on peak demand?",
+      "answer": "fixed achieved avg_wait_time_s of 68.87 on peak demand.",
+      "fact": "68.87",
+      "kind": "result",
+      "group": "result:fixed|peak|avg_wait_time_s"
+    },
+    {
+      "question": "On peak demand, what was the avg_wait_time_s of fixed?",
+      "answer": "On peak demand fixed recorded avg_wait_time_s of 68.87.",
+      "fact": "68.87",
+      "kind": "result",
+      "group": "result:fixed|peak|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the fixed avg_wait_time_s result on peak?",
+      "answer": "The fixed avg_wait_time_s result on peak is a 3-seed mean of 68.87 with standard deviation 6.39.",
+      "fact": "68.87",
+      "kind": "result",
+      "group": "result:fixed|peak|avg_wait_time_s"
+    },
+    {
+      "question": "How many junctions does B0 feed into?",
+      "answer": "B0 feeds into 2 junctions.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:B0"
+    },
+    {
+      "question": "What is the out-degree of junction B0?",
+      "answer": "Junction B0 has an out-degree of 2.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:B0"
+    },
+    {
+      "question": "Where is junction B3 located?",
+      "answer": "Junction B3 is at x=200, y=600.",
+      "fact": "200",
+      "kind": "position",
+      "group": "position:B3"
+    },
+    {
+      "question": "How many junctions does C3 feed into?",
+      "answer": "C3 feeds into 2 junctions.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:C3"
+    },
+    {
+      "question": "What is the out-degree of junction C3?",
+      "answer": "Junction C3 has an out-degree of 2.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:C3"
+    },
+    {
+      "question": "How many junctions does C0 feed into?",
+      "answer": "C0 feeds into 2 junctions.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:C0"
+    },
+    {
+      "question": "What is the out-degree of junction C0?",
+      "answer": "Junction C0 has an out-degree of 2.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:C0"
+    },
+    {
+      "question": "Which junctions does C1 feed into?",
+      "answer": "C1 feeds into B1, C0, C2, D1.",
+      "fact": "B1",
+      "kind": "topology",
+      "group": "topology:C1"
+    },
+    {
+      "question": "What are the downstream junctions of C1?",
+      "answer": "The downstream junctions of C1 are B1, C0, C2, D1.",
+      "fact": "B1",
+      "kind": "topology",
+      "group": "topology:C1"
+    },
+    {
+      "question": "Where can traffic from C1 go next?",
+      "answer": "Traffic from C1 can go to B1, C0, C2, D1.",
+      "fact": "B1",
+      "kind": "topology",
+      "group": "topology:C1"
+    },
+    {
+      "question": "How many sensors does junction C0 have?",
+      "answer": "Junction C0 has 3 sensors.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:C0"
+    },
+    {
+      "question": "How many detector loops are installed at C0?",
+      "answer": "There are 3 detector loops at C0.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:C0"
+    },
+    {
+      "question": "Where is junction B2 located?",
+      "answer": "Junction B2 is at x=200, y=400.",
+      "fact": "200",
+      "kind": "position",
+      "group": "position:B2"
+    },
+    {
+      "question": "What avg_wait_time_s did actuated_single achieve on base demand?",
+      "answer": "actuated_single achieved avg_wait_time_s of 78.54 on base demand.",
+      "fact": "78.54",
+      "kind": "result",
+      "group": "result:actuated_single|base|avg_wait_time_s"
+    },
+    {
+      "question": "On base demand, what was the avg_wait_time_s of actuated_single?",
+      "answer": "On base demand actuated_single recorded avg_wait_time_s of 78.54.",
+      "fact": "78.54",
+      "kind": "result",
+      "group": "result:actuated_single|base|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the actuated_single avg_wait_time_s result on base?",
+      "answer": "The actuated_single avg_wait_time_s result on base is a 3-seed mean of 78.54 with standard deviation 2.93.",
+      "fact": "78.54",
+      "kind": "result",
+      "group": "result:actuated_single|base|avg_wait_time_s"
+    },
+    {
+      "question": "Which junctions does B0 feed into?",
+      "answer": "B0 feeds into B1, C0.",
+      "fact": "B1",
+      "kind": "topology",
+      "group": "topology:B0"
+    },
+    {
+      "question": "What are the downstream junctions of B0?",
+      "answer": "The downstream junctions of B0 are B1, C0.",
+      "fact": "B1",
+      "kind": "topology",
+      "group": "topology:B0"
+    },
+    {
+      "question": "Where can traffic from B0 go next?",
+      "answer": "Traffic from B0 can go to B1, C0.",
+      "fact": "B1",
+      "kind": "topology",
+      "group": "topology:B0"
+    },
+    {
+      "question": "How many incoming lanes does junction A2 have?",
+      "answer": "Junction A2 has 3 incoming lanes.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:A2"
+    },
+    {
+      "question": "What is the incoming lane count at A2?",
+      "answer": "The incoming lane count at A2 is 3.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:A2"
+    },
+    {
+      "question": "Which junctions does A1 feed into?",
+      "answer": "A1 feeds into A2, B1.",
+      "fact": "A2",
+      "kind": "topology",
+      "group": "topology:A1"
+    },
+    {
+      "question": "What are the downstream junctions of A1?",
+      "answer": "The downstream junctions of A1 are A2, B1.",
+      "fact": "A2",
+      "kind": "topology",
+      "group": "topology:A1"
+    },
+    {
+      "question": "Where can traffic from A1 go next?",
+      "answer": "Traffic from A1 can go to A2, B1.",
+      "fact": "A2",
+      "kind": "topology",
+      "group": "topology:A1"
+    },
+    {
+      "question": "How long is the signal cycle at junction B3?",
+      "answer": "The signal cycle at B3 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:B3"
+    },
+    {
+      "question": "What is the cycle time of B3?",
+      "answer": "The cycle time of B3 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:B3"
+    },
+    {
+      "question": "How many junctions does A2 feed into?",
+      "answer": "A2 feeds into 2 junctions.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:A2"
+    },
+    {
+      "question": "What is the out-degree of junction A2?",
+      "answer": "Junction A2 has an out-degree of 2.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:A2"
+    },
+    {
+      "question": "What max_queue_len did marl_independent achieve on asymmetric demand?",
+      "answer": "marl_independent achieved max_queue_len of 27.0 on asymmetric demand.",
+      "fact": "27.0",
+      "kind": "result",
+      "group": "result:marl_independent|asymmetric|max_queue_len"
+    },
+    {
+      "question": "On asymmetric demand, what was the max_queue_len of marl_independent?",
+      "answer": "On asymmetric demand marl_independent recorded max_queue_len of 27.0.",
+      "fact": "27.0",
+      "kind": "result",
+      "group": "result:marl_independent|asymmetric|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the marl_independent max_queue_len result on asymmetric?",
+      "answer": "The marl_independent max_queue_len result on asymmetric is a 3-seed mean of 27.0 with standard deviation 2.94.",
+      "fact": "27.0",
+      "kind": "result",
+      "group": "result:marl_independent|asymmetric|max_queue_len"
+    },
+    {
+      "question": "How many incoming lanes does junction A0 have?",
+      "answer": "Junction A0 has 2 incoming lanes.",
+      "fact": "2",
+      "kind": "lanes",
+      "group": "lanes:A0"
+    },
+    {
+      "question": "What is the incoming lane count at A0?",
+      "answer": "The incoming lane count at A0 is 2.",
+      "fact": "2",
+      "kind": "lanes",
+      "group": "lanes:A0"
+    },
+    {
+      "question": "How many incoming lanes does junction C1 have?",
+      "answer": "Junction C1 has 4 incoming lanes.",
+      "fact": "4",
+      "kind": "lanes",
+      "group": "lanes:C1"
+    },
+    {
+      "question": "What is the incoming lane count at C1?",
+      "answer": "The incoming lane count at C1 is 4.",
+      "fact": "4",
+      "kind": "lanes",
+      "group": "lanes:C1"
+    },
+    {
+      "question": "What avg_wait_time_s did fixed achieve on asymmetric demand?",
+      "answer": "fixed achieved avg_wait_time_s of 54.15 on asymmetric demand.",
+      "fact": "54.15",
+      "kind": "result",
+      "group": "result:fixed|asymmetric|avg_wait_time_s"
+    },
+    {
+      "question": "On asymmetric demand, what was the avg_wait_time_s of fixed?",
+      "answer": "On asymmetric demand fixed recorded avg_wait_time_s of 54.15.",
+      "fact": "54.15",
+      "kind": "result",
+      "group": "result:fixed|asymmetric|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the fixed avg_wait_time_s result on asymmetric?",
+      "answer": "The fixed avg_wait_time_s result on asymmetric is a 3-seed mean of 54.15 with standard deviation 0.75.",
+      "fact": "54.15",
+      "kind": "result",
+      "group": "result:fixed|asymmetric|avg_wait_time_s"
+    },
+    {
+      "question": "What throughput_veh did marl_shared_w5gnn achieve on base demand?",
+      "answer": "marl_shared_w5gnn achieved throughput_veh of 1678.67 on base demand.",
+      "fact": "1678.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5gnn|base|throughput_veh"
+    },
+    {
+      "question": "On base demand, what was the throughput_veh of marl_shared_w5gnn?",
+      "answer": "On base demand marl_shared_w5gnn recorded throughput_veh of 1678.67.",
+      "fact": "1678.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5gnn|base|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5gnn throughput_veh result on base?",
+      "answer": "The marl_shared_w5gnn throughput_veh result on base is a 3-seed mean of 1678.67 with standard deviation 6.65.",
+      "fact": "1678.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5gnn|base|throughput_veh"
+    },
+    {
+      "question": "How long is the signal cycle at junction B1?",
+      "answer": "The signal cycle at B1 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:B1"
+    },
+    {
+      "question": "What is the cycle time of B1?",
+      "answer": "The cycle time of B1 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:B1"
+    },
+    {
+      "question": "How many junctions does C1 feed into?",
+      "answer": "C1 feeds into 4 junctions.",
+      "fact": "4",
+      "kind": "degree",
+      "group": "degree:C1"
+    },
+    {
+      "question": "What is the out-degree of junction C1?",
+      "answer": "Junction C1 has an out-degree of 4.",
+      "fact": "4",
+      "kind": "degree",
+      "group": "degree:C1"
+    },
+    {
+      "question": "How many phases does junction D2 run?",
+      "answer": "Junction D2 runs 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:D2"
+    },
+    {
+      "question": "What is the phase count of the program at D2?",
+      "answer": "The program at D2 has 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:D2"
+    },
+    {
+      "question": "How many incoming lanes does junction C0 have?",
+      "answer": "Junction C0 has 3 incoming lanes.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:C0"
+    },
+    {
+      "question": "What is the incoming lane count at C0?",
+      "answer": "The incoming lane count at C0 is 3.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:C0"
+    },
+    {
+      "question": "How many junctions does B3 feed into?",
+      "answer": "B3 feeds into 2 junctions.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:B3"
+    },
+    {
+      "question": "What is the out-degree of junction B3?",
+      "answer": "Junction B3 has an out-degree of 2.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:B3"
+    },
+    {
+      "question": "How many incoming lanes does junction C2 have?",
+      "answer": "Junction C2 has 4 incoming lanes.",
+      "fact": "4",
+      "kind": "lanes",
+      "group": "lanes:C2"
+    },
+    {
+      "question": "What is the incoming lane count at C2?",
+      "answer": "The incoming lane count at C2 is 4.",
+      "fact": "4",
+      "kind": "lanes",
+      "group": "lanes:C2"
+    },
+    {
+      "question": "How long is the signal cycle at junction D2?",
+      "answer": "The signal cycle at D2 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:D2"
+    },
+    {
+      "question": "What is the cycle time of D2?",
+      "answer": "The cycle time of D2 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:D2"
+    },
+    {
+      "question": "Where is junction B0 located?",
+      "answer": "Junction B0 is at x=200, y=0.",
+      "fact": "200",
+      "kind": "position",
+      "group": "position:B0"
+    },
+    {
+      "question": "What avg_wait_time_s did marl_shared_w5 achieve on asymmetric demand?",
+      "answer": "marl_shared_w5 achieved avg_wait_time_s of 10.76 on asymmetric demand.",
+      "fact": "10.76",
+      "kind": "result",
+      "group": "result:marl_shared_w5|asymmetric|avg_wait_time_s"
+    },
+    {
+      "question": "On asymmetric demand, what was the avg_wait_time_s of marl_shared_w5?",
+      "answer": "On asymmetric demand marl_shared_w5 recorded avg_wait_time_s of 10.76.",
+      "fact": "10.76",
+      "kind": "result",
+      "group": "result:marl_shared_w5|asymmetric|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5 avg_wait_time_s result on asymmetric?",
+      "answer": "The marl_shared_w5 avg_wait_time_s result on asymmetric is a 3-seed mean of 10.76 with standard deviation 0.34.",
+      "fact": "10.76",
+      "kind": "result",
+      "group": "result:marl_shared_w5|asymmetric|avg_wait_time_s"
+    },
+    {
+      "question": "What throughput_veh did fixed achieve on peak demand?",
+      "answer": "fixed achieved throughput_veh of 279.0 on peak demand.",
+      "fact": "279.0",
+      "kind": "result",
+      "group": "result:fixed|peak|throughput_veh"
+    },
+    {
+      "question": "On peak demand, what was the throughput_veh of fixed?",
+      "answer": "On peak demand fixed recorded throughput_veh of 279.0.",
+      "fact": "279.0",
+      "kind": "result",
+      "group": "result:fixed|peak|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the fixed throughput_veh result on peak?",
+      "answer": "The fixed throughput_veh result on peak is a 3-seed mean of 279.0 with standard deviation 9.42.",
+      "fact": "279.0",
+      "kind": "result",
+      "group": "result:fixed|peak|throughput_veh"
+    },
+    {
+      "question": "What throughput_veh did marl_shared_w5 achieve on asymmetric demand?",
+      "answer": "marl_shared_w5 achieved throughput_veh of 1322.67 on asymmetric demand.",
+      "fact": "1322.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5|asymmetric|throughput_veh"
+    },
+    {
+      "question": "On asymmetric demand, what was the throughput_veh of marl_shared_w5?",
+      "answer": "On asymmetric demand marl_shared_w5 recorded throughput_veh of 1322.67.",
+      "fact": "1322.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5|asymmetric|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5 throughput_veh result on asymmetric?",
+      "answer": "The marl_shared_w5 throughput_veh result on asymmetric is a 3-seed mean of 1322.67 with standard deviation 1.89.",
+      "fact": "1322.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5|asymmetric|throughput_veh"
+    },
+    {
+      "question": "What avg_wait_time_s did ppo achieve on base demand?",
+      "answer": "ppo achieved avg_wait_time_s of 73.31 on base demand.",
+      "fact": "73.31",
+      "kind": "result",
+      "group": "result:ppo|base|avg_wait_time_s"
+    },
+    {
+      "question": "On base demand, what was the avg_wait_time_s of ppo?",
+      "answer": "On base demand ppo recorded avg_wait_time_s of 73.31.",
+      "fact": "73.31",
+      "kind": "result",
+      "group": "result:ppo|base|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the ppo avg_wait_time_s result on base?",
+      "answer": "The ppo avg_wait_time_s result on base is a 3-seed mean of 73.31 with standard deviation 5.53.",
+      "fact": "73.31",
+      "kind": "result",
+      "group": "result:ppo|base|avg_wait_time_s"
+    },
+    {
+      "question": "How many incoming lanes does junction B1 have?",
+      "answer": "Junction B1 has 4 incoming lanes.",
+      "fact": "4",
+      "kind": "lanes",
+      "group": "lanes:B1"
+    },
+    {
+      "question": "What is the incoming lane count at B1?",
+      "answer": "The incoming lane count at B1 is 4.",
+      "fact": "4",
+      "kind": "lanes",
+      "group": "lanes:B1"
+    },
+    {
+      "question": "What is the value of the delta_time_s rule?",
+      "answer": "The delta_time_s rule is set to 5.",
+      "fact": "5",
+      "kind": "rule",
+      "group": "rule:delta_time_s"
+    },
+    {
+      "question": "What does delta_time_s control and what is it set to?",
+      "answer": "delta_time_s is a signal-timing constant set to 5.",
+      "fact": "5",
+      "kind": "rule",
+      "group": "rule:delta_time_s"
+    },
+    {
+      "question": "Where is junction D1 located?",
+      "answer": "Junction D1 is at x=600, y=200.",
+      "fact": "600",
+      "kind": "position",
+      "group": "position:D1"
+    },
+    {
+      "question": "How many incoming lanes does junction D3 have?",
+      "answer": "Junction D3 has 2 incoming lanes.",
+      "fact": "2",
+      "kind": "lanes",
+      "group": "lanes:D3"
+    },
+    {
+      "question": "What is the incoming lane count at D3?",
+      "answer": "The incoming lane count at D3 is 2.",
+      "fact": "2",
+      "kind": "lanes",
+      "group": "lanes:D3"
+    },
+    {
+      "question": "What max_queue_len did actuated achieve on peak demand?",
+      "answer": "actuated achieved max_queue_len of 1144.33 on peak demand.",
+      "fact": "1144.33",
+      "kind": "result",
+      "group": "result:actuated|peak|max_queue_len"
+    },
+    {
+      "question": "On peak demand, what was the max_queue_len of actuated?",
+      "answer": "On peak demand actuated recorded max_queue_len of 1144.33.",
+      "fact": "1144.33",
+      "kind": "result",
+      "group": "result:actuated|peak|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the actuated max_queue_len result on peak?",
+      "answer": "The actuated max_queue_len result on peak is a 3-seed mean of 1144.33 with standard deviation 7.93.",
+      "fact": "1144.33",
+      "kind": "result",
+      "group": "result:actuated|peak|max_queue_len"
+    },
+    {
+      "question": "How many sensors does junction C2 have?",
+      "answer": "Junction C2 has 4 sensors.",
+      "fact": "4",
+      "kind": "sensors",
+      "group": "sensors:C2"
+    },
+    {
+      "question": "How many detector loops are installed at C2?",
+      "answer": "There are 4 detector loops at C2.",
+      "fact": "4",
+      "kind": "sensors",
+      "group": "sensors:C2"
+    },
+    {
+      "question": "Where is junction C2 located?",
+      "answer": "Junction C2 is at x=400, y=400.",
+      "fact": "400",
+      "kind": "position",
+      "group": "position:C2"
+    },
+    {
+      "question": "Which junctions does C0 feed into?",
+      "answer": "C0 feeds into B0, C1.",
+      "fact": "B0",
+      "kind": "topology",
+      "group": "topology:C0"
+    },
+    {
+      "question": "What are the downstream junctions of C0?",
+      "answer": "The downstream junctions of C0 are B0, C1.",
+      "fact": "B0",
+      "kind": "topology",
+      "group": "topology:C0"
+    },
+    {
+      "question": "Where can traffic from C0 go next?",
+      "answer": "Traffic from C0 can go to B0, C1.",
+      "fact": "B0",
+      "kind": "topology",
+      "group": "topology:C0"
+    },
+    {
+      "question": "What throughput_veh did fixed achieve on asymmetric demand?",
+      "answer": "fixed achieved throughput_veh of 1269.67 on asymmetric demand.",
+      "fact": "1269.67",
+      "kind": "result",
+      "group": "result:fixed|asymmetric|throughput_veh"
+    },
+    {
+      "question": "On asymmetric demand, what was the throughput_veh of fixed?",
+      "answer": "On asymmetric demand fixed recorded throughput_veh of 1269.67.",
+      "fact": "1269.67",
+      "kind": "result",
+      "group": "result:fixed|asymmetric|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the fixed throughput_veh result on asymmetric?",
+      "answer": "The fixed throughput_veh result on asymmetric is a 3-seed mean of 1269.67 with standard deviation 6.34.",
+      "fact": "1269.67",
+      "kind": "result",
+      "group": "result:fixed|asymmetric|throughput_veh"
+    },
+    {
+      "question": "How many incoming lanes does junction B3 have?",
+      "answer": "Junction B3 has 3 incoming lanes.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:B3"
+    },
+    {
+      "question": "What is the incoming lane count at B3?",
+      "answer": "The incoming lane count at B3 is 3.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:B3"
+    },
+    {
+      "question": "How many incoming lanes does junction B0 have?",
+      "answer": "Junction B0 has 3 incoming lanes.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:B0"
+    },
+    {
+      "question": "What is the incoming lane count at B0?",
+      "answer": "The incoming lane count at B0 is 3.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:B0"
+    },
+    {
+      "question": "What avg_wait_time_s did fixed achieve on base demand?",
+      "answer": "fixed achieved avg_wait_time_s of 83.1 on base demand.",
+      "fact": "83.1",
+      "kind": "result",
+      "group": "result:fixed|base|avg_wait_time_s"
+    },
+    {
+      "question": "On base demand, what was the avg_wait_time_s of fixed?",
+      "answer": "On base demand fixed recorded avg_wait_time_s of 83.1.",
+      "fact": "83.1",
+      "kind": "result",
+      "group": "result:fixed|base|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the fixed avg_wait_time_s result on base?",
+      "answer": "The fixed avg_wait_time_s result on base is a 3-seed mean of 83.1 with standard deviation 1.62.",
+      "fact": "83.1",
+      "kind": "result",
+      "group": "result:fixed|base|avg_wait_time_s"
+    },
+    {
+      "question": "What avg_wait_time_s did marl_shared_w5strong achieve on base demand?",
+      "answer": "marl_shared_w5strong achieved avg_wait_time_s of 18.16 on base demand.",
+      "fact": "18.16",
+      "kind": "result",
+      "group": "result:marl_shared_w5strong|base|avg_wait_time_s"
+    },
+    {
+      "question": "On base demand, what was the avg_wait_time_s of marl_shared_w5strong?",
+      "answer": "On base demand marl_shared_w5strong recorded avg_wait_time_s of 18.16.",
+      "fact": "18.16",
+      "kind": "result",
+      "group": "result:marl_shared_w5strong|base|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5strong avg_wait_time_s result on base?",
+      "answer": "The marl_shared_w5strong avg_wait_time_s result on base is a 3-seed mean of 18.16 with standard deviation 0.14.",
+      "fact": "18.16",
+      "kind": "result",
+      "group": "result:marl_shared_w5strong|base|avg_wait_time_s"
+    },
+    {
+      "question": "How long is the signal cycle at junction B2?",
+      "answer": "The signal cycle at B2 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:B2"
+    },
+    {
+      "question": "What is the cycle time of B2?",
+      "answer": "The cycle time of B2 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:B2"
+    },
+    {
+      "question": "How many phases does junction B3 run?",
+      "answer": "Junction B3 runs 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:B3"
+    },
+    {
+      "question": "What is the phase count of the program at B3?",
+      "answer": "The program at B3 has 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:B3"
+    },
+    {
+      "question": "How many junctions does B2 feed into?",
+      "answer": "B2 feeds into 4 junctions.",
+      "fact": "4",
+      "kind": "degree",
+      "group": "degree:B2"
+    },
+    {
+      "question": "What is the out-degree of junction B2?",
+      "answer": "Junction B2 has an out-degree of 4.",
+      "fact": "4",
+      "kind": "degree",
+      "group": "degree:B2"
+    },
+    {
+      "question": "How many sensors does junction B1 have?",
+      "answer": "Junction B1 has 4 sensors.",
+      "fact": "4",
+      "kind": "sensors",
+      "group": "sensors:B1"
+    },
+    {
+      "question": "How many detector loops are installed at B1?",
+      "answer": "There are 4 detector loops at B1.",
+      "fact": "4",
+      "kind": "sensors",
+      "group": "sensors:B1"
+    },
+    {
+      "question": "What throughput_veh did marl_shared_w5nofair achieve on base demand?",
+      "answer": "marl_shared_w5nofair achieved throughput_veh of 1678.67 on base demand.",
+      "fact": "1678.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5nofair|base|throughput_veh"
+    },
+    {
+      "question": "On base demand, what was the throughput_veh of marl_shared_w5nofair?",
+      "answer": "On base demand marl_shared_w5nofair recorded throughput_veh of 1678.67.",
+      "fact": "1678.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5nofair|base|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5nofair throughput_veh result on base?",
+      "answer": "The marl_shared_w5nofair throughput_veh result on base is a 3-seed mean of 1678.67 with standard deviation 6.65.",
+      "fact": "1678.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5nofair|base|throughput_veh"
+    },
+    {
+      "question": "How many sensors does junction D2 have?",
+      "answer": "Junction D2 has 3 sensors.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:D2"
+    },
+    {
+      "question": "How many detector loops are installed at D2?",
+      "answer": "There are 3 detector loops at D2.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:D2"
+    },
+    {
+      "question": "Which junctions does D2 feed into?",
+      "answer": "D2 feeds into C2, D1.",
+      "fact": "C2",
+      "kind": "topology",
+      "group": "topology:D2"
+    },
+    {
+      "question": "What are the downstream junctions of D2?",
+      "answer": "The downstream junctions of D2 are C2, D1.",
+      "fact": "C2",
+      "kind": "topology",
+      "group": "topology:D2"
+    },
+    {
+      "question": "Where can traffic from D2 go next?",
+      "answer": "Traffic from D2 can go to C2, D1.",
+      "fact": "C2",
+      "kind": "topology",
+      "group": "topology:D2"
+    },
+    {
+      "question": "What throughput_veh did marl_shared_w5nocoord achieve on base demand?",
+      "answer": "marl_shared_w5nocoord achieved throughput_veh of 1678.67 on base demand.",
+      "fact": "1678.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5nocoord|base|throughput_veh"
+    },
+    {
+      "question": "On base demand, what was the throughput_veh of marl_shared_w5nocoord?",
+      "answer": "On base demand marl_shared_w5nocoord recorded throughput_veh of 1678.67.",
+      "fact": "1678.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5nocoord|base|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5nocoord throughput_veh result on base?",
+      "answer": "The marl_shared_w5nocoord throughput_veh result on base is a 3-seed mean of 1678.67 with standard deviation 6.65.",
+      "fact": "1678.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5nocoord|base|throughput_veh"
+    },
+    {
+      "question": "What throughput_veh did actuated achieve on asymmetric demand?",
+      "answer": "actuated achieved throughput_veh of 1320.0 on asymmetric demand.",
+      "fact": "1320.0",
+      "kind": "result",
+      "group": "result:actuated|asymmetric|throughput_veh"
+    },
+    {
+      "question": "On asymmetric demand, what was the throughput_veh of actuated?",
+      "answer": "On asymmetric demand actuated recorded throughput_veh of 1320.0.",
+      "fact": "1320.0",
+      "kind": "result",
+      "group": "result:actuated|asymmetric|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the actuated throughput_veh result on asymmetric?",
+      "answer": "The actuated throughput_veh result on asymmetric is a 3-seed mean of 1320.0 with standard deviation 2.16.",
+      "fact": "1320.0",
+      "kind": "result",
+      "group": "result:actuated|asymmetric|throughput_veh"
+    },
+    {
+      "question": "What avg_wait_time_s did marl_independent achieve on peak demand?",
+      "answer": "marl_independent achieved avg_wait_time_s of 42.51 on peak demand.",
+      "fact": "42.51",
+      "kind": "result",
+      "group": "result:marl_independent|peak|avg_wait_time_s"
+    },
+    {
+      "question": "On peak demand, what was the avg_wait_time_s of marl_independent?",
+      "answer": "On peak demand marl_independent recorded avg_wait_time_s of 42.51.",
+      "fact": "42.51",
+      "kind": "result",
+      "group": "result:marl_independent|peak|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the marl_independent avg_wait_time_s result on peak?",
+      "answer": "The marl_independent avg_wait_time_s result on peak is a 3-seed mean of 42.51 with standard deviation 5.61.",
+      "fact": "42.51",
+      "kind": "result",
+      "group": "result:marl_independent|peak|avg_wait_time_s"
+    },
+    {
+      "question": "Where is junction C1 located?",
+      "answer": "Junction C1 is at x=400, y=200.",
+      "fact": "400",
+      "kind": "position",
+      "group": "position:C1"
+    },
+    {
+      "question": "What throughput_veh did actuated achieve on base demand?",
+      "answer": "actuated achieved throughput_veh of 1646.67 on base demand.",
+      "fact": "1646.67",
+      "kind": "result",
+      "group": "result:actuated|base|throughput_veh"
+    },
+    {
+      "question": "On base demand, what was the throughput_veh of actuated?",
+      "answer": "On base demand actuated recorded throughput_veh of 1646.67.",
+      "fact": "1646.67",
+      "kind": "result",
+      "group": "result:actuated|base|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the actuated throughput_veh result on base?",
+      "answer": "The actuated throughput_veh result on base is a 3-seed mean of 1646.67 with standard deviation 3.4.",
+      "fact": "1646.67",
+      "kind": "result",
+      "group": "result:actuated|base|throughput_veh"
+    },
+    {
+      "question": "What throughput_veh did marl_independent achieve on peak demand?",
+      "answer": "marl_independent achieved throughput_veh of 528.33 on peak demand.",
+      "fact": "528.33",
+      "kind": "result",
+      "group": "result:marl_independent|peak|throughput_veh"
+    },
+    {
+      "question": "On peak demand, what was the throughput_veh of marl_independent?",
+      "answer": "On peak demand marl_independent recorded throughput_veh of 528.33.",
+      "fact": "528.33",
+      "kind": "result",
+      "group": "result:marl_independent|peak|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the marl_independent throughput_veh result on peak?",
+      "answer": "The marl_independent throughput_veh result on peak is a 3-seed mean of 528.33 with standard deviation 8.18.",
+      "fact": "528.33",
+      "kind": "result",
+      "group": "result:marl_independent|peak|throughput_veh"
+    },
+    {
+      "question": "How long is the signal cycle at junction A1?",
+      "answer": "The signal cycle at A1 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:A1"
+    },
+    {
+      "question": "What is the cycle time of A1?",
+      "answer": "The cycle time of A1 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:A1"
+    },
+    {
+      "question": "How many phases does junction C2 run?",
+      "answer": "Junction C2 runs 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:C2"
+    },
+    {
+      "question": "What is the phase count of the program at C2?",
+      "answer": "The program at C2 has 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:C2"
+    },
+    {
+      "question": "What max_queue_len did actuated achieve on base demand?",
+      "answer": "actuated achieved max_queue_len of 76.33 on base demand.",
+      "fact": "76.33",
+      "kind": "result",
+      "group": "result:actuated|base|max_queue_len"
+    },
+    {
+      "question": "On base demand, what was the max_queue_len of actuated?",
+      "answer": "On base demand actuated recorded max_queue_len of 76.33.",
+      "fact": "76.33",
+      "kind": "result",
+      "group": "result:actuated|base|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the actuated max_queue_len result on base?",
+      "answer": "The actuated max_queue_len result on base is a 3-seed mean of 76.33 with standard deviation 1.7.",
+      "fact": "76.33",
+      "kind": "result",
+      "group": "result:actuated|base|max_queue_len"
+    },
+    {
+      "question": "What avg_wait_time_s did marl_independent achieve on asymmetric demand?",
+      "answer": "marl_independent achieved avg_wait_time_s of 10.86 on asymmetric demand.",
+      "fact": "10.86",
+      "kind": "result",
+      "group": "result:marl_independent|asymmetric|avg_wait_time_s"
+    },
+    {
+      "question": "On asymmetric demand, what was the avg_wait_time_s of marl_independent?",
+      "answer": "On asymmetric demand marl_independent recorded avg_wait_time_s of 10.86.",
+      "fact": "10.86",
+      "kind": "result",
+      "group": "result:marl_independent|asymmetric|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the marl_independent avg_wait_time_s result on asymmetric?",
+      "answer": "The marl_independent avg_wait_time_s result on asymmetric is a 3-seed mean of 10.86 with standard deviation 0.48.",
+      "fact": "10.86",
+      "kind": "result",
+      "group": "result:marl_independent|asymmetric|avg_wait_time_s"
+    },
+    {
+      "question": "Which junctions does B2 feed into?",
+      "answer": "B2 feeds into A2, B1, B3, C2.",
+      "fact": "A2",
+      "kind": "topology",
+      "group": "topology:B2"
+    },
+    {
+      "question": "What are the downstream junctions of B2?",
+      "answer": "The downstream junctions of B2 are A2, B1, B3, C2.",
+      "fact": "A2",
+      "kind": "topology",
+      "group": "topology:B2"
+    },
+    {
+      "question": "Where can traffic from B2 go next?",
+      "answer": "Traffic from B2 can go to A2, B1, B3, C2.",
+      "fact": "A2",
+      "kind": "topology",
+      "group": "topology:B2"
+    },
+    {
+      "question": "How many incoming lanes does junction D2 have?",
+      "answer": "Junction D2 has 3 incoming lanes.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:D2"
+    },
+    {
+      "question": "What is the incoming lane count at D2?",
+      "answer": "The incoming lane count at D2 is 3.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:D2"
+    },
+    {
+      "question": "What max_queue_len did marl_shared_w5gnn achieve on base demand?",
+      "answer": "marl_shared_w5gnn achieved max_queue_len of 42.33 on base demand.",
+      "fact": "42.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5gnn|base|max_queue_len"
+    },
+    {
+      "question": "On base demand, what was the max_queue_len of marl_shared_w5gnn?",
+      "answer": "On base demand marl_shared_w5gnn recorded max_queue_len of 42.33.",
+      "fact": "42.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5gnn|base|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5gnn max_queue_len result on base?",
+      "answer": "The marl_shared_w5gnn max_queue_len result on base is a 3-seed mean of 42.33 with standard deviation 2.05.",
+      "fact": "42.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5gnn|base|max_queue_len"
+    },
+    {
+      "question": "What max_queue_len did ppo achieve on base demand?",
+      "answer": "ppo achieved max_queue_len of 260.67 on base demand.",
+      "fact": "260.67",
+      "kind": "result",
+      "group": "result:ppo|base|max_queue_len"
+    },
+    {
+      "question": "On base demand, what was the max_queue_len of ppo?",
+      "answer": "On base demand ppo recorded max_queue_len of 260.67.",
+      "fact": "260.67",
+      "kind": "result",
+      "group": "result:ppo|base|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the ppo max_queue_len result on base?",
+      "answer": "The ppo max_queue_len result on base is a 3-seed mean of 260.67 with standard deviation 182.72.",
+      "fact": "260.67",
+      "kind": "result",
+      "group": "result:ppo|base|max_queue_len"
+    },
+    {
+      "question": "What max_queue_len did marl_independent achieve on base demand?",
+      "answer": "marl_independent achieved max_queue_len of 41.0 on base demand.",
+      "fact": "41.0",
+      "kind": "result",
+      "group": "result:marl_independent|base|max_queue_len"
+    },
+    {
+      "question": "On base demand, what was the max_queue_len of marl_independent?",
+      "answer": "On base demand marl_independent recorded max_queue_len of 41.0.",
+      "fact": "41.0",
+      "kind": "result",
+      "group": "result:marl_independent|base|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the marl_independent max_queue_len result on base?",
+      "answer": "The marl_independent max_queue_len result on base is a 3-seed mean of 41.0 with standard deviation 2.83.",
+      "fact": "41.0",
+      "kind": "result",
+      "group": "result:marl_independent|base|max_queue_len"
+    },
+    {
+      "question": "What avg_wait_time_s did ppo_final_iterate achieve on base demand?",
+      "answer": "ppo_final_iterate achieved avg_wait_time_s of 73.31 on base demand.",
+      "fact": "73.31",
+      "kind": "result",
+      "group": "result:ppo_final_iterate|base|avg_wait_time_s"
+    },
+    {
+      "question": "On base demand, what was the avg_wait_time_s of ppo_final_iterate?",
+      "answer": "On base demand ppo_final_iterate recorded avg_wait_time_s of 73.31.",
+      "fact": "73.31",
+      "kind": "result",
+      "group": "result:ppo_final_iterate|base|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the ppo_final_iterate avg_wait_time_s result on base?",
+      "answer": "The ppo_final_iterate avg_wait_time_s result on base is a 3-seed mean of 73.31 with standard deviation 5.53.",
+      "fact": "73.31",
+      "kind": "result",
+      "group": "result:ppo_final_iterate|base|avg_wait_time_s"
+    },
+    {
+      "question": "What throughput_veh did marl_shared_w5strong achieve on base demand?",
+      "answer": "marl_shared_w5strong achieved throughput_veh of 1678.67 on base demand.",
+      "fact": "1678.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5strong|base|throughput_veh"
+    },
+    {
+      "question": "On base demand, what was the throughput_veh of marl_shared_w5strong?",
+      "answer": "On base demand marl_shared_w5strong recorded throughput_veh of 1678.67.",
+      "fact": "1678.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5strong|base|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5strong throughput_veh result on base?",
+      "answer": "The marl_shared_w5strong throughput_veh result on base is a 3-seed mean of 1678.67 with standard deviation 6.65.",
+      "fact": "1678.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5strong|base|throughput_veh"
+    },
+    {
+      "question": "How many sensors does junction B2 have?",
+      "answer": "Junction B2 has 4 sensors.",
+      "fact": "4",
+      "kind": "sensors",
+      "group": "sensors:B2"
+    },
+    {
+      "question": "How many detector loops are installed at B2?",
+      "answer": "There are 4 detector loops at B2.",
+      "fact": "4",
+      "kind": "sensors",
+      "group": "sensors:B2"
+    },
+    {
+      "question": "What throughput_veh did actuated_single achieve on base demand?",
+      "answer": "actuated_single achieved throughput_veh of 1596.0 on base demand.",
+      "fact": "1596.0",
+      "kind": "result",
+      "group": "result:actuated_single|base|throughput_veh"
+    },
+    {
+      "question": "On base demand, what was the throughput_veh of actuated_single?",
+      "answer": "On base demand actuated_single recorded throughput_veh of 1596.0.",
+      "fact": "1596.0",
+      "kind": "result",
+      "group": "result:actuated_single|base|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the actuated_single throughput_veh result on base?",
+      "answer": "The actuated_single throughput_veh result on base is a 3-seed mean of 1596.0 with standard deviation 15.94.",
+      "fact": "1596.0",
+      "kind": "result",
+      "group": "result:actuated_single|base|throughput_veh"
+    },
+    {
+      "question": "How many phases does junction D1 run?",
+      "answer": "Junction D1 runs 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:D1"
+    },
+    {
+      "question": "What is the phase count of the program at D1?",
+      "answer": "The program at D1 has 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:D1"
+    },
+    {
+      "question": "How many incoming lanes does junction A1 have?",
+      "answer": "Junction A1 has 3 incoming lanes.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:A1"
+    },
+    {
+      "question": "What is the incoming lane count at A1?",
+      "answer": "The incoming lane count at A1 is 3.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:A1"
+    },
+    {
+      "question": "How long is the signal cycle at junction C0?",
+      "answer": "The signal cycle at C0 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:C0"
+    },
+    {
+      "question": "What is the cycle time of C0?",
+      "answer": "The cycle time of C0 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:C0"
+    },
+    {
+      "question": "How long is the signal cycle at junction C3?",
+      "answer": "The signal cycle at C3 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:C3"
+    },
+    {
+      "question": "What is the cycle time of C3?",
+      "answer": "The cycle time of C3 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:C3"
+    },
+    {
+      "question": "Where is junction A0 located?",
+      "answer": "Junction A0 is at x=0, y=0.",
+      "fact": "0",
+      "kind": "position",
+      "group": "position:A0"
+    },
+    {
+      "question": "Which junctions does C3 feed into?",
+      "answer": "C3 feeds into B3, C2.",
+      "fact": "B3",
+      "kind": "topology",
+      "group": "topology:C3"
+    },
+    {
+      "question": "What are the downstream junctions of C3?",
+      "answer": "The downstream junctions of C3 are B3, C2.",
+      "fact": "B3",
+      "kind": "topology",
+      "group": "topology:C3"
+    },
+    {
+      "question": "Where can traffic from C3 go next?",
+      "answer": "Traffic from C3 can go to B3, C2.",
+      "fact": "B3",
+      "kind": "topology",
+      "group": "topology:C3"
+    },
+    {
+      "question": "How many junctions does D2 feed into?",
+      "answer": "D2 feeds into 2 junctions.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:D2"
+    },
+    {
+      "question": "What is the out-degree of junction D2?",
+      "answer": "Junction D2 has an out-degree of 2.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:D2"
+    },
+    {
+      "question": "How long is the signal cycle at junction A2?",
+      "answer": "The signal cycle at A2 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:A2"
+    },
+    {
+      "question": "What is the cycle time of A2?",
+      "answer": "The cycle time of A2 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:A2"
+    },
+    {
+      "question": "What max_queue_len did actuated_single achieve on base demand?",
+      "answer": "actuated_single achieved max_queue_len of 146.0 on base demand.",
+      "fact": "146.0",
+      "kind": "result",
+      "group": "result:actuated_single|base|max_queue_len"
+    },
+    {
+      "question": "On base demand, what was the max_queue_len of actuated_single?",
+      "answer": "On base demand actuated_single recorded max_queue_len of 146.0.",
+      "fact": "146.0",
+      "kind": "result",
+      "group": "result:actuated_single|base|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the actuated_single max_queue_len result on base?",
+      "answer": "The actuated_single max_queue_len result on base is a 3-seed mean of 146.0 with standard deviation 0.82.",
+      "fact": "146.0",
+      "kind": "result",
+      "group": "result:actuated_single|base|max_queue_len"
+    },
+    {
+      "question": "What max_queue_len did marl_shared_w5strong achieve on base demand?",
+      "answer": "marl_shared_w5strong achieved max_queue_len of 42.33 on base demand.",
+      "fact": "42.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5strong|base|max_queue_len"
+    },
+    {
+      "question": "On base demand, what was the max_queue_len of marl_shared_w5strong?",
+      "answer": "On base demand marl_shared_w5strong recorded max_queue_len of 42.33.",
+      "fact": "42.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5strong|base|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5strong max_queue_len result on base?",
+      "answer": "The marl_shared_w5strong max_queue_len result on base is a 3-seed mean of 42.33 with standard deviation 2.05.",
+      "fact": "42.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5strong|base|max_queue_len"
+    },
+    {
+      "question": "How many sensors does junction A2 have?",
+      "answer": "Junction A2 has 3 sensors.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:A2"
+    },
+    {
+      "question": "How many detector loops are installed at A2?",
+      "answer": "There are 3 detector loops at A2.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:A2"
+    },
+    {
+      "question": "What avg_wait_time_s did marl_shared_w5 achieve on peak demand?",
+      "answer": "marl_shared_w5 achieved avg_wait_time_s of 39.24 on peak demand.",
+      "fact": "39.24",
+      "kind": "result",
+      "group": "result:marl_shared_w5|peak|avg_wait_time_s"
+    },
+    {
+      "question": "On peak demand, what was the avg_wait_time_s of marl_shared_w5?",
+      "answer": "On peak demand marl_shared_w5 recorded avg_wait_time_s of 39.24.",
+      "fact": "39.24",
+      "kind": "result",
+      "group": "result:marl_shared_w5|peak|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5 avg_wait_time_s result on peak?",
+      "answer": "The marl_shared_w5 avg_wait_time_s result on peak is a 3-seed mean of 39.24 with standard deviation 3.26.",
+      "fact": "39.24",
+      "kind": "result",
+      "group": "result:marl_shared_w5|peak|avg_wait_time_s"
+    },
+    {
+      "question": "How many phases does junction B0 run?",
+      "answer": "Junction B0 runs 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:B0"
+    },
+    {
+      "question": "What is the phase count of the program at B0?",
+      "answer": "The program at B0 has 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:B0"
+    },
+    {
+      "question": "How many phases does junction A1 run?",
+      "answer": "Junction A1 runs 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:A1"
+    },
+    {
+      "question": "What is the phase count of the program at A1?",
+      "answer": "The program at A1 has 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:A1"
+    },
+    {
+      "question": "How many sensors does junction C3 have?",
+      "answer": "Junction C3 has 3 sensors.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:C3"
+    },
+    {
+      "question": "How many detector loops are installed at C3?",
+      "answer": "There are 3 detector loops at C3.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:C3"
+    },
+    {
+      "question": "Which junctions does A2 feed into?",
+      "answer": "A2 feeds into A1, B2.",
+      "fact": "A1",
+      "kind": "topology",
+      "group": "topology:A2"
+    },
+    {
+      "question": "What are the downstream junctions of A2?",
+      "answer": "The downstream junctions of A2 are A1, B2.",
+      "fact": "A1",
+      "kind": "topology",
+      "group": "topology:A2"
+    },
+    {
+      "question": "Where can traffic from A2 go next?",
+      "answer": "Traffic from A2 can go to A1, B2.",
+      "fact": "A1",
+      "kind": "topology",
+      "group": "topology:A2"
+    },
+    {
+      "question": "How many junctions does C2 feed into?",
+      "answer": "C2 feeds into 4 junctions.",
+      "fact": "4",
+      "kind": "degree",
+      "group": "degree:C2"
+    },
+    {
+      "question": "What is the out-degree of junction C2?",
+      "answer": "Junction C2 has an out-degree of 4.",
+      "fact": "4",
+      "kind": "degree",
+      "group": "degree:C2"
+    },
+    {
+      "question": "What max_queue_len did marl_shared_w5 achieve on base demand?",
+      "answer": "marl_shared_w5 achieved max_queue_len of 149.67 on base demand.",
+      "fact": "149.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5|base|max_queue_len"
+    },
+    {
+      "question": "On base demand, what was the max_queue_len of marl_shared_w5?",
+      "answer": "On base demand marl_shared_w5 recorded max_queue_len of 149.67.",
+      "fact": "149.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5|base|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5 max_queue_len result on base?",
+      "answer": "The marl_shared_w5 max_queue_len result on base is a 3-seed mean of 149.67 with standard deviation 150.15.",
+      "fact": "149.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5|base|max_queue_len"
+    },
+    {
+      "question": "What is the value of the max_green_s rule?",
+      "answer": "The max_green_s rule is set to 90.",
+      "fact": "90",
+      "kind": "rule",
+      "group": "rule:max_green_s"
+    },
+    {
+      "question": "What does max_green_s control and what is it set to?",
+      "answer": "max_green_s is a signal-timing constant set to 90.",
+      "fact": "90",
+      "kind": "rule",
+      "group": "rule:max_green_s"
+    },
+    {
+      "question": "Where is junction A1 located?",
+      "answer": "Junction A1 is at x=0, y=200.",
+      "fact": "0",
+      "kind": "position",
+      "group": "position:A1"
+    },
+    {
+      "question": "What max_queue_len did fixed achieve on peak demand?",
+      "answer": "fixed achieved max_queue_len of 1158.33 on peak demand.",
+      "fact": "1158.33",
+      "kind": "result",
+      "group": "result:fixed|peak|max_queue_len"
+    },
+    {
+      "question": "On peak demand, what was the max_queue_len of fixed?",
+      "answer": "On peak demand fixed recorded max_queue_len of 1158.33.",
+      "fact": "1158.33",
+      "kind": "result",
+      "group": "result:fixed|peak|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the fixed max_queue_len result on peak?",
+      "answer": "The fixed max_queue_len result on peak is a 3-seed mean of 1158.33 with standard deviation 1.25.",
+      "fact": "1158.33",
+      "kind": "result",
+      "group": "result:fixed|peak|max_queue_len"
+    },
+    {
+      "question": "How many phases does junction B1 run?",
+      "answer": "Junction B1 runs 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:B1"
+    },
+    {
+      "question": "What is the phase count of the program at B1?",
+      "answer": "The program at B1 has 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:B1"
+    },
+    {
+      "question": "Where is junction A2 located?",
+      "answer": "Junction A2 is at x=0, y=400.",
+      "fact": "0",
+      "kind": "position",
+      "group": "position:A2"
+    },
+    {
+      "question": "What is the value of the episode_s rule?",
+      "answer": "The episode_s rule is set to 1800.",
+      "fact": "1800",
+      "kind": "rule",
+      "group": "rule:episode_s"
+    },
+    {
+      "question": "What does episode_s control and what is it set to?",
+      "answer": "episode_s is a signal-timing constant set to 1800.",
+      "fact": "1800",
+      "kind": "rule",
+      "group": "rule:episode_s"
+    },
+    {
+      "question": "What max_queue_len did marl_independent achieve on peak demand?",
+      "answer": "marl_independent achieved max_queue_len of 1139.33 on peak demand.",
+      "fact": "1139.33",
+      "kind": "result",
+      "group": "result:marl_independent|peak|max_queue_len"
+    },
+    {
+      "question": "On peak demand, what was the max_queue_len of marl_independent?",
+      "answer": "On peak demand marl_independent recorded max_queue_len of 1139.33.",
+      "fact": "1139.33",
+      "kind": "result",
+      "group": "result:marl_independent|peak|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the marl_independent max_queue_len result on peak?",
+      "answer": "The marl_independent max_queue_len result on peak is a 3-seed mean of 1139.33 with standard deviation 5.91.",
+      "fact": "1139.33",
+      "kind": "result",
+      "group": "result:marl_independent|peak|max_queue_len"
+    },
+    {
+      "question": "How long is the signal cycle at junction C1?",
+      "answer": "The signal cycle at C1 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:C1"
+    },
+    {
+      "question": "What is the cycle time of C1?",
+      "answer": "The cycle time of C1 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:C1"
+    },
+    {
+      "question": "What max_queue_len did actuated achieve on light demand?",
+      "answer": "actuated achieved max_queue_len of 11.33 on light demand.",
+      "fact": "11.33",
+      "kind": "result",
+      "group": "result:actuated|light|max_queue_len"
+    },
+    {
+      "question": "On light demand, what was the max_queue_len of actuated?",
+      "answer": "On light demand actuated recorded max_queue_len of 11.33.",
+      "fact": "11.33",
+      "kind": "result",
+      "group": "result:actuated|light|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the actuated max_queue_len result on light?",
+      "answer": "The actuated max_queue_len result on light is a 3-seed mean of 11.33 with standard deviation 0.47.",
+      "fact": "11.33",
+      "kind": "result",
+      "group": "result:actuated|light|max_queue_len"
+    },
+    {
+      "question": "How many junctions does A1 feed into?",
+      "answer": "A1 feeds into 2 junctions.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:A1"
+    },
+    {
+      "question": "What is the out-degree of junction A1?",
+      "answer": "Junction A1 has an out-degree of 2.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:A1"
+    },
+    {
+      "question": "What max_queue_len did marl_independent achieve on light demand?",
+      "answer": "marl_independent achieved max_queue_len of 16.0 on light demand.",
+      "fact": "16.0",
+      "kind": "result",
+      "group": "result:marl_independent|light|max_queue_len"
+    },
+    {
+      "question": "On light demand, what was the max_queue_len of marl_independent?",
+      "answer": "On light demand marl_independent recorded max_queue_len of 16.0.",
+      "fact": "16.0",
+      "kind": "result",
+      "group": "result:marl_independent|light|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the marl_independent max_queue_len result on light?",
+      "answer": "The marl_independent max_queue_len result on light is a 3-seed mean of 16.0 with standard deviation 0.82.",
+      "fact": "16.0",
+      "kind": "result",
+      "group": "result:marl_independent|light|max_queue_len"
+    },
+    {
+      "question": "How many incoming lanes does junction C3 have?",
+      "answer": "Junction C3 has 3 incoming lanes.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:C3"
+    },
+    {
+      "question": "What is the incoming lane count at C3?",
+      "answer": "The incoming lane count at C3 is 3.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:C3"
+    },
+    {
+      "question": "How many junctions does B1 feed into?",
+      "answer": "B1 feeds into 4 junctions.",
+      "fact": "4",
+      "kind": "degree",
+      "group": "degree:B1"
+    },
+    {
+      "question": "What is the out-degree of junction B1?",
+      "answer": "Junction B1 has an out-degree of 4.",
+      "fact": "4",
+      "kind": "degree",
+      "group": "degree:B1"
+    },
+    {
+      "question": "How many incoming lanes does junction A3 have?",
+      "answer": "Junction A3 has 2 incoming lanes.",
+      "fact": "2",
+      "kind": "lanes",
+      "group": "lanes:A3"
+    },
+    {
+      "question": "What is the incoming lane count at A3?",
+      "answer": "The incoming lane count at A3 is 2.",
+      "fact": "2",
+      "kind": "lanes",
+      "group": "lanes:A3"
+    }
+  ],
+  "held_out": [
+    {
+      "question": "Which junctions does C2 feed into?",
+      "answer": "C2 feeds into B2, C1, C3, D2.",
+      "fact": "B2",
+      "kind": "topology",
+      "group": "topology:C2"
+    },
+    {
+      "question": "What are the downstream junctions of C2?",
+      "answer": "The downstream junctions of C2 are B2, C1, C3, D2.",
+      "fact": "B2",
+      "kind": "topology",
+      "group": "topology:C2"
+    },
+    {
+      "question": "Where can traffic from C2 go next?",
+      "answer": "Traffic from C2 can go to B2, C1, C3, D2.",
+      "fact": "B2",
+      "kind": "topology",
+      "group": "topology:C2"
+    },
+    {
+      "question": "What throughput_veh did ppo_final_iterate achieve on base demand?",
+      "answer": "ppo_final_iterate achieved throughput_veh of 1469.33 on base demand.",
+      "fact": "1469.33",
+      "kind": "result",
+      "group": "result:ppo_final_iterate|base|throughput_veh"
+    },
+    {
+      "question": "On base demand, what was the throughput_veh of ppo_final_iterate?",
+      "answer": "On base demand ppo_final_iterate recorded throughput_veh of 1469.33.",
+      "fact": "1469.33",
+      "kind": "result",
+      "group": "result:ppo_final_iterate|base|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the ppo_final_iterate throughput_veh result on base?",
+      "answer": "The ppo_final_iterate throughput_veh result on base is a 3-seed mean of 1469.33 with standard deviation 193.99.",
+      "fact": "1469.33",
+      "kind": "result",
+      "group": "result:ppo_final_iterate|base|throughput_veh"
+    },
+    {
+      "question": "What avg_wait_time_s did marl_shared_w5nofair achieve on base demand?",
+      "answer": "marl_shared_w5nofair achieved avg_wait_time_s of 18.16 on base demand.",
+      "fact": "18.16",
+      "kind": "result",
+      "group": "result:marl_shared_w5nofair|base|avg_wait_time_s"
+    },
+    {
+      "question": "On base demand, what was the avg_wait_time_s of marl_shared_w5nofair?",
+      "answer": "On base demand marl_shared_w5nofair recorded avg_wait_time_s of 18.16.",
+      "fact": "18.16",
+      "kind": "result",
+      "group": "result:marl_shared_w5nofair|base|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5nofair avg_wait_time_s result on base?",
+      "answer": "The marl_shared_w5nofair avg_wait_time_s result on base is a 3-seed mean of 18.16 with standard deviation 0.14.",
+      "fact": "18.16",
+      "kind": "result",
+      "group": "result:marl_shared_w5nofair|base|avg_wait_time_s"
+    },
+    {
+      "question": "Which junctions does B1 feed into?",
+      "answer": "B1 feeds into A1, B0, B2, C1.",
+      "fact": "A1",
+      "kind": "topology",
+      "group": "topology:B1"
+    },
+    {
+      "question": "What are the downstream junctions of B1?",
+      "answer": "The downstream junctions of B1 are A1, B0, B2, C1.",
+      "fact": "A1",
+      "kind": "topology",
+      "group": "topology:B1"
+    },
+    {
+      "question": "Where can traffic from B1 go next?",
+      "answer": "Traffic from B1 can go to A1, B0, B2, C1.",
+      "fact": "A1",
+      "kind": "topology",
+      "group": "topology:B1"
+    },
+    {
+      "question": "Where is junction D0 located?",
+      "answer": "Junction D0 is at x=600, y=0.",
+      "fact": "600",
+      "kind": "position",
+      "group": "position:D0"
+    },
+    {
+      "question": "What avg_wait_time_s did actuated achieve on peak demand?",
+      "answer": "actuated achieved avg_wait_time_s of 71.19 on peak demand.",
+      "fact": "71.19",
+      "kind": "result",
+      "group": "result:actuated|peak|avg_wait_time_s"
+    },
+    {
+      "question": "On peak demand, what was the avg_wait_time_s of actuated?",
+      "answer": "On peak demand actuated recorded avg_wait_time_s of 71.19.",
+      "fact": "71.19",
+      "kind": "result",
+      "group": "result:actuated|peak|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the actuated avg_wait_time_s result on peak?",
+      "answer": "The actuated avg_wait_time_s result on peak is a 3-seed mean of 71.19 with standard deviation 11.17.",
+      "fact": "71.19",
+      "kind": "result",
+      "group": "result:actuated|peak|avg_wait_time_s"
+    },
+    {
+      "question": "What max_queue_len did marl_shared_w5nocoord achieve on base demand?",
+      "answer": "marl_shared_w5nocoord achieved max_queue_len of 42.33 on base demand.",
+      "fact": "42.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5nocoord|base|max_queue_len"
+    },
+    {
+      "question": "On base demand, what was the max_queue_len of marl_shared_w5nocoord?",
+      "answer": "On base demand marl_shared_w5nocoord recorded max_queue_len of 42.33.",
+      "fact": "42.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5nocoord|base|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5nocoord max_queue_len result on base?",
+      "answer": "The marl_shared_w5nocoord max_queue_len result on base is a 3-seed mean of 42.33 with standard deviation 2.05.",
+      "fact": "42.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5nocoord|base|max_queue_len"
+    },
+    {
+      "question": "What max_queue_len did fixed achieve on light demand?",
+      "answer": "fixed achieved max_queue_len of 47.0 on light demand.",
+      "fact": "47.0",
+      "kind": "result",
+      "group": "result:fixed|light|max_queue_len"
+    },
+    {
+      "question": "On light demand, what was the max_queue_len of fixed?",
+      "answer": "On light demand fixed recorded max_queue_len of 47.0.",
+      "fact": "47.0",
+      "kind": "result",
+      "group": "result:fixed|light|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the fixed max_queue_len result on light?",
+      "answer": "The fixed max_queue_len result on light is a 3-seed mean of 47.0 with standard deviation 1.63.",
+      "fact": "47.0",
+      "kind": "result",
+      "group": "result:fixed|light|max_queue_len"
+    },
+    {
+      "question": "How many sensors does junction B0 have?",
+      "answer": "Junction B0 has 3 sensors.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:B0"
+    },
+    {
+      "question": "How many detector loops are installed at B0?",
+      "answer": "There are 3 detector loops at B0.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:B0"
+    },
+    {
+      "question": "What max_queue_len did marl_shared_w5 achieve on asymmetric demand?",
+      "answer": "marl_shared_w5 achieved max_queue_len of 26.0 on asymmetric demand.",
+      "fact": "26.0",
+      "kind": "result",
+      "group": "result:marl_shared_w5|asymmetric|max_queue_len"
+    },
+    {
+      "question": "On asymmetric demand, what was the max_queue_len of marl_shared_w5?",
+      "answer": "On asymmetric demand marl_shared_w5 recorded max_queue_len of 26.0.",
+      "fact": "26.0",
+      "kind": "result",
+      "group": "result:marl_shared_w5|asymmetric|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5 max_queue_len result on asymmetric?",
+      "answer": "The marl_shared_w5 max_queue_len result on asymmetric is a 3-seed mean of 26.0 with standard deviation 1.63.",
+      "fact": "26.0",
+      "kind": "result",
+      "group": "result:marl_shared_w5|asymmetric|max_queue_len"
+    },
+    {
+      "question": "What max_queue_len did fixed achieve on asymmetric demand?",
+      "answer": "fixed achieved max_queue_len of 89.0 on asymmetric demand.",
+      "fact": "89.0",
+      "kind": "result",
+      "group": "result:fixed|asymmetric|max_queue_len"
+    },
+    {
+      "question": "On asymmetric demand, what was the max_queue_len of fixed?",
+      "answer": "On asymmetric demand fixed recorded max_queue_len of 89.0.",
+      "fact": "89.0",
+      "kind": "result",
+      "group": "result:fixed|asymmetric|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the fixed max_queue_len result on asymmetric?",
+      "answer": "The fixed max_queue_len result on asymmetric is a 3-seed mean of 89.0 with standard deviation 2.16.",
+      "fact": "89.0",
+      "kind": "result",
+      "group": "result:fixed|asymmetric|max_queue_len"
+    },
+    {
+      "question": "How many incoming lanes does junction B2 have?",
+      "answer": "Junction B2 has 4 incoming lanes.",
+      "fact": "4",
+      "kind": "lanes",
+      "group": "lanes:B2"
+    },
+    {
+      "question": "What is the incoming lane count at B2?",
+      "answer": "The incoming lane count at B2 is 4.",
+      "fact": "4",
+      "kind": "lanes",
+      "group": "lanes:B2"
+    },
+    {
+      "question": "How many incoming lanes does junction D1 have?",
+      "answer": "Junction D1 has 3 incoming lanes.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:D1"
+    },
+    {
+      "question": "What is the incoming lane count at D1?",
+      "answer": "The incoming lane count at D1 is 3.",
+      "fact": "3",
+      "kind": "lanes",
+      "group": "lanes:D1"
+    },
+    {
+      "question": "What throughput_veh did actuated achieve on light demand?",
+      "answer": "actuated achieved throughput_veh of 859.33 on light demand.",
+      "fact": "859.33",
+      "kind": "result",
+      "group": "result:actuated|light|throughput_veh"
+    },
+    {
+      "question": "On light demand, what was the throughput_veh of actuated?",
+      "answer": "On light demand actuated recorded throughput_veh of 859.33.",
+      "fact": "859.33",
+      "kind": "result",
+      "group": "result:actuated|light|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the actuated throughput_veh result on light?",
+      "answer": "The actuated throughput_veh result on light is a 3-seed mean of 859.33 with standard deviation 1.25.",
+      "fact": "859.33",
+      "kind": "result",
+      "group": "result:actuated|light|throughput_veh"
+    },
+    {
+      "question": "How many phases does junction C3 run?",
+      "answer": "Junction C3 runs 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:C3"
+    },
+    {
+      "question": "What is the phase count of the program at C3?",
+      "answer": "The program at C3 has 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:C3"
+    },
+    {
+      "question": "What throughput_veh did ppo achieve on base demand?",
+      "answer": "ppo achieved throughput_veh of 1469.33 on base demand.",
+      "fact": "1469.33",
+      "kind": "result",
+      "group": "result:ppo|base|throughput_veh"
+    },
+    {
+      "question": "On base demand, what was the throughput_veh of ppo?",
+      "answer": "On base demand ppo recorded throughput_veh of 1469.33.",
+      "fact": "1469.33",
+      "kind": "result",
+      "group": "result:ppo|base|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the ppo throughput_veh result on base?",
+      "answer": "The ppo throughput_veh result on base is a 3-seed mean of 1469.33 with standard deviation 193.99.",
+      "fact": "1469.33",
+      "kind": "result",
+      "group": "result:ppo|base|throughput_veh"
+    },
+    {
+      "question": "How long is the signal cycle at junction C2?",
+      "answer": "The signal cycle at C2 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:C2"
+    },
+    {
+      "question": "What is the cycle time of C2?",
+      "answer": "The cycle time of C2 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:C2"
+    },
+    {
+      "question": "How many incoming lanes does junction D0 have?",
+      "answer": "Junction D0 has 2 incoming lanes.",
+      "fact": "2",
+      "kind": "lanes",
+      "group": "lanes:D0"
+    },
+    {
+      "question": "What is the incoming lane count at D0?",
+      "answer": "The incoming lane count at D0 is 2.",
+      "fact": "2",
+      "kind": "lanes",
+      "group": "lanes:D0"
+    },
+    {
+      "question": "How many sensors does junction D1 have?",
+      "answer": "Junction D1 has 3 sensors.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:D1"
+    },
+    {
+      "question": "How many detector loops are installed at D1?",
+      "answer": "There are 3 detector loops at D1.",
+      "fact": "3",
+      "kind": "sensors",
+      "group": "sensors:D1"
+    },
+    {
+      "question": "What max_queue_len did actuated achieve on asymmetric demand?",
+      "answer": "actuated achieved max_queue_len of 22.33 on asymmetric demand.",
+      "fact": "22.33",
+      "kind": "result",
+      "group": "result:actuated|asymmetric|max_queue_len"
+    },
+    {
+      "question": "On asymmetric demand, what was the max_queue_len of actuated?",
+      "answer": "On asymmetric demand actuated recorded max_queue_len of 22.33.",
+      "fact": "22.33",
+      "kind": "result",
+      "group": "result:actuated|asymmetric|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the actuated max_queue_len result on asymmetric?",
+      "answer": "The actuated max_queue_len result on asymmetric is a 3-seed mean of 22.33 with standard deviation 1.25.",
+      "fact": "22.33",
+      "kind": "result",
+      "group": "result:actuated|asymmetric|max_queue_len"
+    },
+    {
+      "question": "How many phases does junction C1 run?",
+      "answer": "Junction C1 runs 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:C1"
+    },
+    {
+      "question": "What is the phase count of the program at C1?",
+      "answer": "The program at C1 has 4 phases.",
+      "fact": "4",
+      "kind": "phases",
+      "group": "phases:C1"
+    },
+    {
+      "question": "What max_queue_len did marl_shared_w5 achieve on peak demand?",
+      "answer": "marl_shared_w5 achieved max_queue_len of 1136.33 on peak demand.",
+      "fact": "1136.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5|peak|max_queue_len"
+    },
+    {
+      "question": "On peak demand, what was the max_queue_len of marl_shared_w5?",
+      "answer": "On peak demand marl_shared_w5 recorded max_queue_len of 1136.33.",
+      "fact": "1136.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5|peak|max_queue_len"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5 max_queue_len result on peak?",
+      "answer": "The marl_shared_w5 max_queue_len result on peak is a 3-seed mean of 1136.33 with standard deviation 1.25.",
+      "fact": "1136.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5|peak|max_queue_len"
+    },
+    {
+      "question": "Where is junction D3 located?",
+      "answer": "Junction D3 is at x=600, y=600.",
+      "fact": "600",
+      "kind": "position",
+      "group": "position:D3"
+    },
+    {
+      "question": "How many sensors does junction C1 have?",
+      "answer": "Junction C1 has 4 sensors.",
+      "fact": "4",
+      "kind": "sensors",
+      "group": "sensors:C1"
+    },
+    {
+      "question": "How many detector loops are installed at C1?",
+      "answer": "There are 4 detector loops at C1.",
+      "fact": "4",
+      "kind": "sensors",
+      "group": "sensors:C1"
+    },
+    {
+      "question": "What throughput_veh did fixed achieve on light demand?",
+      "answer": "fixed achieved throughput_veh of 836.33 on light demand.",
+      "fact": "836.33",
+      "kind": "result",
+      "group": "result:fixed|light|throughput_veh"
+    },
+    {
+      "question": "On light demand, what was the throughput_veh of fixed?",
+      "answer": "On light demand fixed recorded throughput_veh of 836.33.",
+      "fact": "836.33",
+      "kind": "result",
+      "group": "result:fixed|light|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the fixed throughput_veh result on light?",
+      "answer": "The fixed throughput_veh result on light is a 3-seed mean of 836.33 with standard deviation 0.47.",
+      "fact": "836.33",
+      "kind": "result",
+      "group": "result:fixed|light|throughput_veh"
+    },
+    {
+      "question": "What avg_wait_time_s did marl_shared_w5 achieve on base demand?",
+      "answer": "marl_shared_w5 achieved avg_wait_time_s of 17.85 on base demand.",
+      "fact": "17.85",
+      "kind": "result",
+      "group": "result:marl_shared_w5|base|avg_wait_time_s"
+    },
+    {
+      "question": "On base demand, what was the avg_wait_time_s of marl_shared_w5?",
+      "answer": "On base demand marl_shared_w5 recorded avg_wait_time_s of 17.85.",
+      "fact": "17.85",
+      "kind": "result",
+      "group": "result:marl_shared_w5|base|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5 avg_wait_time_s result on base?",
+      "answer": "The marl_shared_w5 avg_wait_time_s result on base is a 3-seed mean of 17.85 with standard deviation 0.38.",
+      "fact": "17.85",
+      "kind": "result",
+      "group": "result:marl_shared_w5|base|avg_wait_time_s"
+    },
+    {
+      "question": "What avg_wait_time_s did actuated achieve on light demand?",
+      "answer": "actuated achieved avg_wait_time_s of 6.35 on light demand.",
+      "fact": "6.35",
+      "kind": "result",
+      "group": "result:actuated|light|avg_wait_time_s"
+    },
+    {
+      "question": "On light demand, what was the avg_wait_time_s of actuated?",
+      "answer": "On light demand actuated recorded avg_wait_time_s of 6.35.",
+      "fact": "6.35",
+      "kind": "result",
+      "group": "result:actuated|light|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the actuated avg_wait_time_s result on light?",
+      "answer": "The actuated avg_wait_time_s result on light is a 3-seed mean of 6.35 with standard deviation 0.07.",
+      "fact": "6.35",
+      "kind": "result",
+      "group": "result:actuated|light|avg_wait_time_s"
+    },
+    {
+      "question": "What throughput_veh did marl_independent achieve on light demand?",
+      "answer": "marl_independent achieved throughput_veh of 855.0 on light demand.",
+      "fact": "855.0",
+      "kind": "result",
+      "group": "result:marl_independent|light|throughput_veh"
+    },
+    {
+      "question": "On light demand, what was the throughput_veh of marl_independent?",
+      "answer": "On light demand marl_independent recorded throughput_veh of 855.0.",
+      "fact": "855.0",
+      "kind": "result",
+      "group": "result:marl_independent|light|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the marl_independent throughput_veh result on light?",
+      "answer": "The marl_independent throughput_veh result on light is a 3-seed mean of 855.0 with standard deviation 1.63.",
+      "fact": "855.0",
+      "kind": "result",
+      "group": "result:marl_independent|light|throughput_veh"
+    },
+    {
+      "question": "What throughput_veh did marl_shared_w5 achieve on base demand?",
+      "answer": "marl_shared_w5 achieved throughput_veh of 1569.33 on base demand.",
+      "fact": "1569.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5|base|throughput_veh"
+    },
+    {
+      "question": "On base demand, what was the throughput_veh of marl_shared_w5?",
+      "answer": "On base demand marl_shared_w5 recorded throughput_veh of 1569.33.",
+      "fact": "1569.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5|base|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5 throughput_veh result on base?",
+      "answer": "The marl_shared_w5 throughput_veh result on base is a 3-seed mean of 1569.33 with standard deviation 148.02.",
+      "fact": "1569.33",
+      "kind": "result",
+      "group": "result:marl_shared_w5|base|throughput_veh"
+    },
+    {
+      "question": "What throughput_veh did marl_shared_w5 achieve on peak demand?",
+      "answer": "marl_shared_w5 achieved throughput_veh of 508.67 on peak demand.",
+      "fact": "508.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5|peak|throughput_veh"
+    },
+    {
+      "question": "On peak demand, what was the throughput_veh of marl_shared_w5?",
+      "answer": "On peak demand marl_shared_w5 recorded throughput_veh of 508.67.",
+      "fact": "508.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5|peak|throughput_veh"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5 throughput_veh result on peak?",
+      "answer": "The marl_shared_w5 throughput_veh result on peak is a 3-seed mean of 508.67 with standard deviation 34.2.",
+      "fact": "508.67",
+      "kind": "result",
+      "group": "result:marl_shared_w5|peak|throughput_veh"
+    },
+    {
+      "question": "How long is the signal cycle at junction D1?",
+      "answer": "The signal cycle at D1 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:D1"
+    },
+    {
+      "question": "What is the cycle time of D1?",
+      "answer": "The cycle time of D1 is 90 seconds.",
+      "fact": "90",
+      "kind": "program",
+      "group": "program:D1"
+    },
+    {
+      "question": "How many junctions does D1 feed into?",
+      "answer": "D1 feeds into 2 junctions.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:D1"
+    },
+    {
+      "question": "What is the out-degree of junction D1?",
+      "answer": "Junction D1 has an out-degree of 2.",
+      "fact": "2",
+      "kind": "degree",
+      "group": "degree:D1"
+    },
+    {
+      "question": "What avg_wait_time_s did marl_shared_w5gnn achieve on base demand?",
+      "answer": "marl_shared_w5gnn achieved avg_wait_time_s of 18.16 on base demand.",
+      "fact": "18.16",
+      "kind": "result",
+      "group": "result:marl_shared_w5gnn|base|avg_wait_time_s"
+    },
+    {
+      "question": "On base demand, what was the avg_wait_time_s of marl_shared_w5gnn?",
+      "answer": "On base demand marl_shared_w5gnn recorded avg_wait_time_s of 18.16.",
+      "fact": "18.16",
+      "kind": "result",
+      "group": "result:marl_shared_w5gnn|base|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the marl_shared_w5gnn avg_wait_time_s result on base?",
+      "answer": "The marl_shared_w5gnn avg_wait_time_s result on base is a 3-seed mean of 18.16 with standard deviation 0.14.",
+      "fact": "18.16",
+      "kind": "result",
+      "group": "result:marl_shared_w5gnn|base|avg_wait_time_s"
+    },
+    {
+      "question": "What avg_wait_time_s did marl_independent achieve on base demand?",
+      "answer": "marl_independent achieved avg_wait_time_s of 17.8 on base demand.",
+      "fact": "17.8",
+      "kind": "result",
+      "group": "result:marl_independent|base|avg_wait_time_s"
+    },
+    {
+      "question": "On base demand, what was the avg_wait_time_s of marl_independent?",
+      "answer": "On base demand marl_independent recorded avg_wait_time_s of 17.8.",
+      "fact": "17.8",
+      "kind": "result",
+      "group": "result:marl_independent|base|avg_wait_time_s"
+    },
+    {
+      "question": "How many seeds back the marl_independent avg_wait_time_s result on base?",
+      "answer": "The marl_independent avg_wait_time_s result on base is a 3-seed mean of 17.8 with standard deviation 0.28.",
+      "fact": "17.8",
+      "kind": "result",
+      "group": "result:marl_independent|base|avg_wait_time_s"
+    }
+  ]
+}

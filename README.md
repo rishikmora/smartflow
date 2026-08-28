@@ -129,7 +129,7 @@ Charts: [`outputs/`](outputs/) · Full analysis: [BENCHMARK_REPORT.md](BENCHMARK
 
 ## 🧪 What each week proved
 
-Definitions of Done are reported as they came out, including the two that failed.
+Definitions of Done are reported as they came out, including the three that failed.
 
 | Week | Question | Answer | DoD |
 |---|---|---|---|
@@ -140,6 +140,8 @@ Definitions of Done are reported as they came out, including the two that failed
 | 5 | Does parameter sharing + green-wave shaping + a fairness cap beat the baselines? | Corridor-wide RL does beat both baselines — but the *shaping* adds nothing, and one seed of the shaped run jams the corridor. The fairness constraint provably cannot be shown to work here. [Report](outputs/week5_report.md) | ❌ |
 | 6 | Does it hold up when the traffic changes? | It generalises well to light and asymmetric demand and degrades gracefully at peak, but loses to fixed-time on peak queue length. [BENCHMARK_REPORT.md](BENCHMARK_REPORT.md) | ✅ |
 | 7 | Can you ask it questions in English and trust the answer? | Yes — a 301-node knowledge graph plus RAG over the project's own reports, and out-of-domain questions are **refused** rather than guessed. [Report](outputs/week7_report.md) | ✅ |
+| 8 | Can it see vehicles, spot incidents, and answer "what if we close a road?" | Yes to all three — a detector at mAP50 0.988 on a held-out junction, every injected obstruction flagged in ~30 s, and 18 closure × weather runs completed. [Report](outputs/week8_report.md) | ✅ |
+| 9 | Does federated learning across districts help, and can a small LM learn the domain? | The LM yes (perplexity −86%). Federated averaging **no — by exactly 0.0%**, because every district learns the identical controller. [Report](outputs/week9_report.md) | ❌ / ✅ |
 
 **The most interesting result is a negative one.** Five policy variants — with and
 without the fairness constraint, with and without green-wave shaping, with a 20×
@@ -150,6 +152,15 @@ that can actually move a signal**. With a binary next-phase action and a 5-secon
 minimum green, the greedy policy on this corridor is saturated: reward shaping changes
 what the policy *believes* without changing what it *does*. Measured, not assumed —
 `src/policy_agreement.py`.
+
+**Week 9 found it a third time, from a completely different direction.** Three
+districts each trained their own policy on their own junction, on their own
+traffic. Their weights genuinely diverge — they are different objects — yet they
+produce *byte-identical* wait times on a held-out junction, so federated averaging
+improves on them by exactly nothing. That is what a saturated action space does:
+it makes every reasonable learner converge on the same rule. Fixing it means a
+finer action space (phase-duration control), which is the clearest next piece of
+work in this project.
 
 ---
 
@@ -290,6 +301,58 @@ python src\week6_benchmark.py
 
 ```powershell
 python src\update_readme.py
+```
+
+**Week 8 — vision, anomaly detection, scenario planning:**
+
+Rendering the dataset takes about 6 minutes; training the detector about an hour on CPU.
+
+```powershell
+python src\vision_dataset.py
+```
+
+```powershell
+python src\train_yolo.py
+```
+
+```powershell
+python src\anomaly_live.py
+```
+
+```powershell
+python src\scenario_planner.py
+```
+
+```powershell
+python src\week8_report.py
+```
+
+**Week 9 — federated learning, LoRA, priority routing:**
+
+```powershell
+python src\federated.py
+```
+
+```powershell
+python src\lora_finetune.py
+```
+
+```powershell
+python src\priority_routing.py
+```
+
+```powershell
+python src\week9_report.py
+```
+
+**Verify Weeks 8 and 9:**
+
+```powershell
+python src\test_week8.py
+```
+
+```powershell
+python src\test_week9.py
 ```
 
 ---
