@@ -1,0 +1,28 @@
+# Prometheus scrape configuration for the SmartFlow stack.
+#
+# The five domain services expose /metrics through prometheus-fastapi-instrumentator.
+# Redpanda exposes its own metrics on 9644.
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: smartflow-services
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - sim_service:8000
+          - rl_service:8000
+          - vision_service:8000
+          - graph_service:8000
+          - llm_service:8000
+        labels:
+          project: smartflow
+
+  - job_name: redpanda
+    static_configs:
+      - targets: ["redpanda:9644"]
+
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]

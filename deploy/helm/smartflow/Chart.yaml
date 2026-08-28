@@ -1,0 +1,12 @@
+apiVersion: v2
+name: smartflow
+description: >-
+  SmartFlow - five domain services, an event bus and a monitoring stack for the
+  multi-agent traffic-signal digital twin.
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords: [traffic, reinforcement-learning, sumo, digital-twin]
+home: https://github.com/rishikmora/smartflow
+maintainers:
+  - name: rishikmora

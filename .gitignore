@@ -63,6 +63,16 @@ models/lora/run/
 # first use. Third-party, re-downloaded automatically, not project evidence.
 yolov8n.pt
 
+# ── Phase D tooling and build output ─────────────────────────────────────────
+# helm and k3d binaries, downloaded locally rather than installed system-wide so
+# the project does not require them on PATH. Re-fetch with the commands in
+# outputs/week11_report.md.
+.tools/
+# Next.js dependencies and build output; `npm install` reproduces them.
+dashboard/node_modules/
+dashboard/.next/
+dashboard/next-env.d.ts
+
 # ── deliberately NOT ignored ─────────────────────────────────────────────────
 # outputs/*.csv, outputs/*.png, outputs/*.md   — benchmark evidence
 # outputs/vision/detector_results.json         — held-out detector metrics

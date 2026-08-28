@@ -1,0 +1,75 @@
+# SmartFlow Helm values.
+#
+# The five domain services are near-identical in shape, so they are described as
+# data here and rendered by one template rather than as five near-copies.
+
+image:
+  registry: ""
+  tag: latest
+  pullPolicy: IfNotPresent
+
+# Where the committed metrics, graph and models are read from. On a single-node
+# k3d cluster this is a hostPath mount of the repository, which is what makes
+# `helm install` work without first pushing gigabytes into a volume. A real
+# cluster would replace this with a PVC or an object store.
+data:
+  hostPath: /mnt/smartflow
+  readOnly: true
+
+env:
+  SMARTFLOW_ENV: development
+  SMARTFLOW_EVENT_TOPIC: smartflow.events
+
+auth:
+  # Leave empty to use the local development token mode. Setting both switches
+  # every service to Auth0 with no code change.
+  auth0Domain: ""
+  auth0Audience: ""
+  devJwtSecretName: smartflow-auth
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+services:
+  - name: sim-service
+    image: smartflow/sim_service
+    port: 8000
+    nodePort: 30001
+  - name: rl-service
+    image: smartflow/rl_service
+    port: 8000
+    nodePort: 30002
+  - name: vision-service
+    image: smartflow/vision_service
+    port: 8000
+    nodePort: 30003
+  - name: graph-service
+    image: smartflow/graph_service
+    port: 8000
+    nodePort: 30004
+  - name: llm-service
+    image: smartflow/llm_service
+    port: 8000
+    nodePort: 30005
+    extraEnv:
+      GRAPH_SERVICE_URL: http://graph-service:8000
+
+redpanda:
+  enabled: true
+  image: docker.redpanda.com/redpandadata/redpanda:v24.2.7
+  memory: 512M
+
+monitoring:
+  enabled: true
+  prometheus:
+    image: prom/prometheus:v3.1.0
+    nodePort: 30090
+  grafana:
+    image: grafana/grafana:11.5.1
+    nodePort: 30300
+    adminPassword: smartflow

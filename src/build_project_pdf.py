@@ -124,7 +124,7 @@ CONTENTS: list[tuple[str, str, str]] = [
     ("Part VII", "Week 7: knowledge graph and RAG", "Graph, retrieval and the read-only service"),
     ("Part VIII", "Weeks 8-9: perception and federation",
      "Vision, anomaly detection, planning, federated learning, LoRA"),
-    ("Part IX", "Phase D scaffold", "What exists for Weeks 10-12, and what does not"),
+    ("Part IX", "Weeks 10-12: the platform", "Services, Kubernetes, dashboard, integration"),
     ("Part X", "Deferred and draft material", "Items carried forward, honestly labelled"),
     ("Part XI", "Codebase", "Every source file and what it does"),
     ("Appendix A", "Complete metric tables", "Raw CSV data behind every claim"),
@@ -628,10 +628,12 @@ def build_html() -> str:
         doc("outputs/week9_report.md"),
         f'<div class="section">{charts_for("week9")}</div>',
 
-        part("Part IX", "Phase D scaffold",
-             "What exists on disk for Weeks 10-12, and - just as important - what "
-             "does not."),
+        part("Part IX", "Weeks 10-12: the platform",
+             "Five services behind authentication, deployed with Helm on k3d, a "
+             "dashboard, and the end-to-end integration test."),
         doc("outputs/week10_report.md"),
+        doc("outputs/week11_report.md"),
+        doc("outputs/week12_report.md"),
 
         part("Part X", "Deferred and draft material",
              "Items carried forward, plus the drafts that are labelled as drafts "
@@ -639,9 +641,10 @@ def build_html() -> str:
         doc("outputs/week7_deferred.md"),
         doc("outputs/week8_deferred.md"),
         doc("outputs/week9_deferred.md"),
-        doc("outputs/week11_deferred.md"),
-        doc("outputs/week12_deferred.md"),
         doc("outputs/citations_verified.md"),
+
+        part("Part XII", "Final report and viva preparation",
+             "The generated final report, and the questions it should survive."),
         doc("outputs/FINAL_REPORT.md"),
         doc("outputs/VIVA_PREP.md"),
 

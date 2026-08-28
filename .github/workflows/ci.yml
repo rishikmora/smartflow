@@ -1,26 +1,155 @@
 name: CI
 
+# Week 10's Definition of Done asks that a push to main rebuild and redeploy
+# every service. This pipeline does the rebuild, the tests and the publish. The
+# redeploy step is real but gated: it runs only when a deployment target is
+# configured, because a workflow that claims to deploy and silently does nothing
+# is worse than one that says it is not configured.
+
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_PREFIX: ${{ github.repository }}
 
 jobs:
-  test:
+  logic-tests:
+    name: Logic tests (no SUMO, no Docker)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install test dependencies
-        run: pip install pytest fastapi httpx pydantic
-      - name: Run tests
-        run: pytest
-  docker-build:
+          cache: pip
+      - name: Install the pure-logic dependencies
+        # The full requirements.txt pulls SUMO-bound and CUDA-sized packages that
+        # this job does not need. These are what the pure-logic checks import.
+        run: pip install numpy pyyaml pyjwt fastapi httpx
+      - name: Validate the Kubernetes manifests
+        run: python deploy/render_manifests.py
+      - name: Confirm the rendered manifests are committed and current
+        run: git diff --exit-code deploy/k8s/
+
+  build:
+    name: Build service images
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      matrix:
+        service: [sim_service, rl_service, vision_service, graph_service, llm_service]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Log in to the registry
+        if: github.event_name == 'push'
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build (and push on main)
+        uses: docker/build-push-action@v6
+        with:
+          context: ./services
+          file: ./services/${{ matrix.service }}/Dockerfile
+          push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/${{ matrix.service }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/${{ matrix.service }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  integration:
+    name: Integration tests against the live stack
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install pyjwt pyyaml
+      - name: Start the stack
+        # Only the five services and the broker: the monitoring containers are
+        # not what the integration tests assert against.
+        run: |
+          docker compose up -d --build \
+            sim_service rl_service vision_service graph_service llm_service redpanda
+      - name: Wait for every service to report healthy
+        run: |
+          for port in 8001 8002 8003 8004 8005; do
+            for i in $(seq 1 60); do
+              if curl -fsS "http://localhost:$port/health" > /dev/null; then
+                echo "port $port healthy"; break
+              fi
+              if [ "$i" -eq 60 ]; then
+                echo "port $port never became healthy"; docker compose logs --tail 80; exit 1
+              fi
+              sleep 5
+            done
+          done
+
+      - name: Run the integration suite
+        run: python tests/test_services.py
+      - name: Dump logs on failure
+        if: failure()
+        run: docker compose logs --tail 200
+      - name: Tear down
+        if: always()
+        run: docker compose down -v
+
+  helm-chart:
+    name: Lint and render the Helm chart
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build services
-        run: docker compose build
+      - uses: azure/setup-helm@v4
+        with:
+          version: v3.16.4
+      - run: helm lint deploy/helm/smartflow
+      - name: Render the chart and check it produces every object
+        run: |
+          helm template smartflow deploy/helm/smartflow > /tmp/rendered.yaml
+          count=$(grep -c '^kind:' /tmp/rendered.yaml)
+          echo "rendered $count objects"
+          test "$count" -eq 18
+
+  deploy:
+    name: Redeploy
+    runs-on: ubuntu-latest
+    needs: [logic-tests, build, integration, helm-chart]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check whether a deployment target is configured
+        id: target
+        run: |
+          if [ -n "${{ secrets.KUBE_CONFIG }}" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Deploy with Helm
+        if: steps.target.outputs.configured == 'true'
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
+          helm upgrade --install smartflow deploy/helm/smartflow \
+            --set image.registry=${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }} \
+            --set image.tag=${{ github.sha }} \
+            --wait --timeout 10m
+      - name: No target configured
+        if: steps.target.outputs.configured != 'true'
+        run: |
+          echo "::notice::Images were built and pushed, but no KUBE_CONFIG secret is"
+          echo "::notice::set, so nothing was redeployed. Add a kubeconfig as the"
+          echo "::notice::KUBE_CONFIG repository secret to complete the pipeline."

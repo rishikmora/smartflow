@@ -1,0 +1,100 @@
+{{/*
+  One Deployment + Service per entry in .Values.services. The five domain
+  services differ only in name, image and port, so describing them as data and
+  rendering them once keeps them from drifting apart.
+*/}}
+{{- range .Values.services }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .name }}
+  labels:
+    app: {{ .name }}
+    {{- include "smartflow.labels" $ | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .name }}
+        {{- include "smartflow.labels" $ | nindent 8 }}
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+      containers:
+        - name: {{ .name }}
+          image: {{ include "smartflow.image" (dict "repo" .image "root" $) }}
+          imagePullPolicy: {{ $.Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .port }}
+          env:
+            - name: SMARTFLOW_DATA_ROOT
+              value: /data
+            - name: SMARTFLOW_ENV
+              value: {{ $.Values.env.SMARTFLOW_ENV | quote }}
+            - name: SMARTFLOW_EVENT_TOPIC
+              value: {{ $.Values.env.SMARTFLOW_EVENT_TOPIC | quote }}
+            {{- if $.Values.redpanda.enabled }}
+            - name: REDPANDA_BROKERS
+              value: redpanda:9092
+            {{- end }}
+            - name: AUTH0_DOMAIN
+              value: {{ $.Values.auth.auth0Domain | quote }}
+            - name: AUTH0_AUDIENCE
+              value: {{ $.Values.auth.auth0Audience | quote }}
+            - name: SMARTFLOW_DEV_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.auth.devJwtSecretName }}
+                  key: devJwtSecret
+            {{- range $key, $value := .extraEnv }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+          volumeMounts:
+            - name: project-data
+              mountPath: /data
+              readOnly: {{ $.Values.data.readOnly }}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 20
+          resources:
+            {{- toYaml $.Values.resources | nindent 12 }}
+      volumes:
+        - name: project-data
+          hostPath:
+            path: {{ $.Values.data.hostPath }}
+            type: Directory
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .name }}
+  labels:
+    app: {{ .name }}
+    {{- include "smartflow.labels" $ | nindent 4 }}
+spec:
+  type: NodePort
+  selector:
+    app: {{ .name }}
+  ports:
+    - name: http
+      port: {{ .port }}
+      targetPort: http
+      nodePort: {{ .nodePort }}
+{{- end }}

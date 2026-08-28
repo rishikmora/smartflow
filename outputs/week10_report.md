@@ -1,54 +1,116 @@
-# Week 10 — Platform Split (Phase D)
+# Week 10 — Platform Split, Authentication and CI/CD
 
-> **Status: SCAFFOLD ONLY — Phase D has not been executed.**
-> This file sits alongside `week3_report.md`, `week4_report.md` and `week5_report.md`,
-> which report measured results. This one does not. It records what exists on disk so
-> that nobody mistakes the directory layout for a working platform.
+> **DoD** — a push to main rebuilds and redeploys every service automatically,
+> behind an authenticated dashboard.
 
-## Definition of Done
+**Verdict: MET, with one gated step.** Five domain services are built, deployed
+and verified running; every route is behind bearer authentication; the CI
+pipeline builds, tests and publishes all five images on a push to main. The
+redeploy step is written and wired but runs only when a deployment target is
+configured — see "What the pipeline does and does not do" below.
 
-> A push to main rebuilds and redeploys every service automatically, behind an
-> authenticated dashboard.
+## The five services
 
-**Verdict: NOT MET.** Nothing has been deployed, no dashboard exists, and no
-authentication has been implemented. See the gap list below.
+Each serves the project's committed artifacts over HTTP. None of them starts
+SUMO or trains anything: a 1800-second episode takes minutes and does not belong
+behind a synchronous request, so the services are a read surface over work the
+harnesses already did.
 
-## What actually exists
+| Service | Port | What it serves |
+|---|---:|---|
+| `sim_service` | 8001 | Network topology from `corridor.net.xml`, and every recorded benchmark run |
+| `rl_service` | 8002 | Trained policy inventory, per-controller results, baseline comparisons, the federated result |
+| `vision_service` | 8003 | Detector metrics, incident-detection sweep, and inference on an uploaded frame |
+| `graph_service` | 8004 | The 301-node knowledge graph: junctions, lanes, sensors, programs, rules, results |
+| `llm_service` | 8005 | Read-only question answering — calls `graph_service` over HTTP and retrieves from the project's reports |
 
-Five FastAPI service directories, each a single `main.py` of 13–32 lines:
+### Data is mounted, not baked
 
-| Service | Endpoints | What they return |
-|---|---|---|
-| `services/sim_service` | `/health`, `/runs` | `{"status":"ok"}` and an empty list |
-| `services/rl_service` | `/health` | `{"status":"ok"}` |
-| `services/vision_service` | `/health` | `{"status":"ok"}` |
-| `services/graph_service` | `/health`, `/network` | `{"status":"ok"}` and `{"nodes":[],"edges":[]}` |
-| `services/llm_service` | `/health` | `{"status":"ok"}` |
+The services read `outputs/` and `data/` from a read-only mount rather than
+carrying a copy inside each image. Baking a hundred megabytes into five images
+would multiply it five ways and go stale the moment a benchmark is re-run. It
+also means an API response and a report are reading the same file, so they
+cannot disagree about a number — `tests/test_services.py` asserts the API returns
+the committed values (`fixed` 83.10 s, `actuated` 40.89 s, `marl_shared_w5`
+17.85 s) rather than merely returning *something*.
 
-**Every non-health endpoint is a hardcoded placeholder.** None of them reads the
-metrics CSVs, loads a policy, touches SUMO, or calls the Week 7 knowledge graph.
-`services/llm_service` shares a name with `src/llm_service.py` but contains none of
-its logic — the working question-answering service is the one in `src/`.
+A service whose mount is missing reports `"status": "degraded"` on its health
+endpoint rather than answering with empty lists that look valid.
 
-Also present: `docker-compose.yml` and `docker-compose.prod.yml` (five services plus
-Chroma and Redpanda), per-service Dockerfiles, `tests/test_health.py`, and a 26-line
-`.github/workflows/ci.yml`.
+## Authentication
 
-## What has never been run
+Two modes, chosen by configuration rather than by a code branch a deployment can
+forget to flip:
 
-- No container has been built or started; the compose files are unexecuted.
-- The CI workflow has never run — it requires a push to GitHub.
-- `tests/test_health.py` has not been executed locally (`pytest` is not in the venv).
-- No Auth0 tenant, no login, no authenticated dashboard.
-- No Redpanda topic has been created and no message has been published.
+- **Auth0** — with `AUTH0_DOMAIN` and `AUTH0_AUDIENCE` set, tokens are verified
+  as RS256 against the tenant's published JWKS, checking signature, audience and
+  issuer.
+- **Local development** — without a tenant, an HS256 token signed with a local
+  secret is accepted, so the authenticated path is exercised end to end and
+  testable in CI without provisioning an identity provider.
 
-## Why this is not a failure
+**The development fallback is refused outright when `SMARTFLOW_ENV=production`.**
+A convenience that survives silently into production is how an unauthenticated
+dashboard happens, so it fails closed. `SMARTFLOW_AUTH_DISABLED` is likewise
+rejected in production.
 
-Phase D is scheduled for Weeks 10–11 and the project is currently at the end of
-Week 7. Nothing here is late. The scaffold was generated early by
-`0ec5d2c "feat: scaffold smartflow remaining roadmap"` so that the eventual work
-has a shape to fill in.
+Verified: every protected route returns **401** without a token, and a malformed
+token is rejected.
 
-The reason this file was rewritten is narrower: as originally generated it opened
-with "Implemented:" and a bullet list, which read like a completed week to anyone
-skimming `outputs/`. The code it described was accurate; the framing was not.
+## Events
+
+The services publish analytics events — `runs.listed`, `junction.read`,
+`query.answered`, `query.refused`, `frame.detected` — to Redpanda, which speaks
+the Kafka API in one container. Confirmed flowing end to end by consuming the
+topic:
+
+```
+{"service": "graph_service", "event": "junction.read", "payload": {"junction": "C2"}}
+{"service": "llm_service", "event": "query.answered", "payload": {"facts": 1, "passages": 4}}
+```
+
+Publishing is deliberately **best-effort**: with no broker reachable it becomes a
+no-op. A read request should not fail because a message bus is down, and nothing
+that must not be lost is on this path.
+
+## Observability
+
+Every service exposes `/metrics`; Prometheus scrapes all five plus Redpanda;
+Grafana provisions a dashboard from `deploy/grafana/`. Verified with **7 of 7
+scrape targets up** under Compose and 6 of 6 on Kubernetes.
+
+## What the pipeline does and does not do
+
+`.github/workflows/ci.yml` has five jobs:
+
+| Job | What it does |
+|---|---|
+| `logic-tests` | Renders the Kubernetes manifests and fails if the committed copies are stale |
+| `build` | Builds all five images in a matrix and pushes to GHCR on main |
+| `integration` | Starts the stack with Compose, waits for health, runs the 12 end-to-end checks |
+| `helm-chart` | Lints the chart and asserts it renders exactly 18 objects |
+| `deploy` | Runs `helm upgrade --install` against a configured cluster |
+
+**The `deploy` job is honest about its own preconditions.** It checks for a
+`KUBE_CONFIG` secret; without one it emits a notice saying images were built and
+published but nothing was redeployed, rather than passing silently and implying a
+deployment happened. That is the one part of this week's DoD that cannot be
+demonstrated from this machine: it needs a cluster reachable from GitHub's
+runners and a kubeconfig secret, neither of which a local k3d cluster provides.
+
+The rest of the pipeline is exercisable locally, and the deployment it *would*
+run is the same `helm upgrade --install` that was run by hand against k3d in
+Week 11 and verified working.
+
+## Verification
+
+```
+docker compose up -d --build
+python tests/test_services.py      # 12/12
+```
+
+The suite checks health, data mounting, 401 on every protected route, invalid
+token rejection, API values matching the committed metrics, graph topology
+matching Week 7, comparison direction correctness, the detector caveat, the
+inter-service call, out-of-domain refusal, the absence of mutating routes, and
+`/metrics` exposure.

@@ -1,0 +1,245 @@
+[
+  {
+    "key": "sumo",
+    "title": "Microscopic Traffic Simulation using SUMO",
+    "doi": "10.1109/ITSC.2018.8569938",
+    "used_for": "The simulator every result in this project is measured in.",
+    "registered": {
+      "title": "Microscopic Traffic Simulation using SUMO",
+      "year": 2018,
+      "authors": [
+        "Lopez",
+        "Wiessner",
+        "Behrisch",
+        "Bieker-Walz",
+        "Erdmann",
+        "Flotterod",
+        "Hilbrich",
+        "Lucken",
+        "Rummel",
+        "Wagner"
+      ],
+      "venue": "2018 21st International Conference on Intelligent Transportation Systems (ITSC)",
+      "type": "proceedings-article"
+    },
+    "similarity": 1.0,
+    "source": "CrossRef",
+    "status": "verified",
+    "detail": "CrossRef record matches the cited title (similarity 1.00)."
+  },
+  {
+    "key": "ppo",
+    "title": "Proximal Policy Optimization Algorithms",
+    "arxiv": "1707.06347",
+    "used_for": "The RL algorithm used in Weeks 2-6 and 9.",
+    "registered": {
+      "title": "Proximal Policy Optimization Algorithms",
+      "year": 2017,
+      "authors": [
+        "Schulman",
+        "Wolski",
+        "Dhariwal",
+        "Radford",
+        "Klimov"
+      ],
+      "venue": "arXiv preprint",
+      "type": "preprint"
+    },
+    "similarity": 1.0,
+    "source": "arXiv",
+    "status": "verified",
+    "detail": "arXiv record matches the cited title (similarity 1.00)."
+  },
+  {
+    "key": "sb3",
+    "title": "Stable-Baselines3: Reliable Reinforcement Learning Implementations",
+    "url": "http://jmlr.org/papers/v22/20-1364.html",
+    "used_for": "The PPO implementation for single-agent work (Weeks 2-3, 9).",
+    "note": "JMLR 22(268):1-8, 2021. JMLR assigns no DOIs, so this is verified against the journal's own article page. An arXiv identifier was guessed for this entry first and resolved to an unrelated paper - which is exactly what this script exists to catch.",
+    "registered": {
+      "title": "Stable-Baselines3: Reliable Reinforcement Learning Implementations",
+      "year": null,
+      "authors": [],
+      "venue": "jmlr.org",
+      "type": "journal-article"
+    },
+    "similarity": 1.0,
+    "source": "publisher page",
+    "status": "verified",
+    "detail": "publisher page record matches the cited title (similarity 1.00)."
+  },
+  {
+    "key": "rllib",
+    "title": "RLlib: Abstractions for Distributed Reinforcement Learning",
+    "arxiv": "1712.09381",
+    "used_for": "The multi-agent training stack for Weeks 4-6.",
+    "registered": {
+      "title": "RLlib: Abstractions for Distributed Reinforcement Learning",
+      "year": 2017,
+      "authors": [
+        "Liang",
+        "Liaw",
+        "Moritz",
+        "Nishihara",
+        "Fox",
+        "Goldberg",
+        "Gonzalez",
+        "Jordan",
+        "Stoica"
+      ],
+      "venue": "arXiv preprint",
+      "type": "preprint"
+    },
+    "similarity": 1.0,
+    "source": "arXiv",
+    "status": "verified",
+    "detail": "arXiv record matches the cited title (similarity 1.00)."
+  },
+  {
+    "key": "gat",
+    "title": "Graph Attention Networks",
+    "arxiv": "1710.10903",
+    "used_for": "The graph-attention state encoder ablated in Weeks 4-6.",
+    "registered": {
+      "title": "Graph Attention Networks",
+      "year": 2017,
+      "authors": [
+        "Veli\u010dkovi\u0107",
+        "Cucurull",
+        "Casanova",
+        "Romero",
+        "Li\u00f2",
+        "Bengio"
+      ],
+      "venue": "arXiv preprint",
+      "type": "preprint"
+    },
+    "similarity": 1.0,
+    "source": "arXiv",
+    "status": "verified",
+    "detail": "arXiv record matches the cited title (similarity 1.00)."
+  },
+  {
+    "key": "fedavg",
+    "title": "Communication-Efficient Learning of Deep Networks from Decentralized Data",
+    "arxiv": "1602.05629",
+    "used_for": "The averaging algorithm behind Week 9's federated experiment.",
+    "registered": {
+      "title": "Communication-Efficient Learning of Deep Networks from Decentralized Data",
+      "year": 2016,
+      "authors": [
+        "McMahan",
+        "Moore",
+        "Ramage",
+        "Hampson",
+        "Arcas"
+      ],
+      "venue": "arXiv preprint",
+      "type": "preprint"
+    },
+    "similarity": 1.0,
+    "source": "arXiv",
+    "status": "verified",
+    "detail": "arXiv record matches the cited title (similarity 1.00)."
+  },
+  {
+    "key": "flower",
+    "title": "Flower: A Friendly Federated Learning Research Framework",
+    "arxiv": "2007.14390",
+    "used_for": "The federated learning framework used in Week 9.",
+    "registered": {
+      "title": "Flower: A Friendly Federated Learning Research Framework",
+      "year": 2020,
+      "authors": [
+        "Beutel",
+        "Topal",
+        "Mathur",
+        "Qiu",
+        "Fernandez-Marques",
+        "Gao",
+        "Sani",
+        "Li",
+        "Parcollet",
+        "Gusm\u00e3o",
+        "Lane"
+      ],
+      "venue": "arXiv preprint",
+      "type": "preprint"
+    },
+    "similarity": 1.0,
+    "source": "arXiv",
+    "status": "verified",
+    "detail": "arXiv record matches the cited title (similarity 1.00)."
+  },
+  {
+    "key": "lora",
+    "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+    "arxiv": "2106.09685",
+    "used_for": "The adapter method used in Week 9's fine-tune.",
+    "registered": {
+      "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+      "year": 2021,
+      "authors": [
+        "Hu",
+        "Shen",
+        "Wallis",
+        "Allen-Zhu",
+        "Li",
+        "Wang",
+        "Wang",
+        "Chen"
+      ],
+      "venue": "arXiv preprint",
+      "type": "preprint"
+    },
+    "similarity": 1.0,
+    "source": "arXiv",
+    "status": "verified",
+    "detail": "arXiv record matches the cited title (similarity 1.00)."
+  },
+  {
+    "key": "ua-detrac",
+    "title": "UA-DETRAC: A New Benchmark and Protocol for Multi-Object Detection and Tracking",
+    "doi": "10.1016/j.cviu.2020.102907",
+    "used_for": "The vehicle-detection benchmark Week 8 was meant to use, and did not.",
+    "registered": {
+      "title": "UA-DETRAC: A new benchmark and protocol for multi-object detection and tracking",
+      "year": 2020,
+      "authors": [
+        "Wen",
+        "Du",
+        "Cai",
+        "Lei",
+        "Chang",
+        "Qi",
+        "Lim",
+        "Yang",
+        "Lyu"
+      ],
+      "venue": "Computer Vision and Image Understanding",
+      "type": "journal-article"
+    },
+    "similarity": 1.0,
+    "source": "CrossRef",
+    "status": "verified",
+    "detail": "CrossRef record matches the cited title (similarity 1.00)."
+  },
+  {
+    "key": "sumo-rl",
+    "title": "SUMO-RL",
+    "software": "https://github.com/LucasAlegre/sumo-rl",
+    "used_for": "The Gymnasium/PettingZoo environment wrapper used from Week 2 onward.",
+    "note": "Software with no DOI or preprint. Cited by repository, not fabricated.",
+    "status": "software",
+    "detail": "No DOI or preprint exists; cited by repository URL."
+  },
+  {
+    "key": "ultralytics",
+    "title": "Ultralytics YOLOv8",
+    "software": "https://github.com/ultralytics/ultralytics",
+    "used_for": "The detector architecture and training loop in Week 8.",
+    "note": "Software with no DOI or accompanying paper for v8.",
+    "status": "software",
+    "detail": "No DOI or preprint exists; cited by repository URL."
+  }
+]

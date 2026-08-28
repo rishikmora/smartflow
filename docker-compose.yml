@@ -1,35 +1,140 @@
+# SmartFlow — five domain services, an event bus and a monitoring stack.
+#
+# Data is mounted read-only rather than baked into the images: the services read
+# the same committed metrics, graph and detector results the reports are built
+# from, so an API response and a report cannot disagree about a number. It also
+# keeps five images from each carrying a stale hundred-megabyte copy.
+#
+#   docker compose up -d --build
+#   python tests/test_services.py          # end-to-end check against the stack
+#
+# Authentication defaults to the local development mode (HS256 tokens minted by
+# services/common/auth.py). Set AUTH0_DOMAIN and AUTH0_AUDIENCE to switch every
+# service to Auth0 with no code change; SMARTFLOW_ENV=production refuses the dev
+# fallback outright.
+
+x-service-base: &service-base
+  restart: unless-stopped
+  environment: &service-env
+    SMARTFLOW_DATA_ROOT: /data
+    SMARTFLOW_ENV: ${SMARTFLOW_ENV:-development}
+    SMARTFLOW_DEV_JWT_SECRET: ${SMARTFLOW_DEV_JWT_SECRET:-smartflow-dev-secret}
+    AUTH0_DOMAIN: ${AUTH0_DOMAIN:-}
+    AUTH0_AUDIENCE: ${AUTH0_AUDIENCE:-}
+    REDPANDA_BROKERS: redpanda:9092
+    SMARTFLOW_EVENT_TOPIC: smartflow.events
+  volumes:
+    - ./outputs:/data/outputs:ro
+    - ./data:/data/data:ro
+  depends_on:
+    redpanda:
+      condition: service_started
+
 services:
   sim_service:
-    build: ./services/sim_service
+    <<: *service-base
+    build:
+      context: ./services
+      dockerfile: sim_service/Dockerfile
+    image: smartflow/sim_service:latest
     ports: ["8001:8000"]
+
   rl_service:
-    build: ./services/rl_service
+    <<: *service-base
+    build:
+      context: ./services
+      dockerfile: rl_service/Dockerfile
+    image: smartflow/rl_service:latest
     ports: ["8002:8000"]
+    volumes:
+      - ./outputs:/data/outputs:ro
+      - ./data:/data/data:ro
+      - ./models:/data/models:ro
+
   vision_service:
-    build: ./services/vision_service
+    <<: *service-base
+    build:
+      context: ./services
+      dockerfile: vision_service/Dockerfile
+    image: smartflow/vision_service:latest
     ports: ["8003:8000"]
+    volumes:
+      - ./outputs:/data/outputs:ro
+      - ./data:/data/data:ro
+      - ./models:/data/models:ro
+
   graph_service:
-    build: ./services/graph_service
+    <<: *service-base
+    build:
+      context: ./services
+      dockerfile: graph_service/Dockerfile
+    image: smartflow/graph_service:latest
     ports: ["8004:8000"]
+
   llm_service:
-    build: ./services/llm_service
+    <<: *service-base
+    build:
+      context: ./services
+      dockerfile: llm_service/Dockerfile
+    image: smartflow/llm_service:latest
     ports: ["8005:8000"]
-  chroma:
-    image: chromadb/chroma:latest
-    ports: ["8006:8000"]
+    environment:
+      <<: *service-env
+      GRAPH_SERVICE_URL: http://graph_service:8000
+    depends_on:
+      redpanda:
+        condition: service_started
+      graph_service:
+        condition: service_started
+
+  # Kafka-API compatible, one container instead of a ZooKeeper-era cluster.
   redpanda:
-    image: docker.redpanda.com/redpandadata/redpanda:latest
+    image: docker.redpanda.com/redpandadata/redpanda:v24.2.7
     command:
       - redpanda
       - start
       - --overprovisioned
-      - --smp
-      - "1"
-      - --memory
-      - 512M
-      - --reserve-memory
-      - 0M
-      - --node-id
-      - "0"
+      - --smp=1
+      - --memory=512M
+      - --reserve-memory=0M
+      - --node-id=0
       - --check=false
+      - --kafka-addr=PLAINTEXT://0.0.0.0:9092
+      - --advertise-kafka-addr=PLAINTEXT://redpanda:9092
     ports: ["9092:9092", "9644:9644"]
+    healthcheck:
+      test: ["CMD-SHELL", "rpk cluster health | grep -q 'Healthy:.*true'"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+  chroma:
+    image: chromadb/chroma:0.6.3
+    ports: ["8006:8000"]
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v3.1.0
+    volumes:
+      - ./deploy/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports: ["9090:9090"]
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:11.5.1
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-smartflow}
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+    volumes:
+      - ./deploy/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./deploy/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports: ["3001:3000"]
+    depends_on: [prometheus]
+    restart: unless-stopped
+
+  loki:
+    image: grafana/loki:3.3.2
+    command: ["-config.file=/etc/loki/local-config.yaml"]
+    ports: ["3100:3100"]
+    restart: unless-stopped

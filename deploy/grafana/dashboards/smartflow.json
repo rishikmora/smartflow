@@ -1,0 +1,43 @@
+{
+  "title": "SmartFlow — services",
+  "uid": "smartflow-services",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "10s",
+  "time": {"from": "now-30m", "to": "now"},
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Requests per second, by service",
+      "gridPos": {"h": 7, "w": 12, "x": 0, "y": 0},
+      "targets": [
+        {"expr": "sum by (job, handler) (rate(http_requests_total[1m]))",
+         "legendFormat": "{{handler}}"}
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Request latency, 95th percentile",
+      "gridPos": {"h": 7, "w": 12, "x": 12, "y": 0},
+      "targets": [
+        {"expr": "histogram_quantile(0.95, sum by (le, handler) (rate(http_request_duration_seconds_bucket[5m])))",
+         "legendFormat": "{{handler}}"}
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Responses by status code",
+      "gridPos": {"h": 7, "w": 12, "x": 0, "y": 7},
+      "targets": [
+        {"expr": "sum by (status) (rate(http_requests_total[1m]))",
+         "legendFormat": "{{status}}"}
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Service up",
+      "gridPos": {"h": 7, "w": 12, "x": 12, "y": 7},
+      "targets": [{"expr": "up{project=\"smartflow\"}", "legendFormat": "{{instance}}"}]
+    }
+  ]
+}
